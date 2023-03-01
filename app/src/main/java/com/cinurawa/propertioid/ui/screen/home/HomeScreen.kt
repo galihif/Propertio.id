@@ -1,8 +1,6 @@
 package com.cinurawa.propertioid.ui.screen.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -20,11 +18,12 @@ fun HomeScreen() {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
-            HomeBanner()
-        }
-        item {
-            HomeTab(selectedMenu) {
-                selectedMenu = it
+            Column {
+                HomeBanner()
+                Spacer(modifier = Modifier.height(16.dp))
+                HomeTab(selectedMenu) {
+                    selectedMenu = it
+                }
             }
         }
     }
