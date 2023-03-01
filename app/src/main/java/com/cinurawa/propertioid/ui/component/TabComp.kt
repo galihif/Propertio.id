@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -11,7 +10,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -62,9 +60,8 @@ fun ItemHomeTab(
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(6.dp),
-        elevation = 0.dp,
+        elevation = 8.dp,
         backgroundColor = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.surface,
-        border = if (selected) null else BorderStroke(1.dp, Color.LightGray)
     ) {
         Text(
             title,
