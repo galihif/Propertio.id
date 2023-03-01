@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -30,21 +32,21 @@ fun HomeTab(
         ItemHomeTab(
             Modifier
                 .weight(1f)
-                .clickable { onMenuSelected(HomeTab.Beli)  },
+                .clickable { onMenuSelected(HomeTab.Beli) },
             title = HomeTab.Beli,
             selected = selectedMenu == HomeTab.Beli
         )
         ItemHomeTab(
             Modifier
                 .weight(1f)
-                .clickable { onMenuSelected(HomeTab.Sewa)  },
+                .clickable { onMenuSelected(HomeTab.Sewa) },
             title = HomeTab.Sewa,
             selected = selectedMenu == HomeTab.Sewa
         )
         ItemHomeTab(
             Modifier
                 .weight(1f)
-                .clickable { onMenuSelected(HomeTab.Project)  },
+                .clickable { onMenuSelected(HomeTab.Project) },
             title = HomeTab.Project,
             selected = selectedMenu == HomeTab.Project
         )
@@ -55,13 +57,14 @@ fun HomeTab(
 fun ItemHomeTab(
     modifier: Modifier = Modifier,
     title: String,
-    selected:Boolean,
+    selected: Boolean,
 ) {
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(6.dp),
-        elevation = 4.dp,
-        backgroundColor = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.surface
+        elevation = 0.dp,
+        backgroundColor = if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.surface,
+        border = if (selected) null else BorderStroke(1.dp, Color.LightGray)
     ) {
         Text(
             title,
