@@ -75,6 +75,7 @@ fun HomeSearchCard(
             )
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(6.dp),
                 value = keyword,
                 label = { Text(text = "Cari properti disini...") },
                 onValueChange = { newKeyword ->
@@ -83,7 +84,8 @@ fun HomeSearchCard(
             )
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { }
+                onClick = { },
+                shape = RoundedCornerShape(6.dp),
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
