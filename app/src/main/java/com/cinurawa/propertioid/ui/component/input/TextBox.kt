@@ -1,8 +1,6 @@
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -33,6 +31,7 @@ fun SelectDropdown(
                     expanded = expanded
                 )
             },
+            shape = RoundedCornerShape(6.dp),
             modifier = Modifier.fillMaxWidth()
         )
         // menu
