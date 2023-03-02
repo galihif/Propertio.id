@@ -21,7 +21,9 @@ import com.cinurawa.propertioid.ui.screen.home.HomeScreen
 import com.cinurawa.propertioid.ui.screen.project.ProjectScreen
 import com.cinurawa.propertioid.ui.screen.properti.PropertiScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun PropertioidApp(
