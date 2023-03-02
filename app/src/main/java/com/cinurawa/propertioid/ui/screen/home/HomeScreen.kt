@@ -12,10 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.ui.component.HomeBanner
+import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
 import com.cinurawa.propertioid.utils.Type
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreen() {
@@ -66,8 +69,10 @@ fun HomeScreen() {
                     keyword = keyword,
                     onKeywordChanged = { keyword = it }
                 )
+                HomeCarousel(modifier = Modifier.fillMaxWidth())
             }
         }
     }
 }
+
 
