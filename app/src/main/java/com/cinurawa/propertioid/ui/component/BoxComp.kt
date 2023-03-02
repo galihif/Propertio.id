@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
 
@@ -45,10 +48,10 @@ fun HomeBanner() {
 @ExperimentalMaterialApi
 @Composable
 fun HomeSearchCard(
-    options:List<String> = listOf("Option 1", "Option 2", "Option 3"),
+    options: List<String> = listOf("Option 1", "Option 2", "Option 3"),
     onOptionSelected: (String) -> Unit = {},
     selectedOption: String = "",
-    keyword:String = "",
+    keyword: String = "",
     onKeywordChanged: (String) -> Unit = {}
 ) {
     Card(
@@ -78,6 +81,22 @@ fun HomeSearchCard(
                     onKeywordChanged(newKeyword)
                 }
             )
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = { }
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "Cari",
+                        modifier = Modifier.weight(1f),
+                        textAlign = TextAlign.Center
+                    )
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = ""
+                    )
+                }
+            }
         }
     }
 }
