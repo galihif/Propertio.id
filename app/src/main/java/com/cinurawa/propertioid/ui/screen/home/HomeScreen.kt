@@ -1,20 +1,21 @@
 package com.cinurawa.propertioid.ui.screen.home
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
+import com.cinurawa.propertioid.ui.component.item.ItemProperty
 import com.cinurawa.propertioid.utils.Type
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -52,7 +53,7 @@ fun HomeScreen() {
         modifier = Modifier
             .fillMaxWidth(),
         contentPadding = PaddingValues(24.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
             Column(
@@ -71,6 +72,18 @@ fun HomeScreen() {
                 )
                 HomeCarousel(modifier = Modifier.fillMaxWidth())
             }
+        }
+        item {
+            Text(
+                text = "Rekomendasi Properti",
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
+        items(10) {
+            ItemProperty()
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
