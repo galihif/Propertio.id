@@ -64,4 +64,5 @@ dependencies {
 
     implementation "com.google.accompanist:accompanist-pager:0.22.0-rc"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.22.0-rc"
+    implementation "com.google.accompanist:accompanist-flowlayout:0.22.0-rc"
 }
