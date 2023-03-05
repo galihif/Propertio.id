@@ -7,8 +7,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -66,12 +65,12 @@ fun ItemProperty(
             mainAxisSpacing = 14.dp,
             crossAxisSpacing = 14.dp
         ) {
-            FacilPropCard(title = "2 Lantai", icon = Icons.Default.Home)
-            FacilPropCard(title = "200 m2", icon = Icons.Default.Home)
-            FacilPropCard(title = "100 m2", icon = Icons.Default.Home)
-            FacilPropCard(title = "2 K. Tidur", icon = Icons.Default.Home)
-            FacilPropCard(title = "2 K. Mandi", icon = Icons.Default.Home)
-            FacilPropCard(title = "1 Garasi", icon = Icons.Default.Home)
+            FacilPropCard(title = "2 Lantai", icon = Icons.Default.Stairs)
+            FacilPropCard(title = "200 m2", icon = Icons.Default.AspectRatio)
+            FacilPropCard(title = "100 m2", icon = Icons.Default.OtherHouses)
+            FacilPropCard(title = "2 K. Tidur", icon = Icons.Default.Bed)
+            FacilPropCard(title = "2 K. Mandi", icon = Icons.Default.Bathroom)
+            FacilPropCard(title = "1 Garasi", icon = Icons.Default.Garage)
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
