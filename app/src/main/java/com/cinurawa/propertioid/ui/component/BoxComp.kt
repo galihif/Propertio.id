@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.component
 
-import SelectDropdown
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.molecules.TipePropertiDropdown
 
 @Composable
 fun HomeBanner() {
@@ -66,7 +66,7 @@ fun HomeSearchCard(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            SelectDropdown(
+            TipePropertiDropdown(
                 options = options,
                 selectedOption = selectedOption,
                 onOptionSelected = { newOption ->

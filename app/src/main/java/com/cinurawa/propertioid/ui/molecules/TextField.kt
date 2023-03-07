@@ -1,3 +1,5 @@
+package com.cinurawa.propertioid.ui.molecules
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -5,9 +7,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+
 @ExperimentalMaterialApi
 @Composable
-fun SelectDropdown(
+fun TipePropertiDropdown(
     options: List<String>,
     selectedOption: String = "",
     onOptionSelected: (String) -> Unit
