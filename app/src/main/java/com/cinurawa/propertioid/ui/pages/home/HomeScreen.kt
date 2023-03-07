@@ -22,8 +22,8 @@ import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
-import com.cinurawa.propertioid.ui.component.item.ItemProject
-import com.cinurawa.propertioid.ui.component.item.ItemProperty
+import com.cinurawa.propertioid.ui.organisms.ProjectItem
+import com.cinurawa.propertioid.ui.organisms.PropertyItem
 import com.cinurawa.propertioid.ui.theme.Blue700
 import com.cinurawa.propertioid.ui.theme.DarkBlue500
 import com.cinurawa.propertioid.utils.Type
@@ -91,7 +91,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(8.dp))
         }
         items(3) {
-            ItemProperty()
+            PropertyItem()
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
@@ -107,7 +107,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(8.dp))
         }
         items(3) {
-            ItemProject()
+            ProjectItem()
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
