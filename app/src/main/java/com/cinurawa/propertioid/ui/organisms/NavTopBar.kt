@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.component
+package com.cinurawa.propertioid.ui.organisms
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
 
 @Composable
-fun TopBar(onMenuClick: () -> Unit) {
+fun NavTopBar(onMenuClick: () -> Unit) {
     TopAppBar(
         modifier = Modifier,
         navigationIcon = {

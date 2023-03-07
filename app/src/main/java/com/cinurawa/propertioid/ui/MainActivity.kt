@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.cinurawa.propertioid.ui.component.TopBar
+import com.cinurawa.propertioid.ui.organisms.NavTopBar
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
 import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
@@ -47,7 +47,7 @@ fun PropertioidApp(
     Scaffold(
         scaffoldState = appState.scaffoldState,
         topBar = {
-            TopBar(
+            NavTopBar(
                 onMenuClick = appState::onMenuClick
             )
         },
