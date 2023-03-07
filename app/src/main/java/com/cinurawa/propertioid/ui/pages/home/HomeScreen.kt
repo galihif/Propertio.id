@@ -17,13 +17,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
+import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
 import com.cinurawa.propertioid.ui.component.item.ItemProject
 import com.cinurawa.propertioid.ui.component.item.ItemProperty
-import com.cinurawa.propertioid.ui.component.text.HomeSectionTitle
 import com.cinurawa.propertioid.ui.theme.Blue700
 import com.cinurawa.propertioid.ui.theme.DarkBlue500
 import com.cinurawa.propertioid.utils.Type
@@ -84,7 +84,7 @@ fun HomeScreen() {
             }
         }
         item {
-            HomeSectionTitle(
+            TitleSectionText(
                 title = "Rekomendasi Properti",
                 modifier = Modifier.fillMaxWidth()
             )
@@ -100,7 +100,7 @@ fun HomeScreen() {
             }
         }
         item {
-            HomeSectionTitle(
+            TitleSectionText(
                 title = "Project Pilihan",
                 modifier = Modifier.fillMaxWidth()
             )

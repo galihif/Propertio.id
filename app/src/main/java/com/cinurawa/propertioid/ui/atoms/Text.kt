@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.component.text
+package com.cinurawa.propertioid.ui.atoms
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -8,7 +8,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeSectionTitle(
+fun TitleSectionText(
     modifier: Modifier = Modifier,
     title: String
 ) {
