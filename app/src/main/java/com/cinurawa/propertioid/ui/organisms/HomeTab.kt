@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.component
+package com.cinurawa.propertioid.ui.organisms
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

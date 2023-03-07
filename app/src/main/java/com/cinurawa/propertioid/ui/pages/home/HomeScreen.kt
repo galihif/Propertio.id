@@ -18,12 +18,8 @@ import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
-import com.cinurawa.propertioid.ui.component.HomeTab
 import com.cinurawa.propertioid.ui.molecules.HomeBanner
-import com.cinurawa.propertioid.ui.organisms.HomeCarousel
-import com.cinurawa.propertioid.ui.organisms.ProjectItem
-import com.cinurawa.propertioid.ui.organisms.PropertyItem
-import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
+import com.cinurawa.propertioid.ui.organisms.*
 import com.cinurawa.propertioid.ui.theme.Blue700
 import com.cinurawa.propertioid.ui.theme.DarkBlue500
 import com.cinurawa.propertioid.utils.Type
