@@ -20,10 +20,10 @@ import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
-import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
 import com.cinurawa.propertioid.ui.organisms.ProjectItem
 import com.cinurawa.propertioid.ui.organisms.PropertyItem
+import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
 import com.cinurawa.propertioid.ui.theme.Blue700
 import com.cinurawa.propertioid.ui.theme.DarkBlue500
 import com.cinurawa.propertioid.utils.Type
@@ -73,7 +73,7 @@ fun HomeScreen() {
                 HomeTab(selectedMenu) {
                     selectedMenu = it
                 }
-                HomeSearchCard(
+                PropertySearchBox(
                     options = listOptions,
                     onOptionSelected = { selectedOption = it },
                     selectedOption = selectedOption,
