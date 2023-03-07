@@ -15,11 +15,11 @@ import com.cinurawa.propertioid.ui.component.TopBar
 import com.cinurawa.propertioid.ui.component.drawer.MyDrawerContent
 import com.cinurawa.propertioid.ui.component.drawer.rememberMyNavDrawerState
 import com.cinurawa.propertioid.ui.navigation.Screen
-import com.cinurawa.propertioid.ui.screen.agent.AgentScreen
-import com.cinurawa.propertioid.ui.screen.developer.DeveloperScreen
-import com.cinurawa.propertioid.ui.screen.home.HomeScreen
-import com.cinurawa.propertioid.ui.screen.project.ProjectScreen
-import com.cinurawa.propertioid.ui.screen.properti.PropertiScreen
+import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
+import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
+import com.cinurawa.propertioid.ui.pages.home.HomeScreen
+import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
+import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 

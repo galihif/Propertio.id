@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.screen.developer
+package com.cinurawa.propertioid.ui.pages.developer
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

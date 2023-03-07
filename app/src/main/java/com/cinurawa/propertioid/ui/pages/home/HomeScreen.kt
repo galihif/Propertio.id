@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.screen.home
+package com.cinurawa.propertioid.ui.pages.home
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -16,11 +16,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
-import com.cinurawa.propertioid.ui.component.button.ButtonLihatSemua
 import com.cinurawa.propertioid.ui.component.item.ItemProject
 import com.cinurawa.propertioid.ui.component.item.ItemProperty
 import com.cinurawa.propertioid.ui.component.text.HomeSectionTitle
@@ -95,7 +95,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            ButtonLihatSemua(Modifier.fillMaxWidth()) {
+            LihatSemuaButton(Modifier.fillMaxWidth()) {
 
             }
         }
@@ -111,7 +111,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            ButtonLihatSemua(Modifier.fillMaxWidth()) {
+            LihatSemuaButton(Modifier.fillMaxWidth()) {
 
             }
         }
