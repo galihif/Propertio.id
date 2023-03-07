@@ -13,6 +13,7 @@ import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
 import com.cinurawa.propertioid.ui.component.button.ButtonLihatSemua
+import com.cinurawa.propertioid.ui.component.item.ItemProject
 import com.cinurawa.propertioid.ui.component.item.ItemProperty
 import com.cinurawa.propertioid.ui.component.text.HomeSectionTitle
 import com.cinurawa.propertioid.utils.Type
@@ -77,8 +78,9 @@ fun HomeScreen() {
                 title = "Rekomendasi Properti",
                 modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(8.dp))
         }
-        items(10) {
+        items(3) {
             ItemProperty()
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -92,6 +94,16 @@ fun HomeScreen() {
                 title = "Project Pilihan",
                 modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+        items(3) {
+            ItemProject()
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+        item {
+            ButtonLihatSemua(Modifier.fillMaxWidth()){
+
+            }
         }
     }
 }
