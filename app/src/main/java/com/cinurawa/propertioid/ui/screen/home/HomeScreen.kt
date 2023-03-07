@@ -22,6 +22,8 @@ import com.cinurawa.propertioid.ui.component.button.ButtonLihatSemua
 import com.cinurawa.propertioid.ui.component.item.ItemProject
 import com.cinurawa.propertioid.ui.component.item.ItemProperty
 import com.cinurawa.propertioid.ui.component.text.HomeSectionTitle
+import com.cinurawa.propertioid.ui.theme.Blue700
+import com.cinurawa.propertioid.ui.theme.DarkBlue500
 import com.cinurawa.propertioid.utils.Type
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -119,7 +121,7 @@ fun HomeScreen() {
                 shape = RoundedCornerShape(14.dp)
             ) {
                 Column(
-                    Modifier.padding(16.dp),
+                    Modifier.padding(14.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Image(
@@ -145,6 +147,74 @@ fun HomeScreen() {
                         Text("Selengkapnya")
                     }
                 }
+            }
+            Spacer(modifier =Modifier.height(14.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    elevation = 0.dp,
+                    backgroundColor = DarkBlue500,
+                    shape = RoundedCornerShape(14.dp)
+                ) {
+                    Column(
+                        Modifier.padding(14.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            "Baca cerita inspiratif para pencari hunian",
+                            color = MaterialTheme.colors.onPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
+                        )
+                        Button(
+                            onClick = { /*TODO*/ },
+                            shape = RoundedCornerShape(6.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = MaterialTheme.colors.surface,
+                                contentColor = DarkBlue500
+                            ),
+                            contentPadding = PaddingValues(10.dp),
+                            elevation = ButtonDefaults.elevation(0.dp)
+                        ) {
+                            Text("Cerita Rumah")
+                        }
+                    }
+                }
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    elevation = 0.dp,
+                    backgroundColor = Blue700,
+                    shape = RoundedCornerShape(14.dp)
+                ) {
+                    Column(
+                        Modifier.padding(14.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            "Simak sentimen pencari hunian di Indonesia",
+                            color = MaterialTheme.colors.onPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
+                        )
+                        Button(
+                            onClick = { /*TODO*/ },
+                            shape = RoundedCornerShape(6.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = MaterialTheme.colors.surface,
+                                contentColor = Blue700
+                            ),
+                            contentPadding = PaddingValues(10.dp),
+                            elevation = ButtonDefaults.elevation(0.dp)
+                        ) {
+                            Text("CSS H2 2022")
+                        }
+                    }
+                }
+
             }
         }
     }
