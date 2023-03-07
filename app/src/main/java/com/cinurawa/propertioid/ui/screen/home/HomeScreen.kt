@@ -1,13 +1,19 @@
 package com.cinurawa.propertioid.ui.screen.home
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
@@ -85,7 +91,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            ButtonLihatSemua(Modifier.fillMaxWidth()){
+            ButtonLihatSemua(Modifier.fillMaxWidth()) {
 
             }
         }
@@ -101,8 +107,44 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            ButtonLihatSemua(Modifier.fillMaxWidth()){
+            ButtonLihatSemua(Modifier.fillMaxWidth()) {
 
+            }
+        }
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = 0.dp,
+                backgroundColor = MaterialTheme.colors.primary,
+                shape = RoundedCornerShape(14.dp)
+            ) {
+                Column(
+                    Modifier.padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_market_outlook),
+                        contentDescription = ""
+                    )
+                    Text(
+                        "Priopertio.com Indonesia Property Market Outlook 2023",
+                        color = MaterialTheme.colors.onPrimary,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    )
+                    Button(
+                        onClick = { /*TODO*/ },
+                        shape = RoundedCornerShape(6.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = MaterialTheme.colors.surface,
+                            contentColor = MaterialTheme.colors.primary
+                        ),
+                        contentPadding = PaddingValues(10.dp),
+                        elevation = ButtonDefaults.elevation(0.dp)
+                    ) {
+                        Text("Selengkapnya")
+                    }
+                }
             }
         }
     }
