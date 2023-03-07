@@ -3,8 +3,7 @@ package com.cinurawa.propertioid.ui.screen.home
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -13,6 +12,7 @@ import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
+import com.cinurawa.propertioid.ui.component.button.ButtonLihatSemua
 import com.cinurawa.propertioid.ui.component.item.ItemProperty
 import com.cinurawa.propertioid.ui.component.text.HomeSectionTitle
 import com.cinurawa.propertioid.utils.Type
@@ -83,18 +83,8 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            Button(
-                onClick = {},
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(5.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = MaterialTheme.colors.primary.copy(0.1f),
-                    contentColor = MaterialTheme.colors.primary
-                ),
-                elevation = ButtonDefaults.elevation(0.dp),
-                contentPadding = PaddingValues(vertical = 14.dp)
-            ) {
-                Text(text = "Lihat Semua")
+            ButtonLihatSemua(Modifier.fillMaxWidth()){
+
             }
         }
         item {
