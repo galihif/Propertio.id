@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
 
 @Composable
-fun StarCard(
+fun StarBadge(
     modifier: Modifier = Modifier
 ) {
     Card(

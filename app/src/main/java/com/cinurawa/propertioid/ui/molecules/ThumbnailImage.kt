@@ -24,6 +24,6 @@ fun ThumbnailImage(modifier: Modifier = Modifier) {
             contentDescription = "",
             contentScale = ContentScale.Crop,
         )
-        StarCard(Modifier.align(Alignment.TopStart))
+        StarBadge(Modifier.align(Alignment.TopStart))
     }
 }
