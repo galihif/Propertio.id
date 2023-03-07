@@ -1,8 +1,12 @@
 package com.cinurawa.propertioid.ui.organisms
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
@@ -12,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.molecules.HargaDetailFooter
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.ThumbnailImage
 import com.cinurawa.propertioid.ui.theme.Blue500
@@ -67,36 +72,6 @@ fun PropertyItem(
             IconTextBadge(text = "2 K. Mandi", icon = Icons.Default.Bathroom)
             IconTextBadge(text = "1 Garasi", icon = Icons.Default.Garage)
         }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                Text(
-                    text = "Harga",
-                    style = MaterialTheme.typography.body2
-                )
-                Text(
-                    text = "Rp.500.000.000",
-                    style = MaterialTheme.typography.h6,
-                    color = MaterialTheme.colors.primary
-                )
-            }
-            Button(
-                onClick = {},
-                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
-                shape = RoundedCornerShape(6.dp),
-            ) {
-                Text(
-                    text = "Lihat Detail",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
-                    modifier = Modifier.padding(8.dp)
-                )
-            }
-        }
+        HargaDetailFooter(harga = "Rp.500.000.000", onDetailClick = {})
     }
 }
