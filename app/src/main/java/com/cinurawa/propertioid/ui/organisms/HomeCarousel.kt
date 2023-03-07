@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.component
+package com.cinurawa.propertioid.ui.organisms
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -19,35 +19,35 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 
+val listCarouselItem = listOf<CarouselContent>(
+    CarouselContent(
+        title = "Jual Beli Properti",
+        description = "Temukan properti terbaik di sini. Kami menawarkan berbagai pilihan rumah, apartemen, dan tanah yang sesuai dengan kebutuhanmu.",
+        image = R.drawable.carousel_jualbeli
+    ),
+    CarouselContent(
+        title = "Sewa Properti",
+        description = "Temukan solusi jual beli properti terbaik di sini. Kami siap membantumu menemukan rumah impianmu.",
+        image = R.drawable.carousel_sewa
+    ),
+    CarouselContent(
+        title = "Direktori Properti",
+        description = "Nikmati keuntungan berinvestasi di properti bersama kami. Kami menyediakan direktori properti terlengkap untukmu.",
+        image = R.drawable.carousel_direktori
+    ),
+    CarouselContent(
+        title = "Berita Properti Terbaru",
+        description = "Temukan berita terkini dan terpercaya mengenai properti di sini. Jangan lewatkan informasi penting lainnya.",
+        image = R.drawable.carousel_berita
+    ),
+
+    )
+
 @ExperimentalPagerApi
 @Composable
 fun HomeCarousel(
     modifier: Modifier = Modifier
 ) {
-
-    val listCarouselItem = listOf<CarouselContent>(
-        CarouselContent(
-            title = "Jual Beli Properti",
-            description = "Temukan properti terbaik di sini. Kami menawarkan berbagai pilihan rumah, apartemen, dan tanah yang sesuai dengan kebutuhanmu.",
-            image = R.drawable.carousel_jualbeli
-        ),
-        CarouselContent(
-            title = "Sewa Properti",
-            description = "Temukan solusi jual beli properti terbaik di sini. Kami siap membantumu menemukan rumah impianmu.",
-            image = R.drawable.carousel_sewa
-        ),
-        CarouselContent(
-            title = "Direktori Properti",
-            description = "Nikmati keuntungan berinvestasi di properti bersama kami. Kami menyediakan direktori properti terlengkap untukmu.",
-            image = R.drawable.carousel_direktori
-        ),
-        CarouselContent(
-            title = "Berita Properti Terbaru",
-            description = "Temukan berita terkini dan terpercaya mengenai properti di sini. Jangan lewatkan informasi penting lainnya.",
-            image = R.drawable.carousel_berita
-        ),
-
-        )
     val pagerState = rememberPagerState()
 
     Column(
@@ -68,7 +68,6 @@ fun HomeCarousel(
         )
     }
 }
-
 
 @Composable
 fun HomeCarouselItem(content: CarouselContent) {
