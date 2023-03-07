@@ -1,9 +1,7 @@
-package com.cinurawa.propertioid.ui.component.drawer
+package com.cinurawa.propertioid.ui.utils
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.material.ScaffoldState
-import androidx.compose.material.SnackbarResult
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -12,7 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class MyNavDrawerState(
+class NavDrawerState(
     val scaffoldState: ScaffoldState,
     private val scope: CoroutineScope,
     private val context: Context
@@ -38,11 +36,11 @@ class MyNavDrawerState(
 }
 
 @Composable
-fun rememberMyNavDrawerState(
+fun rememberNavDrawerState(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
     coroutinesScope: CoroutineScope = rememberCoroutineScope(),
     context: Context = LocalContext.current
-): MyNavDrawerState =
+): NavDrawerState =
     remember(scaffoldState, coroutinesScope, context) {
-        MyNavDrawerState(scaffoldState, coroutinesScope, context)
+        NavDrawerState(scaffoldState, coroutinesScope, context)
     }

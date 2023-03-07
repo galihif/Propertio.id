@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.component.drawer
+package com.cinurawa.propertioid.ui.organisms
 
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -16,43 +15,41 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import com.cinurawa.propertioid.ui.model.MenuItem
 import com.cinurawa.propertioid.ui.navigation.Screen
 
-data class MenuItem(val title: String, val icon: ImageVector)
+val menuItems = listOf(
+    MenuItem(
+        title = Screen.Home.route,
+        icon = Icons.Default.Home
+    ),
+    MenuItem(
+        title = Screen.Properti.route,
+        icon = Icons.Default.Favorite
+    ),
+    MenuItem(
+        title = Screen.Project.route,
+        icon = Icons.Default.AccountCircle
+    ),
+    MenuItem(
+        title = Screen.Agent.route,
+        icon = Icons.Default.AccountCircle
+    ),
+    MenuItem(
+        title = Screen.Developer.route,
+        icon = Icons.Default.AccountCircle
+    ),
+)
 
 @Composable
-fun MyDrawerContent(
+fun NavDrawer(
     modifier: Modifier = Modifier,
     onItemSelected: (title: String) -> Unit,
     onBackPress: () -> Unit,
 ) {
-    val items = listOf(
-        MenuItem(
-            title = Screen.Home.route,
-            icon = Icons.Default.Home
-        ),
-        MenuItem(
-            title = Screen.Properti.route,
-            icon = Icons.Default.Favorite
-        ),
-        MenuItem(
-            title = Screen.Project.route,
-            icon = Icons.Default.AccountCircle
-        ),
-        MenuItem(
-            title = Screen.Agent.route,
-            icon = Icons.Default.AccountCircle
-        ),
-        MenuItem(
-            title = Screen.Developer.route,
-            icon = Icons.Default.AccountCircle
-        ),
 
-        )
     Column(modifier.fillMaxSize()) {
         Box(
             modifier = Modifier
@@ -60,7 +57,7 @@ fun MyDrawerContent(
                 .fillMaxWidth()
                 .background(MaterialTheme.colors.primary)
         )
-        for (item in items) {
+        for (item in menuItems) {
             Column(
                 modifier = Modifier
                     .clickable { onItemSelected(item.title) }

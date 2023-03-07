@@ -12,15 +12,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.cinurawa.propertioid.ui.component.TopBar
-import com.cinurawa.propertioid.ui.component.drawer.MyDrawerContent
-import com.cinurawa.propertioid.ui.component.drawer.rememberMyNavDrawerState
 import com.cinurawa.propertioid.ui.navigation.Screen
+import com.cinurawa.propertioid.ui.organisms.NavDrawer
 import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
 import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
 import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
+import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
 fun PropertioidApp(
     modifier: Modifier = Modifier
 ) {
-    val appState = rememberMyNavDrawerState()
+    val appState = rememberNavDrawerState()
     val navController = rememberNavController()
     Scaffold(
         scaffoldState = appState.scaffoldState,
@@ -52,7 +52,7 @@ fun PropertioidApp(
             )
         },
         drawerContent = {
-            MyDrawerContent(
+            NavDrawer(
                 onItemSelected = {
                     appState.onItemSelected()
                     navController.navigate(it)
