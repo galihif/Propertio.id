@@ -65,23 +65,25 @@ fun HomeScreen() {
         contentPadding = PaddingValues(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                HomeBanner()
-                HomeTab(selectedMenu) {
-                    selectedMenu = it
-                }
-                PropertySearchBox(
-                    options = listOptions,
-                    onOptionSelected = { selectedOption = it },
-                    selectedOption = selectedOption,
-                    keyword = keyword,
-                    onKeywordChanged = { keyword = it }
-                )
-                HomeCarousel(modifier = Modifier.fillMaxWidth())
+        item{
+            HomeBanner()
+        }
+        item{
+            HomeTab(selectedMenu) {
+                selectedMenu = it
             }
+        }
+        item {
+            PropertySearchBox(
+                options = listOptions,
+                onOptionSelected = { selectedOption = it },
+                selectedOption = selectedOption,
+                keyword = keyword,
+                onKeywordChanged = { keyword = it }
+            )
+        }
+        item {
+            HomeCarousel(modifier = Modifier.fillMaxWidth())
         }
         item {
             TitleSectionText(
