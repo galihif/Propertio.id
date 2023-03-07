@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.component.button
+package com.cinurawa.propertioid.ui.atoms
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ButtonLihatSemua(
+fun LihatSemuaButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
