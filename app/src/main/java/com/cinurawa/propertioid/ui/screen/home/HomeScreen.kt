@@ -8,13 +8,13 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.ui.component.HomeBanner
 import com.cinurawa.propertioid.ui.component.HomeCarousel
 import com.cinurawa.propertioid.ui.component.HomeSearchCard
 import com.cinurawa.propertioid.ui.component.HomeTab
 import com.cinurawa.propertioid.ui.component.item.ItemProperty
+import com.cinurawa.propertioid.ui.component.text.HomeSectionTitle
 import com.cinurawa.propertioid.utils.Type
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -73,11 +73,9 @@ fun HomeScreen() {
             }
         }
         item {
-            Text(
-                text = "Rekomendasi Properti",
-                style = MaterialTheme.typography.h6,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
+            HomeSectionTitle(
+                title = "Rekomendasi Properti",
+                modifier = Modifier.fillMaxWidth()
             )
         }
         items(10) {
@@ -98,6 +96,12 @@ fun HomeScreen() {
             ) {
                 Text(text = "Lihat Semua")
             }
+        }
+        item {
+            HomeSectionTitle(
+                title = "Project Pilihan",
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
