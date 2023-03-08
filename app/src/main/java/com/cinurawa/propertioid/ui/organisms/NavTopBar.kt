@@ -35,7 +35,7 @@ fun NavTopBar(onMenuClick: () -> Unit) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(vertical = 8.dp),
-                painter = painterResource(id = R.drawable.logo_topbar),
+                painter = painterResource(id = R.drawable.logo_propertio),
                 contentDescription = "",
                 alignment = Alignment.CenterStart
             )
