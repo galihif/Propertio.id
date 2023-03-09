@@ -28,3 +28,20 @@ fun RoundedImage(
             .clip(RoundedCornerShape(cornerRadius.dp))
     )
 }
+
+@Composable
+fun MyImage(
+    modifier: Modifier = Modifier,
+    height: Int = 200,
+    @DrawableRes image: Int,
+) {
+    Image(
+        painter = painterResource(image),
+        contentDescription = "",
+        contentScale = ContentScale.Crop,
+        modifier = modifier
+            .height(height.dp)
+            .fillMaxWidth()
+    )
+}
+
