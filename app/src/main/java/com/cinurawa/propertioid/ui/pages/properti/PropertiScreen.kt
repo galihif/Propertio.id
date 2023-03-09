@@ -15,7 +15,9 @@ import com.cinurawa.propertioid.ui.utils.DataProvider
 
 @ExperimentalMaterialApi
 @Composable
-fun PropertiScreen() {
+fun PropertiScreen(
+    onPropertiClicked: (Int) -> Unit
+) {
     var selectedOption by remember { mutableStateOf("") }
     val listOptions = DataProvider.typeList()
     var keyword by remember { mutableStateOf("") }
@@ -50,7 +52,9 @@ fun PropertiScreen() {
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
             ){
-                PropertyItem()
+                PropertyItem(
+                    onDetailClicked = { onPropertiClicked(it) }
+                )
             }
             Spacer(modifier = Modifier.height(24.dp))
         }
