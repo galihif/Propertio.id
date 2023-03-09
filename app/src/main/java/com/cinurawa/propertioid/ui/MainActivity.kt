@@ -76,7 +76,11 @@ fun PropertioidApp(
                 HomeScreen()
             }
             composable(Screen.Properti.route) {
-                PropertiScreen()
+                PropertiScreen(
+                    onPropertiClicked = {
+                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                    }
+                )
             }
             composable(Screen.Project.route) {
                 ProjectScreen()
@@ -92,7 +96,9 @@ fun PropertioidApp(
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) {
                 val id = it.arguments?.getInt("id") ?: 1
-                 DetailPropertiScreen()
+                 DetailPropertiScreen(
+                    id = id
+                 )
             }
         }
     }
