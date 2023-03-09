@@ -26,7 +26,8 @@ import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun PropertyItem(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDetailClicked: () -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -64,6 +65,6 @@ fun PropertyItem(
             IconTextBadge(text = "2 K. Mandi", icon = Icons.Default.Bathroom)
             IconTextBadge(text = "1 Garasi", icon = Icons.Default.Garage)
         }
-        HargaDetailFooter(harga = "Rp.500.000.000", onDetailClick = {})
+        HargaDetailFooter(harga = "Rp.500.000.000", onDetailClick = onDetailClicked)
     }
 }
