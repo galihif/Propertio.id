@@ -20,6 +20,7 @@ import com.cinurawa.propertioid.ui.molecules.TipePropertiDropdown
 @ExperimentalMaterialApi
 @Composable
 fun PropertySearchBox(
+    modifier: Modifier = Modifier,
     options: List<String> = listOf("Option 1", "Option 2", "Option 3"),
     onOptionSelected: (String) -> Unit = {},
     selectedOption: String = "",
@@ -27,7 +28,7 @@ fun PropertySearchBox(
     onKeywordChanged: (String) -> Unit = {}
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
         elevation = 8.dp
