@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,13 +9,16 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.cinurawa.propertioid.ui.organisms.NavTopBar
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
 import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
+import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
 import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
@@ -36,6 +40,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
@@ -81,6 +86,13 @@ fun PropertioidApp(
             }
             composable(Screen.Developer.route) {
                 DeveloperScreen()
+            }
+            composable(
+                route = Screen.DetailProperti.route,
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) {
+                val id = it.arguments?.getInt("id") ?: 1
+                 DetailPropertiScreen()
             }
         }
     }
