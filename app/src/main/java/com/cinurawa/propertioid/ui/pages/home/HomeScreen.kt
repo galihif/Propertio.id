@@ -22,7 +22,7 @@ import com.cinurawa.propertioid.ui.molecules.HomeBanner
 import com.cinurawa.propertioid.ui.organisms.*
 import com.cinurawa.propertioid.ui.theme.Blue700
 import com.cinurawa.propertioid.ui.theme.DarkBlue500
-import com.cinurawa.propertioid.utils.Type
+import com.cinurawa.propertioid.ui.utils.DataProvider
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
@@ -33,20 +33,7 @@ fun HomeScreen() {
     var selectedMenu by remember { mutableStateOf(HomeTab.Beli) }
 
     var selectedOption by remember { mutableStateOf("") }
-    val listOptions = listOf(
-        Type.Apartemen.value,
-        Type.Gudang.value,
-        Type.Kondominium.value,
-        Type.Kosan.value,
-        Type.Pabrik.value,
-        Type.Perkantoran.value,
-        Type.RuangUsaha.value,
-        Type.Ruko.value,
-        Type.Rumah.value,
-        Type.RumahKuno.value,
-        Type.Tanah.value,
-        Type.Villa.value
-    )
+    val listOptions = DataProvider.typeList()
 
     var keyword by remember { mutableStateOf("") }
 
