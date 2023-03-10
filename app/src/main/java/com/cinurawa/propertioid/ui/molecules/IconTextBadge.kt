@@ -56,8 +56,9 @@ fun IconTextBadge(
 
 @Composable
 fun IconTextBadge(
-    icon: ImageVector,
+    leadingIcon: ImageVector?=null,
     text: String,
+    trailingIcon: ImageVector?=null,
     color: Color = Color.Gray,
 ) {
     Card(
@@ -72,16 +73,24 @@ fun IconTextBadge(
                 .height(24.dp)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         ) {
-            Icon(
-                imageVector = icon, contentDescription = "",
-                tint = color
-            )
+            if (leadingIcon!=null){
+                Icon(
+                    imageVector = leadingIcon, contentDescription = "",
+                    tint = color
+                )
+            }
             Text(
                 text = text,
                 style = MaterialTheme.typography.body1,
                 color = color,
                 fontSize = 12.sp
             )
+            if (trailingIcon!=null){
+                Icon(
+                    imageVector = trailingIcon, contentDescription = "",
+                    tint = color
+                )
+            }
         }
     }
 }
