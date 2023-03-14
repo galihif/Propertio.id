@@ -57,7 +57,7 @@ fun PropertySearchBox(
             )
             PrimaryButton(
                 title = "Cari",
-                icon = Icons.Default.Search,
+                trailingIcon = Icons.Default.Search,
                 onClick = {}
             )
         }
