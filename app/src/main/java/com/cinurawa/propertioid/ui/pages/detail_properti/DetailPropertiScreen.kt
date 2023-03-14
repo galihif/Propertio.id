@@ -1,10 +1,9 @@
 package com.cinurawa.propertioid.ui.pages.detail_properti
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -12,11 +11,13 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
 import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
@@ -81,7 +82,7 @@ fun DetailPropertiScreen(
                 iconTint = Red500
             )
         }
-        item{
+        item {
             HargaShare(harga = 50000000, modifier = Modifier.padding(horizontal = 24.dp))
         }
         item {
@@ -95,7 +96,27 @@ fun DetailPropertiScreen(
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
-
+        }
+        item {
+            Card(
+                modifier = Modifier
+                    .padding(24.dp),
+                shape = RoundedCornerShape(10.dp),
+                elevation = 0.dp,
+                backgroundColor = Color.Gray.copy(alpha = 0.1f),
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(14.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalAlignment = Alignment.Start,
+                ) {
+                    PropertyAttributeText(attribute = "Kondisi", value = "Butuh Renovasi")
+                    PropertyAttributeText(attribute = "Hadap", value = "Utara")
+                    PropertyAttributeText(attribute = "Berdiri", value = "2007")
+                }
+            }
         }
 
     }
