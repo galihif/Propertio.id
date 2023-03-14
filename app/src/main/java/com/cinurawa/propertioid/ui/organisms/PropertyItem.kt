@@ -57,6 +57,6 @@ fun PropertyItem(
             IconTextBadge(text = "2 K. Mandi", leadingIcon = Icons.Default.Bathroom)
             IconTextBadge(text = "1 Garasi", leadingIcon = Icons.Default.Garage)
         }
-        HargaDetailFooter(harga = "Rp.500.000.000", onDetailClick = onDetailClicked)
+        HargaDetailRow(harga = 50000000, onDetailClick = onDetailClicked)
     }
 }

@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
-import com.cinurawa.propertioid.ui.molecules.HargaDetailFooter
+import com.cinurawa.propertioid.ui.molecules.HargaDetailRow
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.ThumbnailImage
 import com.cinurawa.propertioid.ui.molecules.TitleDetailColumn
@@ -37,6 +37,6 @@ fun ProjectItem(
             title = "Rumah Mewah di Jalan Kebon Sirih\"",
             detail = "Lorem ipsum dolor sit amet consectetur. Id viverra nec."
         )
-        HargaDetailFooter(harga = "Rp.200.000.000", onDetailClick = {})
+        HargaDetailRow(harga = 200000000, onDetailClick = {})
     }
 }

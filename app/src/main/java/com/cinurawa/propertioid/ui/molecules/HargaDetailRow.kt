@@ -1,6 +1,9 @@
 package com.cinurawa.propertioid.ui.molecules
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -14,9 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HargaDetailFooter(
+fun HargaDetailRow(
     modifier: Modifier = Modifier,
-    harga: String,
+    harga: Int,
     onDetailClick: () -> Unit
 ) {
     Row(
@@ -24,19 +27,7 @@ fun HargaDetailFooter(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            Text(
-                text = "Harga",
-                style = MaterialTheme.typography.body2
-            )
-            Text(
-                text = harga,
-                style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.primary
-            )
-        }
+        HargaColumn(harga = harga)
         Button(
             onClick = {
                 onDetailClick()
