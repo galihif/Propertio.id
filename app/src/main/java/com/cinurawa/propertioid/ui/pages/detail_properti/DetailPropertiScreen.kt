@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
@@ -79,6 +80,9 @@ fun DetailPropertiScreen(
                 text = "Jl. Kebon Jeruk No. 12, Jakarta Barat",
                 iconTint = Red500
             )
+        }
+        item{
+            HargaShare(harga = 50000000, modifier = Modifier.padding(horizontal = 24.dp))
         }
 
     }
