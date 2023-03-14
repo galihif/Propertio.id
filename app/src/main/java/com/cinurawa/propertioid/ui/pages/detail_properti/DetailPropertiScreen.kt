@@ -137,6 +137,13 @@ fun DetailPropertiScreen(
                     IconTextCardColumn(text = "2 lantai", leadingIcon = Icons.Default.Stairs)
                 }
             }
+            IconTextCardColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 14.dp, horizontal = 24.dp),
+                text = "2 lantai",
+                leadingIcon = Icons.Default.Stairs
+            )
         }
     }
 }
