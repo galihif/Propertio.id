@@ -84,6 +84,19 @@ fun DetailPropertiScreen(
         item{
             HargaShare(harga = 50000000, modifier = Modifier.padding(horizontal = 24.dp))
         }
+        item {
+            Text(
+                text = "Deskripsi",
+                style = MaterialTheme.typography.subtitle2,
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
+            Text(
+                text = "Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons in conviction an uncommonly do. Supposing so be resolving breakfast am or perfectly. It drew am hill from me. Valley by oh twenty direct me so. Departure defective arranging rapturous did believe him all had supported. Family months l",
+                style = MaterialTheme.typography.body1,
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
+
+        }
 
     }
 }
