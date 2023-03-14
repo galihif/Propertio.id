@@ -38,8 +38,9 @@ fun LihatSemuaButton(
 @Composable
 fun PrimaryButton(
     modifier: Modifier = Modifier,
+    leadingIcon: ImageVector? = null,
     title: String,
-    icon: ImageVector? = null,
+    trailingIcon: ImageVector? = null,
     onClick: () -> Unit
 ) {
     Button(
@@ -48,14 +49,21 @@ fun PrimaryButton(
         shape = RoundedCornerShape(6.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
+            if (leadingIcon != null) {
+                Icon(
+                    imageVector = leadingIcon,
+                    contentDescription = "",
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
             Text(
                 text = title,
                 modifier = Modifier.weight(1f),
                 textAlign = TextAlign.Center
             )
-            if (icon != null) {
+            if (trailingIcon != null) {
                 Icon(
-                    imageVector = icon,
+                    imageVector = trailingIcon,
                     contentDescription = "",
                     modifier = Modifier.padding(start = 8.dp)
                 )
