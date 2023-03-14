@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Stairs
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,11 +22,15 @@ import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
 import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
+import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.theme.Purple500
 import com.cinurawa.propertioid.ui.theme.Red500
+import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
+import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
@@ -118,7 +123,21 @@ fun DetailPropertiScreen(
                 }
             }
         }
-
+        item {
+            FlowRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                mainAxisSpacing = 14.dp,
+                crossAxisSpacing = 14.dp,
+                mainAxisAlignment = MainAxisAlignment.SpaceBetween,
+                crossAxisAlignment = FlowCrossAxisAlignment.Start,
+            ) {
+                for (i in 1..9) {
+                    IconTextCardColumn(text = "2 lantai", leadingIcon = Icons.Default.Stairs)
+                }
+            }
+        }
     }
 }
 
