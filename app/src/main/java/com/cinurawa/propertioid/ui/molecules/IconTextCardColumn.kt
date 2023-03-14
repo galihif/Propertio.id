@@ -24,6 +24,7 @@ fun IconTextCardColumn(
     color: Color = Color.Gray,
 ) {
     Card(
+        modifier = modifier,
         shape = RoundedCornerShape(6.dp),
         elevation = 0.dp,
         backgroundColor = color.copy(alpha = 0.1f)
@@ -31,7 +32,7 @@ fun IconTextCardColumn(
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = modifier
+                modifier = Modifier
                     .width(98.dp)
                 .padding(10.dp)
         ) {
