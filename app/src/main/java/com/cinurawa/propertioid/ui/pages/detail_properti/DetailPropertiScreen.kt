@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Stairs
+import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,7 +19,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
+import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
@@ -144,6 +147,15 @@ fun DetailPropertiScreen(
                 text = "2 lantai",
                 leadingIcon = Icons.Default.Stairs
             )
+        }
+        item{
+            TitleSectionText(title = "Virtual Tour", modifier = Modifier.padding(horizontal = 24.dp))
+            Spacer(modifier = Modifier.height(5.dp))
+            PrimaryButton(title = "Lihat Virtual Tour",
+                leadingIcon = Icons.Default.ViewInAr,
+                modifier = Modifier.padding(horizontal = 24.dp)) {
+
+            }
         }
     }
 }
