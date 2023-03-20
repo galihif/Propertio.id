@@ -26,7 +26,9 @@ import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
 import com.google.accompanist.pager.ExperimentalPagerApi
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 class MainActivity : ComponentActivity() {
