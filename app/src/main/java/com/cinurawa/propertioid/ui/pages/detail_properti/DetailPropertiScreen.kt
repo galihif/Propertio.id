@@ -7,10 +7,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Map
-import androidx.compose.material.icons.filled.Stairs
-import androidx.compose.material.icons.filled.ViewInAr
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -268,6 +265,26 @@ fun DetailPropertiScreen(
                 }
             }
         }
+        item{
+            TitleSectionText(
+                title = "Infrastruktur",
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
+            FlowRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                mainAxisSpacing = 14.dp,
+                crossAxisSpacing = 14.dp,
+                mainAxisAlignment = MainAxisAlignment.SpaceBetween,
+                crossAxisAlignment = FlowCrossAxisAlignment.Start,
+            ) {
+                for (i in 1..6) {
+                    IconTextCardColumn(text = "Masjid", leadingIcon = Icons.Default.Mosque, subText = "1 KM")
+                }
+            }
+        }
+
 
     }
 }
