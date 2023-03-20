@@ -208,9 +208,9 @@ fun DetailPropertiScreen(
                     }
                 },
                 modifier = Modifier
-                    .padding(horizontal = 24.dp, vertical = 14.dp)
                     .fillMaxWidth()
-                    .aspectRatio(16 / 9f)
+                    .aspectRatio(16f / 9f)
+                    .padding(horizontal = 24.dp)
                     .clip(RoundedCornerShape(12.dp))
             )
         }
