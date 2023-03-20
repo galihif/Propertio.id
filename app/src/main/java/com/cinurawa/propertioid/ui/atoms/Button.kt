@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -71,6 +74,46 @@ fun PrimaryButton(
         }
     }
 }
+
+@Composable
+fun DokumenButton(
+    modifier: Modifier = Modifier,
+    title: String,
+    onClick: () -> Unit
+) {
+    Button(
+        modifier = modifier.fillMaxWidth(),
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Gray.copy(0.08f),
+        ),
+        elevation = ButtonDefaults.elevation(0.dp),
+        shape = RoundedCornerShape(6.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = Icons.Default.Description,
+                contentDescription = "",
+                tint = Color.Gray,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+            Text(
+                text = title,
+                modifier = Modifier.weight(1f).padding(horizontal = 8.dp),
+                textAlign = TextAlign.Start,
+                color = Color.Gray
+            )
+            Icon(
+                imageVector = Icons.Outlined.FileDownload,
+                contentDescription = "",
+                tint = MaterialTheme.colors.primary,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
+    }
+}
+
+
 
 @Composable
 fun MyIconButton(
