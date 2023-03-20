@@ -27,6 +27,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.media3.ui.PlayerView
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
@@ -226,6 +227,29 @@ fun DetailPropertiScreen(
                 onClick = {}
             )
         }
+        item {
+            TitleSectionText(
+                title = "Dokumen",
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            DokumenButton(
+                modifier = Modifier.padding(horizontal = 24.dp),
+                title = "Brosur.pdf",
+                onClick = {}
+            )
+            DokumenButton(
+                modifier = Modifier.padding(horizontal = 24.dp),
+                title = "Brosur.pdf",
+                onClick = {}
+            )
+            DokumenButton(
+                modifier = Modifier.padding(horizontal = 24.dp),
+                title = "Brosur.pdf",
+                onClick = {}
+            )
+        }
+
     }
 }
 
