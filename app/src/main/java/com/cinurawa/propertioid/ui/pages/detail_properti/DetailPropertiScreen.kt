@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Stairs
 import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.runtime.*
@@ -180,10 +181,9 @@ fun DetailPropertiScreen(
             PrimaryButton(
                 title = "Lihat Virtual Tour",
                 leadingIcon = Icons.Default.ViewInAr,
-                modifier = Modifier.padding(horizontal = 24.dp)
-            ) {
-
-            }
+                modifier = Modifier.padding(horizontal = 24.dp),
+                onClick = {}
+            )
         }
         item {
             TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
@@ -211,6 +211,19 @@ fun DetailPropertiScreen(
                     .fillMaxWidth()
                     .aspectRatio(16 / 9f)
                     .clip(RoundedCornerShape(12.dp))
+            )
+        }
+        item {
+            TitleSectionText(
+                title = "Peta Lokasi",
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            PrimaryButton(
+                title = "Lihat Peta Lokasi",
+                leadingIcon = Icons.Default.Map,
+                modifier = Modifier.padding(horizontal = 24.dp),
+                onClick = {}
             )
         }
     }
