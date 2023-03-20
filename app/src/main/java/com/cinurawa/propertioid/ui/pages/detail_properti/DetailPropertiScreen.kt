@@ -24,14 +24,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.media3.ui.PlayerView
 import com.cinurawa.propertioid.R
-import com.cinurawa.propertioid.ui.atoms.DokumenButton
-import com.cinurawa.propertioid.ui.atoms.PrimaryButton
-import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
-import com.cinurawa.propertioid.ui.atoms.TitleSectionText
-import com.cinurawa.propertioid.ui.molecules.HargaShare
-import com.cinurawa.propertioid.ui.molecules.IconText
-import com.cinurawa.propertioid.ui.molecules.IconTextBadge
-import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
+import com.cinurawa.propertioid.ui.atoms.*
+import com.cinurawa.propertioid.ui.molecules.*
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
@@ -246,7 +240,7 @@ fun DetailPropertiScreen(
                 onClick = {}
             )
         }
-        item{
+        item {
             TitleSectionText(
                 title = "Fasilitas",
                 modifier = Modifier.padding(horizontal = 24.dp)
@@ -265,7 +259,7 @@ fun DetailPropertiScreen(
                 }
             }
         }
-        item{
+        item {
             TitleSectionText(
                 title = "Infrastruktur",
                 modifier = Modifier.padding(horizontal = 24.dp)
@@ -280,11 +274,59 @@ fun DetailPropertiScreen(
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
                 for (i in 1..6) {
-                    IconTextCardColumn(text = "Masjid", leadingIcon = Icons.Default.Mosque, subText = "1 KM")
+                    IconTextCardColumn(
+                        text = "Masjid",
+                        leadingIcon = Icons.Default.Mosque,
+                        subText = "1 KM"
+                    )
                 }
             }
         }
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min)
+                    .padding(horizontal = 24.dp),
+            ) {
+                RoundedImage(
+                    image = R.drawable.jisoo,
+                    modifier = Modifier
+                        .height(140.dp)
+                        .weight(1f)
+                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(1.5f)
+                        .padding(start = 14.dp),
+                    verticalArrangement = Arrangement.SpaceBetween,
 
+                ) {
+                    Text(
+                        text = "Jisoo",
+                        style = MaterialTheme.typography.h6,
+                    )
+                    Text(
+                        text = "Agen Properti",
+                        style = MaterialTheme.typography.body1,
+                    )
+                    ContactCard(
+                        text = "+628123456789",
+                        leadingIcon = R.drawable.ic_phone,
+                        onClick = {}
+                    )
+                    ContactCard(
+                        text = "Chat via Whatsapp",
+                        leadingIcon = R.drawable.ic_wa,
+                        bgColor = Color(0xFFF6F6F6),
+                        onClick = {}
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+
+        }
 
     }
 }
