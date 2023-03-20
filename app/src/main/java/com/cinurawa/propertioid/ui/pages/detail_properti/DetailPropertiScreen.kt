@@ -10,14 +10,21 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Stairs
 import androidx.compose.material.icons.filled.ViewInAr
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.media3.ui.PlayerView
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
@@ -39,8 +46,24 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalPagerApi
 @Composable
 fun DetailPropertiScreen(
-    id: Int
+    id: Int,
+    viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
+
+    var lifecycle by remember {
+        mutableStateOf(Lifecycle.Event.ON_CREATE)
+    }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event -> lifecycle = event }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
+    viewModel.addVideoUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
@@ -148,14 +171,47 @@ fun DetailPropertiScreen(
                 leadingIcon = Icons.Default.Stairs
             )
         }
-        item{
-            TitleSectionText(title = "Virtual Tour", modifier = Modifier.padding(horizontal = 24.dp))
+        item {
+            TitleSectionText(
+                title = "Virtual Tour",
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
             Spacer(modifier = Modifier.height(5.dp))
-            PrimaryButton(title = "Lihat Virtual Tour",
+            PrimaryButton(
+                title = "Lihat Virtual Tour",
                 leadingIcon = Icons.Default.ViewInAr,
-                modifier = Modifier.padding(horizontal = 24.dp)) {
+                modifier = Modifier.padding(horizontal = 24.dp)
+            ) {
 
             }
+        }
+        item {
+            TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
+            Spacer(modifier = Modifier.height(5.dp))
+            AndroidView(
+                factory = { context ->
+                    PlayerView(context).also {
+                        it.player = viewModel.player
+                    }
+                },
+                update = {
+                    when (lifecycle) {
+                        Lifecycle.Event.ON_PAUSE -> {
+                            it.onPause()
+                            it.player?.pause()
+                        }
+                        Lifecycle.Event.ON_RESUME -> {
+                            it.onResume()
+                        }
+                        else -> Unit
+                    }
+                },
+                modifier = Modifier
+                    .padding(horizontal = 24.dp, vertical = 14.dp)
+                    .fillMaxWidth()
+                    .aspectRatio(16 / 9f)
+                    .clip(RoundedCornerShape(12.dp))
+            )
         }
     }
 }
