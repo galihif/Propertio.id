@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -18,9 +19,10 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun IconTextCardColumn(
     modifier: Modifier = Modifier,
-    leadingIcon: ImageVector?=null,
+    leadingIcon: ImageVector? = null,
     text: String,
-    trailingIcon: ImageVector?=null,
+    subText: String? = null,
+    trailingIcon: ImageVector? = null,
     color: Color = Color.Gray,
 ) {
     Card(
@@ -32,11 +34,11 @@ fun IconTextCardColumn(
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .width(98.dp)
+            modifier = Modifier
+                .width(98.dp)
                 .padding(10.dp)
         ) {
-            if (leadingIcon!=null){
+            if (leadingIcon != null) {
                 Icon(
                     imageVector = leadingIcon, contentDescription = "",
                     tint = color
@@ -48,7 +50,16 @@ fun IconTextCardColumn(
                 color = color,
                 fontSize = 12.sp
             )
-            if (trailingIcon!=null){
+            if (subText != null) {
+                Text(
+                    text = subText,
+                    style = MaterialTheme.typography.body2,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.primary,
+                    fontSize = 12.sp
+                )
+            }
+            if (trailingIcon != null) {
                 Icon(
                     imageVector = trailingIcon, contentDescription = "",
                     tint = color
