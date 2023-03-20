@@ -75,7 +75,11 @@ fun PropertioidApp(
             modifier = modifier
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    onPropertyClicked = {
+                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                    }
+                )
             }
             composable(Screen.Properti.route) {
                 PropertiScreen(

@@ -28,7 +28,9 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onPropertyClicked: (Int) -> Unit = {},
+) {
     val context = LocalContext.current
     var selectedMenu by remember { mutableStateOf(HomeTab.Beli) }
 
@@ -76,7 +78,9 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(8.dp))
         }
         items(3) {
-            PropertyItem()
+            PropertyItem(
+                onDetailClicked = { onPropertyClicked(it) }
+            )
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
