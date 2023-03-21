@@ -89,7 +89,11 @@ fun PropertioidApp(
                 )
             }
             composable(Screen.Project.route) {
-                ProjectScreen()
+                ProjectScreen(
+                    onProjectClicked = {
+                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                    }
+                )
             }
             composable(Screen.Agent.route) {
                 AgentScreen()
