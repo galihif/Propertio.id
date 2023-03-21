@@ -19,7 +19,8 @@ import com.cinurawa.propertioid.ui.theme.Red500
 
 @Composable
 fun ProjectItem(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDetailClicked: () -> Unit = {}
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -37,6 +38,6 @@ fun ProjectItem(
             title = "Rumah Mewah di Jalan Kebon Sirih\"",
             detail = "Lorem ipsum dolor sit amet consectetur. Id viverra nec."
         )
-        HargaDetailRow(harga = 200000000, onDetailClick = {})
+        HargaDetailRow(harga = 200000000, onDetailClick = onDetailClicked)
     }
 }
