@@ -189,7 +189,7 @@ fun DetailProjectScreen(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 onClick = {}
             )
-        } // 3D Site Plan
+        } // AR App
         item {
             TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
             Spacer(modifier = Modifier.height(5.dp))
