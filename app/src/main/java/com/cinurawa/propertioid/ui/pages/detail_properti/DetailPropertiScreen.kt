@@ -65,7 +65,7 @@ fun DetailPropertiScreen(
                 modifier = Modifier
                     .fillMaxWidth()
             )
-        }
+        } // Image Carousel
         item {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(14.dp),
@@ -78,7 +78,7 @@ fun DetailPropertiScreen(
                 IconTextBadge(text = "Jual", icon = R.drawable.ic_sell, color = Red500)
                 IconTextBadge(text = "SHM", icon = R.drawable.ic_shm, color = Purple500)
             }
-        }
+        } // Label
         item {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -90,14 +90,14 @@ fun DetailPropertiScreen(
                 Text(text = "Old House", fontWeight = FontWeight.Bold, fontSize = 20.sp)
                 IconTextBadge(text = "Properti Kode : 5237KM", leadingIcon = null)
             }
-        }
+        } // Judul
         item {
             Text(
                 text = "Lorem ipsum dolor sit amet consectetur. Id viverra nec.",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
-        }
+        } // Deskripsi Singkat
         item {
             IconText(
                 modifier = Modifier.padding(horizontal = 24.dp),
@@ -105,10 +105,10 @@ fun DetailPropertiScreen(
                 text = "Jl. Kebon Jeruk No. 12, Jakarta Barat",
                 iconTint = Red500
             )
-        }
+        } // Lokasi
         item {
             HargaShare(harga = 50000000, modifier = Modifier.padding(horizontal = 24.dp))
-        }
+        } // Harga Share
         item {
             Text(
                 text = "Deskripsi",
@@ -120,7 +120,7 @@ fun DetailPropertiScreen(
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
-        }
+        } // Deskripsi
         item {
             Card(
                 modifier = Modifier
@@ -141,7 +141,7 @@ fun DetailPropertiScreen(
                     PropertyAttributeText(attribute = "Berdiri", value = "2007")
                 }
             }
-        }
+        } // Property Attribute
         item {
             FlowRow(
                 modifier = Modifier
@@ -163,7 +163,7 @@ fun DetailPropertiScreen(
                 text = "2 lantai",
                 leadingIcon = Icons.Default.Stairs
             )
-        }
+        } // Fasilitas
         item {
             TitleSectionText(
                 title = "Virtual Tour",
@@ -176,7 +176,7 @@ fun DetailPropertiScreen(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 onClick = {}
             )
-        }
+        } // Virtual Tour
         item {
             TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
             Spacer(modifier = Modifier.height(5.dp))
@@ -204,7 +204,7 @@ fun DetailPropertiScreen(
                     .padding(horizontal = 24.dp)
                     .clip(RoundedCornerShape(12.dp))
             )
-        }
+        } // Video
         item {
             TitleSectionText(
                 title = "Peta Lokasi",
@@ -217,7 +217,7 @@ fun DetailPropertiScreen(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 onClick = {}
             )
-        }
+        } // Peta Lokasi
         item {
             TitleSectionText(
                 title = "Dokumen",
@@ -239,7 +239,7 @@ fun DetailPropertiScreen(
                 title = "Brosur.pdf",
                 onClick = {}
             )
-        }
+        } // Dokumen
         item {
             TitleSectionText(
                 title = "Fasilitas",
@@ -258,7 +258,7 @@ fun DetailPropertiScreen(
                     IconTextCardColumn(text = "2 lantai", leadingIcon = Icons.Default.Stairs)
                 }
             }
-        }
+        } // Fasilitas
         item {
             TitleSectionText(
                 title = "Infrastruktur",
@@ -281,7 +281,7 @@ fun DetailPropertiScreen(
                     )
                 }
             }
-        }
+        } // Infrastruktur
         item {
             Row(
                 modifier = Modifier
@@ -326,7 +326,7 @@ fun DetailPropertiScreen(
             }
             Spacer(modifier = Modifier.height(24.dp))
 
-        }
+        } // Agent
 
     }
 }
