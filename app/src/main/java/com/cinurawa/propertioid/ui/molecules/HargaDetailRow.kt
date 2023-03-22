@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 fun HargaDetailRow(
     modifier: Modifier = Modifier,
     harga: Int,
+    hargaTitle:String = "Harga",
     onDetailClick: () -> Unit
 ) {
     Row(
@@ -27,7 +28,7 @@ fun HargaDetailRow(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        HargaColumn(harga = harga)
+        HargaColumn( hargaTitle = hargaTitle,harga = harga)
         Button(
             onClick = {
                 onDetailClick()

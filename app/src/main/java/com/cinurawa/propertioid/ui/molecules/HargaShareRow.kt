@@ -17,13 +17,14 @@ import com.cinurawa.propertioid.ui.atoms.MyIconButton
 fun HargaShare(
     modifier: Modifier = Modifier,
     harga: Int,
+    hargaTitle: String = "Harga",
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        HargaColumn(harga = harga)
+        HargaColumn( hargaTitle = hargaTitle,harga = harga)
         Row(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically

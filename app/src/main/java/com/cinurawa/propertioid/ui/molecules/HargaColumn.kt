@@ -9,13 +9,14 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HargaColumn(
-    harga:Int
+    harga:Int,
+    hargaTitle: String = "Harga",
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         Text(
-            text = "Harga",
+            text = hargaTitle,
             style = MaterialTheme.typography.body2
         )
         Text(

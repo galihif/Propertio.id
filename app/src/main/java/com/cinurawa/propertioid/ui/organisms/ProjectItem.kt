@@ -38,6 +38,6 @@ fun ProjectItem(
             title = "Rumah Mewah di Jalan Kebon Sirih\"",
             detail = "Lorem ipsum dolor sit amet consectetur. Id viverra nec."
         )
-        HargaDetailRow(harga = 200000000, onDetailClick = onDetailClicked)
+        HargaDetailRow(hargaTitle = "Harga mulai dari",harga = 200000000, onDetailClick = onDetailClicked)
     }
 }
