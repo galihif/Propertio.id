@@ -14,10 +14,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.cinurawa.propertioid.ui.organisms.NavTopBar
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
+import com.cinurawa.propertioid.ui.organisms.NavTopBar
 import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
+import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectScreen
 import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
 import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
@@ -78,6 +79,9 @@ fun PropertioidApp(
                 HomeScreen(
                     onPropertyClicked = {
                         navController.navigate(Screen.DetailProperti.createRoute(it))
+                    },
+                    onProjectClicked = {
+                        navController.navigate(Screen.DetailProject.createRoute(it))
                     }
                 )
             }
@@ -91,7 +95,7 @@ fun PropertioidApp(
             composable(Screen.Project.route) {
                 ProjectScreen(
                     onProjectClicked = {
-                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                        navController.navigate(Screen.DetailProject.createRoute(it))
                     }
                 )
             }
@@ -110,6 +114,19 @@ fun PropertioidApp(
                     id = id
                  )
             }
+            composable(
+                route = Screen.DetailProject.route,
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) {
+                val id = it.arguments?.getInt("id") ?: 1
+                 DetailProjectScreen(
+                    id = id,
+                    onPropertiClicked = {
+                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                    }
+                 )
+            }
+
         }
     }
 }
