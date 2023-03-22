@@ -2,7 +2,6 @@ package com.cinurawa.propertioid.ui.pages.detail_project
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -10,17 +9,14 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.media3.ui.PlayerView
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
@@ -29,6 +25,7 @@ import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.*
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.PropertyItem
+import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Red500
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
@@ -107,7 +104,11 @@ fun DetailProjectScreen(
             )
         } // Lokasi
         item {
-            HargaShare(hargaTitle = "Harga mulai dari" ,harga = 50000000, modifier = Modifier.padding(horizontal = 24.dp))
+            HargaShare(
+                hargaTitle = "Harga mulai dari",
+                harga = 50000000,
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
         } // Harga Share
         item {
             Text(
@@ -133,7 +134,7 @@ fun DetailProjectScreen(
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
         } // Konsep
-        item{
+        item {
             TitleSectionText(
                 title = "Daftar Unit",
                 modifier = Modifier.padding(horizontal = 24.dp)
@@ -144,7 +145,7 @@ fun DetailProjectScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
-            ){
+            ) {
                 PropertyItem(
                     onDetailClicked = { onPropertiClicked(it) }
                 )
@@ -193,29 +194,12 @@ fun DetailProjectScreen(
         item {
             TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
             Spacer(modifier = Modifier.height(5.dp))
-            AndroidView(
-                factory = { context ->
-                    PlayerView(context).also {
-                        it.player = viewModel.player
-                    }
-                },
-                update = {
-                    when (lifecycle) {
-                        Lifecycle.Event.ON_PAUSE -> {
-                            it.onPause()
-                            it.player?.pause()
-                        }
-                        Lifecycle.Event.ON_RESUME -> {
-                            it.onResume()
-                        }
-                        else -> Unit
-                    }
-                },
+            VideoPlayer(
+                player = viewModel.player,
+                lifecycle = lifecycle,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(16f / 9f)
                     .padding(horizontal = 24.dp)
-                    .clip(RoundedCornerShape(12.dp))
+                    .fillMaxWidth()
             )
         } // Video
         item {
@@ -315,7 +299,7 @@ fun DetailProjectScreen(
                         .padding(start = 14.dp),
                     verticalArrangement = Arrangement.SpaceBetween,
 
-                ) {
+                    ) {
                     Text(
                         text = "Jisoo",
                         style = MaterialTheme.typography.h6,
