@@ -10,7 +10,9 @@ sealed class Screen(val route: String) {
     object DetailProject : Screen("DetailProject/{id}") {
         fun createRoute(id: Int) = "DetailProject/$id"
     }
-
+    object DetailUnit : Screen("DetailUnit/{id}") {
+        fun createRoute(id: Int) = "DetailUnit/$id"
+    }
     object Project : Screen("Project")
     object Agent : Screen("Agent")
     object Developer : Screen("Developer")
