@@ -9,7 +9,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -20,9 +19,12 @@ import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
-import com.cinurawa.propertioid.ui.atoms.RoundedImage
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
-import com.cinurawa.propertioid.ui.molecules.*
+import com.cinurawa.propertioid.ui.molecules.HargaShare
+import com.cinurawa.propertioid.ui.molecules.IconText
+import com.cinurawa.propertioid.ui.molecules.IconTextBadge
+import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
+import com.cinurawa.propertioid.ui.organisms.AgentContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.PropertyItem
 import com.cinurawa.propertioid.ui.organisms.VideoPlayer
@@ -38,7 +40,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun DetailProjectScreen(
     id: Int,
     viewModel: DetailProjectViewModel = hiltViewModel(),
-    onPropertiClicked: (Int) -> Unit = {},
+    onUnitClicked: (Int) -> Unit = {},
 ) {
 
     var lifecycle by remember {
@@ -147,7 +149,7 @@ fun DetailProjectScreen(
                     .padding(horizontal = 24.dp)
             ) {
                 PropertyItem(
-                    onDetailClicked = { onPropertiClicked(it) }
+                    onDetailClicked = { onUnitClicked(it) }
                 )
             }
             Spacer(modifier = Modifier.height(24.dp))
@@ -280,47 +282,12 @@ fun DetailProjectScreen(
             }
         } // Infrastruktur
         item {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(IntrinsicSize.Min)
-                    .padding(horizontal = 24.dp),
-            ) {
-                RoundedImage(
-                    image = R.drawable.jisoo,
-                    modifier = Modifier
-                        .height(140.dp)
-                        .weight(1f)
-                )
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1.5f)
-                        .padding(start = 14.dp),
-                    verticalArrangement = Arrangement.SpaceBetween,
-
-                    ) {
-                    Text(
-                        text = "Jisoo",
-                        style = MaterialTheme.typography.h6,
-                    )
-                    Text(
-                        text = "Agen Properti",
-                        style = MaterialTheme.typography.body1,
-                    )
-                    ContactCard(
-                        text = "+628123456789",
-                        leadingIcon = R.drawable.ic_phone,
-                        onClick = {}
-                    )
-                    ContactCard(
-                        text = "Chat via Whatsapp",
-                        leadingIcon = R.drawable.ic_wa,
-                        bgColor = Color(0xFFF6F6F6),
-                        onClick = {}
-                    )
-                }
-            }
+            AgentContactRow(
+                image = R.drawable.jisoo,
+                name = "Jisoo",
+                phone = "+62852102322",
+                whatsapp = "+62852102322",
+            )
             Spacer(modifier = Modifier.height(24.dp))
 
         } // Agent
