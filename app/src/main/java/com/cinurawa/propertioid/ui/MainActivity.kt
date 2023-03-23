@@ -20,6 +20,7 @@ import com.cinurawa.propertioid.ui.organisms.NavTopBar
 import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
 import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectScreen
 import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
+import com.cinurawa.propertioid.ui.pages.detail_unit.DetailUnitScreen
 import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
@@ -117,15 +118,25 @@ fun PropertioidApp(
             composable(
                 route = Screen.DetailProject.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
-            ) {
-                val id = it.arguments?.getInt("id") ?: 1
+            ) { backStackEntry ->
+                val id = backStackEntry.arguments?.getInt("id") ?: 1
                  DetailProjectScreen(
                     id = id,
-                    onPropertiClicked = {
-                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                     onUnitClicked = { unitId ->
+                        navController.navigate(Screen.DetailUnit.createRoute(unitId))
                     }
                  )
             }
+            composable(
+                route = Screen.DetailUnit.route,
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) {
+                val id = it.arguments?.getInt("id") ?: 1
+                 DetailUnitScreen(
+                    id = id
+                 )
+            }
+
 
         }
     }
