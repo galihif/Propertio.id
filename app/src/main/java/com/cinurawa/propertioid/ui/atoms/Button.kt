@@ -44,11 +44,13 @@ fun PrimaryButton(
     leadingIcon: ImageVector? = null,
     title: String,
     trailingIcon: ImageVector? = null,
+    contentPadding: PaddingValues = PaddingValues(vertical = 8.dp),
     onClick: () -> Unit
 ) {
     Button(
         modifier = modifier.fillMaxWidth(),
         onClick = onClick,
+        contentPadding = contentPadding,
         shape = RoundedCornerShape(6.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
