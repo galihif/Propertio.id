@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui.molecules
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,17 +14,23 @@ import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
 
 @Composable
-fun ThumbnailImage(modifier: Modifier = Modifier) {
+fun ThumbnailImage(
+    modifier: Modifier = Modifier,
+    @DrawableRes image: Int = R.drawable.home_banner,
+    isAgent: Boolean = false,
+) {
     Box(modifier = modifier.wrapContentSize()) {
         Image(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
                 .clip(shape = RoundedCornerShape(10.dp)),
-            painter = painterResource(id = R.drawable.home_banner),
+            painter = painterResource(id = image),
             contentDescription = "",
             contentScale = ContentScale.Crop,
         )
-        StarBadge(Modifier.align(Alignment.TopStart))
+        if(!isAgent){
+            StarBadge(Modifier.align(Alignment.TopStart))
+        }
     }
 }
