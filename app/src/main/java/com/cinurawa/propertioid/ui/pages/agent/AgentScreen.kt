@@ -9,7 +9,9 @@ import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.organisms.AgentItem
 
 @Composable
-fun AgentScreen() {
+fun AgentScreen(
+    onAgentClicked: (Int) -> Unit
+) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ){
@@ -26,9 +28,7 @@ fun AgentScreen() {
                     .padding(horizontal = 24.dp)
             ) {
                 AgentItem(
-                    onDetailClicked = {
-
-                    }
+                    onDetailClicked = onAgentClicked
                 )
             }
             Spacer(modifier = Modifier.height(24.dp))
