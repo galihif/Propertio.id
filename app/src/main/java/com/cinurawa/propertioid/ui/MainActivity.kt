@@ -18,6 +18,7 @@ import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
 import com.cinurawa.propertioid.ui.organisms.NavTopBar
 import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
+import com.cinurawa.propertioid.ui.pages.detail_agent.DetailAgentScreen
 import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectScreen
 import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
 import com.cinurawa.propertioid.ui.pages.detail_unit.DetailUnitScreen
@@ -101,7 +102,11 @@ fun PropertioidApp(
                 )
             }
             composable(Screen.Agent.route) {
-                AgentScreen()
+                AgentScreen(
+                    onAgentClicked = {
+                        navController.navigate(Screen.DetailAgent.createRoute(it))
+                    }
+                )
             }
             composable(Screen.Developer.route) {
                 DeveloperScreen()
@@ -136,6 +141,19 @@ fun PropertioidApp(
                     id = id
                  )
             }
+            composable(
+                route = Screen.DetailAgent.route,
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) {
+                val id = it.arguments?.getInt("id") ?: 1
+                DetailAgentScreen(
+                    id = id,
+                    onPropertyClicked = {
+                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                    },
+                 )
+            }
+
 
 
         }
