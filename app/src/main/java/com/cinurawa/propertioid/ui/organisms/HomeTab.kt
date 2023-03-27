@@ -10,8 +10,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object HomeTab {
     const val Beli = "Beli"
@@ -66,7 +68,8 @@ fun ItemHomeTab(
         Text(
             title,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.subtitle1,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(16.dp),
             color = if (selected) MaterialTheme.colors.onPrimary else MaterialTheme.colors.onSurface
         )
