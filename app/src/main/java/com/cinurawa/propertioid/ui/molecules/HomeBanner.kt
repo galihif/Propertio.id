@@ -1,13 +1,14 @@
 package com.cinurawa.propertioid.ui.molecules
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.RoundedImage
 
@@ -25,7 +26,8 @@ fun HomeBanner() {
         Text(
             text = "Temukan Hunian Impian Anda Hanya Disini!",
             color = Color.White,
-            style = MaterialTheme.typography.h6,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .matchParentSize()
