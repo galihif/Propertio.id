@@ -15,6 +15,9 @@ val fonts = FontFamily(
     Font(R.font.inter_semibold, FontWeight.SemiBold),
     Font(R.font.inter_bold, FontWeight.Bold),
 )
+val fontsIbarra = FontFamily(
+    Font(R.font.ibarra_bold, FontWeight.Bold)
+)
 val Typography = Typography(
     defaultFontFamily = fonts,
     body1 = TextStyle(
