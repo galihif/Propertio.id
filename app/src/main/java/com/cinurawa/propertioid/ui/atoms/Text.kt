@@ -10,6 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
+import com.cinurawa.propertioid.ui.theme.fontsIbarra
 
 @Composable
 fun TitleSectionText(
@@ -18,10 +19,12 @@ fun TitleSectionText(
 ) {
     Text(
         text = title,
-        style = MaterialTheme.typography.h6,
+        fontWeight = FontWeight.Bold,
+        fontFamily = fontsIbarra,
         modifier = modifier,
         textAlign = TextAlign.Center,
-        fontSize = 24.sp
+        fontSize = 28.sp,
+
     )
 }
 
