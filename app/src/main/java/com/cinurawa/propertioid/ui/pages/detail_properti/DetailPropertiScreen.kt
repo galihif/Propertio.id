@@ -24,7 +24,6 @@ import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
-import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
@@ -170,9 +169,10 @@ fun DetailPropertiScreen(
             )
         } // Fasilitas
         item {
-            TitleSectionText(
-                title = "Virtual Tour",
-                modifier = Modifier.padding(horizontal = 24.dp)
+            Text(
+                text = "Virtual Tour",
+                modifier = Modifier.padding(horizontal = 24.dp),
+                style = MaterialTheme.typography.h6
             )
             Spacer(modifier = Modifier.height(5.dp))
             PrimaryButton(
@@ -183,7 +183,11 @@ fun DetailPropertiScreen(
             )
         } // Virtual Tour
         item {
-            TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
+            Text(
+                text = "Video",
+                modifier = Modifier.padding(horizontal = 24.dp),
+                style = MaterialTheme.typography.h6
+            )
             Spacer(modifier = Modifier.height(5.dp))
             VideoPlayer(
                 player = viewModel.player,
@@ -194,9 +198,10 @@ fun DetailPropertiScreen(
             )
         } // Video
         item {
-            TitleSectionText(
-                title = "Peta Lokasi",
-                modifier = Modifier.padding(horizontal = 24.dp)
+            Text(
+                text = "Peta Lokasi",
+                modifier = Modifier.padding(horizontal = 24.dp),
+                style = MaterialTheme.typography.h6
             )
             Spacer(modifier = Modifier.height(5.dp))
             PrimaryButton(
@@ -207,9 +212,10 @@ fun DetailPropertiScreen(
             )
         } // Peta Lokasi
         item {
-            TitleSectionText(
-                title = "Dokumen",
-                modifier = Modifier.padding(horizontal = 24.dp)
+            Text(
+                text = "Dokumen",
+                modifier = Modifier.padding(horizontal = 24.dp),
+                style = MaterialTheme.typography.h6
             )
             Spacer(modifier = Modifier.height(5.dp))
             DokumenButton(
@@ -229,9 +235,10 @@ fun DetailPropertiScreen(
             )
         } // Dokumen
         item {
-            TitleSectionText(
-                title = "Fasilitas",
-                modifier = Modifier.padding(horizontal = 24.dp)
+            Text(
+                text = "Fasilitas",
+                modifier = Modifier.padding(horizontal = 24.dp),
+                style = MaterialTheme.typography.h6
             )
             FlowRow(
                 modifier = Modifier
@@ -248,9 +255,10 @@ fun DetailPropertiScreen(
             }
         } // Fasilitas
         item {
-            TitleSectionText(
-                title = "Infrastruktur",
-                modifier = Modifier.padding(horizontal = 24.dp)
+            Text(
+                text = "Infrastruktur",
+                modifier = Modifier.padding(horizontal = 24.dp),
+                style = MaterialTheme.typography.h6
             )
             FlowRow(
                 modifier = Modifier
