@@ -21,7 +21,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
-import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
@@ -116,7 +115,7 @@ fun DetailUnitScreen(
         item {
             Text(
                 text = "Deskripsi",
-                style = MaterialTheme.typography.subtitle2,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Text(
@@ -128,7 +127,7 @@ fun DetailUnitScreen(
         item {
             Text(
                 text = "Spesifikasi",
-                style = MaterialTheme.typography.subtitle2,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Text(
@@ -153,8 +152,9 @@ fun DetailUnitScreen(
             }
         } // Fasilitas
         item {
-            TitleSectionText(
-                title = "Virtual Tour",
+            Text(
+                text = "Virtual Tour",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -166,8 +166,9 @@ fun DetailUnitScreen(
             )
         } // Virtual Tour
         item {
-            TitleSectionText(
-                title = "3D MOdel",
+            Text(
+                text = "3D Site Plan",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -179,7 +180,11 @@ fun DetailUnitScreen(
             )
         } // 3D Site Plan
         item {
-            TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
+            Text(
+                text = "Video",
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
             Spacer(modifier = Modifier.height(5.dp))
             VideoPlayer(
                 player = viewModel.player,
