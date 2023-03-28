@@ -155,8 +155,9 @@ fun DetailProjectScreen(
             Spacer(modifier = Modifier.height(24.dp))
         } // Daftar Unit List
         item {
-            TitleSectionText(
-                title = "Virtual Tour",
+            Text(
+                text = "Virtual Tour",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -168,8 +169,9 @@ fun DetailProjectScreen(
             )
         } // Virtual Tour
         item {
-            TitleSectionText(
-                title = "3D Site Plan",
+            Text(
+                text = "3D Site Plan",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -181,8 +183,9 @@ fun DetailProjectScreen(
             )
         } // 3D Site Plan
         item {
-            TitleSectionText(
-                title = "AR App",
+            Text(
+                text = "AR App",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -194,7 +197,11 @@ fun DetailProjectScreen(
             )
         } // AR App
         item {
-            TitleSectionText(title = "Video", modifier = Modifier.padding(horizontal = 24.dp))
+            Text(
+                text = "Video",
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.padding(horizontal = 24.dp)
+            )
             Spacer(modifier = Modifier.height(5.dp))
             VideoPlayer(
                 player = viewModel.player,
@@ -205,8 +212,9 @@ fun DetailProjectScreen(
             )
         } // Video
         item {
-            TitleSectionText(
-                title = "Peta Lokasi",
+            Text(
+                text = "Peta Lokasi",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -218,8 +226,9 @@ fun DetailProjectScreen(
             )
         } // Peta Lokasi
         item {
-            TitleSectionText(
-                title = "Dokumen",
+            Text(
+                text = "Dokumen",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Spacer(modifier = Modifier.height(5.dp))
@@ -240,10 +249,12 @@ fun DetailProjectScreen(
             )
         } // Dokumen
         item {
-            TitleSectionText(
-                title = "Fasilitas",
+            Text(
+                text = "Fasilitas",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
+            Spacer(modifier = Modifier.height(5.dp))
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -259,10 +270,12 @@ fun DetailProjectScreen(
             }
         } // Fasilitas
         item {
-            TitleSectionText(
-                title = "Infrastruktur",
+            Text(
+                text = "Infrastruktur",
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
+            Spacer(modifier = Modifier.height(5.dp))
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
