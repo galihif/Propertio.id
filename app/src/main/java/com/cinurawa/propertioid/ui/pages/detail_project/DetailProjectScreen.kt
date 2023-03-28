@@ -115,7 +115,7 @@ fun DetailProjectScreen(
         item {
             Text(
                 text = "Deskripsi",
-                style = MaterialTheme.typography.subtitle2,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Text(
@@ -127,7 +127,7 @@ fun DetailProjectScreen(
         item {
             Text(
                 text = "Konsep",
-                style = MaterialTheme.typography.subtitle2,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Text(
