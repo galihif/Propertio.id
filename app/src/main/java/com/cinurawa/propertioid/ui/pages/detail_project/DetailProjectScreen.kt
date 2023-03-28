@@ -139,7 +139,7 @@ fun DetailProjectScreen(
         item {
             TitleSectionText(
                 title = "Daftar Unit",
-                modifier = Modifier.padding(horizontal = 24.dp)
+                modifier = Modifier.padding(horizontal = 24.dp).fillMaxWidth(),
             )
         } // Daftar Unit Title
         items(5) {
