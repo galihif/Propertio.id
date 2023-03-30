@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui.pages.home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
@@ -31,6 +33,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun HomeScreen(
     onPropertyClicked: (Int) -> Unit = {},
     onProjectClicked: (Int) -> Unit = {},
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     var selectedMenu by remember { mutableStateOf(HomeTab.Beli) }
@@ -40,10 +43,13 @@ fun HomeScreen(
 
     var keyword by remember { mutableStateOf("") }
 
+    val tes by remember { viewModel._tes }.collectAsState()
+
     LaunchedEffect(selectedOption) {
         if (selectedOption != "") {
             Toast.makeText(context, selectedOption, Toast.LENGTH_SHORT).show()
         }
+        Log.d("GALIH", "HomeScreen: $tes")
     }
     LazyColumn(
         modifier = Modifier
