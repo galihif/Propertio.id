@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.pages.home
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -43,13 +42,22 @@ fun HomeScreen(
 
     var keyword by remember { mutableStateOf("") }
 
-    val tes by remember { viewModel._tes }.collectAsState()
+    val listProperty by remember{
+        viewModel.listProperty
+    }.collectAsState()
 
-    LaunchedEffect(selectedOption) {
-        if (selectedOption != "") {
-            Toast.makeText(context, selectedOption, Toast.LENGTH_SHORT).show()
+    val isLoading by remember{
+        viewModel.isLoading
+    }.collectAsState()
+
+    val error by remember{
+        viewModel.error
+    }.collectAsState()
+
+    LaunchedEffect(error) {
+        if (error.isNotEmpty()) {
+            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
-        Log.d("GALIH", "HomeScreen: $tes")
     }
     LazyColumn(
         modifier = Modifier
@@ -84,9 +92,15 @@ fun HomeScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
-        items(3) {
+        item{
+            if(isLoading){
+                CircularProgressIndicator()
+            }
+        }
+        items(listProperty.size) {
             PropertyItem(
-                onDetailClicked = { onPropertyClicked(it) }
+                onDetailClicked = { onPropertyClicked(it) },
+                data = listProperty[it]
             )
             Spacer(modifier = Modifier.height(24.dp))
         }
