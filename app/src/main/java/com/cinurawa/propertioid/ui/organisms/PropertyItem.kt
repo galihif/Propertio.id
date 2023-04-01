@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
 import com.cinurawa.propertioid.ui.molecules.*
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple500
@@ -21,7 +22,8 @@ import com.google.accompanist.flowlayout.FlowRow
 @Composable
 fun PropertyItem(
     modifier: Modifier = Modifier,
-    onDetailClicked: () -> Unit = {}
+    onDetailClicked: () -> Unit = {},
+    data: GetAllPropertyDto.PropertyData? = null
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -37,8 +39,8 @@ fun PropertyItem(
             IconTextBadge(text = "SHM", icon = R.drawable.ic_shm, color = Purple500)
         }
         TitleDetailColumn(
-            title = "Rumah Mewah di Jalan Kebon Sirih\"",
-            detail = "Lorem ipsum dolor sit amet consectetur. Id viverra nec."
+            title = data?.title ?: "Title",
+            detail = data?.description ?: "Detail"
         )
         IconText(
             leadingIcon = Icons.Default.LocationOn,
