@@ -7,7 +7,7 @@ data class GetAllPropertyDto(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")
-    val `data`: List<PropertyData>,
+    val propertyData: List<PropertyData>,
     @SerializedName("message")
     val message: String,
     @SerializedName("status")
@@ -75,11 +75,11 @@ data class GetAllPropertyDto(
         @SerializedName("property_code")
         val propertyCode: String,
         @SerializedName("property_document")
-        val propertyDocument: List<Any>,
+        val propertyDocument: List<PropertyDocument>,
         @SerializedName("property_facility")
         val propertyFacility: List<PropertyFacility>,
         @SerializedName("property_infrastructure")
-        val propertyInfrastructure: List<Any>,
+        val propertyInfrastructure: List<PropertyInfrastructure>,
         @SerializedName("property_photo")
         val propertyPhoto: List<PropertyPhoto>,
         @SerializedName("property_type")
@@ -89,7 +89,7 @@ data class GetAllPropertyDto(
         @SerializedName("property_video")
         val propertyVideo: List<PropertyVideo>,
         @SerializedName("property_virtual_tour")
-        val propertyVirtualTour: List<Any>,
+        val propertyVirtualTour: List<PropertyVirtualTour>,
         @SerializedName("province")
         val province: String,
         @SerializedName("slug")
@@ -132,6 +132,21 @@ data class GetAllPropertyDto(
             val userId: Int
         )
 
+        data class PropertyDocument(
+            @SerializedName("created_at")
+            val createdAt: String,
+            @SerializedName("file")
+            val `file`: String,
+            @SerializedName("id")
+            val id: Int,
+            @SerializedName("name")
+            val name: String,
+            @SerializedName("property_id")
+            val propertyId: Int,
+            @SerializedName("updated_at")
+            val updatedAt: String
+        )
+
         data class PropertyFacility(
             @SerializedName("created_at")
             val createdAt: String,
@@ -157,6 +172,42 @@ data class GetAllPropertyDto(
                 val id: Int,
                 @SerializedName("image_icon")
                 val imageIcon: String,
+                @SerializedName("name")
+                val name: String,
+                @SerializedName("updated_at")
+                val updatedAt: String
+            )
+        }
+
+        data class PropertyInfrastructure(
+            @SerializedName("created_at")
+            val createdAt: String,
+            @SerializedName("distance")
+            val distance: Int,
+            @SerializedName("id")
+            val id: Int,
+            @SerializedName("infrastructure_type")
+            val infrastructureType: InfrastructureType,
+            @SerializedName("infrastructure_type_id")
+            val infrastructureTypeId: Int,
+            @SerializedName("name")
+            val name: String,
+            @SerializedName("property_id")
+            val propertyId: Int,
+            @SerializedName("updated_at")
+            val updatedAt: String
+        ) {
+            data class InfrastructureType(
+                @SerializedName("created_at")
+                val createdAt: String,
+                @SerializedName("deleted_at")
+                val deletedAt: Any?,
+                @SerializedName("description")
+                val description: String?,
+                @SerializedName("id")
+                val id: Int,
+                @SerializedName("image_icon")
+                val imageIcon: String?,
                 @SerializedName("name")
                 val name: String,
                 @SerializedName("updated_at")
@@ -201,6 +252,21 @@ data class GetAllPropertyDto(
             val id: Int,
             @SerializedName("link")
             val link: String,
+            @SerializedName("name")
+            val name: String,
+            @SerializedName("property_id")
+            val propertyId: Int,
+            @SerializedName("updated_at")
+            val updatedAt: String
+        )
+
+        data class PropertyVirtualTour(
+            @SerializedName("created_at")
+            val createdAt: String,
+            @SerializedName("file")
+            val `file`: String,
+            @SerializedName("id")
+            val id: Int,
             @SerializedName("name")
             val name: String,
             @SerializedName("property_id")
