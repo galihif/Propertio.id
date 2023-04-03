@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
-import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.molecules.*
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple500
@@ -23,7 +23,7 @@ import com.google.accompanist.flowlayout.FlowRow
 fun PropertyItem(
     modifier: Modifier = Modifier,
     onDetailClicked: () -> Unit = {},
-    data: GetAllPropertyDto.PropertyData? = null
+    data: Property? = null
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -34,17 +34,25 @@ fun PropertyItem(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            IconTextBadge(text = "Rumah", icon = R.drawable.ic_house, color = Blue500)
-            IconTextBadge(text = "Jual", icon = R.drawable.ic_sell, color = Red500)
-            IconTextBadge(text = "SHM", icon = R.drawable.ic_shm, color = Purple500)
+            IconTextBadge(text = data?.type ?: "Type", icon = R.drawable.ic_house, color = Blue500)
+            IconTextBadge(
+                text = data?.listingType ?: "Listing Type",
+                icon = R.drawable.ic_sell,
+                color = Red500
+            )
+            IconTextBadge(
+                text = data?.certificate ?: "Certificate",
+                icon = R.drawable.ic_shm,
+                color = Purple500
+            )
         }
         TitleDetailColumn(
-            title = data?.title ?: "Title",
-            detail = data?.description ?: "Detail"
+            title = data?.name ?: "Title",
+            detail = data?.desc ?: "Detail"
         )
         IconText(
             leadingIcon = Icons.Default.LocationOn,
-            text = "Jl. Kebon Jeruk No. 12, Jakarta Barat",
+            text = data?.address ?: "Address",
             iconTint = Red500
         )
         FlowRow(
@@ -52,13 +60,16 @@ fun PropertyItem(
             mainAxisSpacing = 14.dp,
             crossAxisSpacing = 14.dp
         ) {
-            IconTextBadge(text = "2 Lantai", leadingIcon = Icons.Default.Stairs)
-            IconTextBadge(text = "200 m2", leadingIcon = Icons.Default.AspectRatio)
-            IconTextBadge(text = "100 m2", leadingIcon = Icons.Default.OtherHouses)
-            IconTextBadge(text = "2 K. Tidur", leadingIcon = Icons.Default.Bed)
-            IconTextBadge(text = "2 K. Mandi", leadingIcon = Icons.Default.Bathroom)
-            IconTextBadge(text = "1 Garasi", leadingIcon = Icons.Default.Garage)
+            IconTextBadge(text = "${data?.floor} Lantai", leadingIcon = Icons.Default.Stairs)
+            IconTextBadge(text = "${data?.surfaceArea} m2", leadingIcon = Icons.Default.AspectRatio)
+            IconTextBadge(
+                text = "${data?.buildingArea} m2",
+                leadingIcon = Icons.Default.OtherHouses
+            )
+            IconTextBadge(text = "${data?.bedroom} K. Tidur", leadingIcon = Icons.Default.Bed)
+            IconTextBadge(text = "${data?.bathroom} K. Mandi", leadingIcon = Icons.Default.Bathroom)
+            IconTextBadge(text = "${data?.garage} Garasi", leadingIcon = Icons.Default.Garage)
         }
-        HargaDetailRow(harga = 50000000, onDetailClick = onDetailClicked)
+        HargaDetailRow(harga = data?.price ?: 0, onDetailClick = onDetailClicked)
     }
 }
