@@ -1,10 +1,10 @@
 package com.cinurawa.propertioid.ui.pages.home
 
-import Property
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cinurawa.propertioid.data.MainRepository
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

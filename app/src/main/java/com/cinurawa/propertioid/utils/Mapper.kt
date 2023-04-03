@@ -1,6 +1,6 @@
 package com.cinurawa.propertioid.utils
 
-import Property
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
 
 fun GetAllPropertyDto.PropertyData.toModel(): Property =
