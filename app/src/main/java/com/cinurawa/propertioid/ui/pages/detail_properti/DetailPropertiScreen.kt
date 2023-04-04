@@ -174,18 +174,20 @@ fun DetailPropertiScreen(
             )
         } // Fasilitas
         item {
-            Text(
-                text = "Virtual Tour",
-                modifier = Modifier.padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.h6
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            PrimaryButton(
-                title = "Lihat Virtual Tour",
-                leadingIcon = Icons.Default.ViewInAr,
-                modifier = Modifier.padding(horizontal = 24.dp),
-                onClick = {}
-            )
+            if(!data?.virtualTour.isNullOrEmpty()){
+                Text(
+                    text = "Virtual Tour",
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.h6
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                PrimaryButton(
+                    title = "Lihat Virtual Tour",
+                    leadingIcon = Icons.Default.ViewInAr,
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    onClick = {}
+                )
+            }
         } // Virtual Tour
         item {
             Text(
