@@ -29,6 +29,7 @@ import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
 import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
+import com.cinurawa.propertioid.ui.pages.virtual_tour.VirtualTourScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -134,6 +135,9 @@ fun PropertioidApp(
                 )
                 DetailPropertiScreen(
                     data = data,
+                    onVirtualTourClick = {
+                        navController.navigate(Screen.VirtualTour.createRoute(it))
+                    }
                 )
             }
             composable(
@@ -169,6 +173,19 @@ fun PropertioidApp(
                     },
                 )
             }
+
+            composable(
+                route = Screen.VirtualTour.route,
+                arguments = listOf(navArgument("urlId") { type = NavType.IntType })
+            ) { navBackStackEntry ->
+                val urlId = navBackStackEntry.arguments?.getInt("urlId") ?: 1
+                VirtualTourScreen(
+                    urlId = urlId
+                )
+
+            }
+
+
 
 
         }
