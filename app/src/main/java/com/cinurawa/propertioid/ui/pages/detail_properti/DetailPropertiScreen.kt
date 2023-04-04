@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,6 +48,7 @@ fun DetailPropertiScreen(
     viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
 
+    val context = LocalContext.current
     var lifecycle by remember {
         mutableStateOf(Lifecycle.Event.ON_CREATE)
     }
@@ -59,7 +61,7 @@ fun DetailPropertiScreen(
         }
     }
 
-    viewModel.addVideoUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+    viewModel.addVideoUri("https://www.youtube.com/watch?v=YfkL3Qmxu6k", context)
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
