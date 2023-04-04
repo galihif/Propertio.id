@@ -1,4 +1,9 @@
 package com.cinurawa.propertioid.data.model
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Property(
     val id: Int,
     val name: String,
@@ -45,4 +50,4 @@ data class Property(
     val agentName: String,
     val agentPhone: String,
 
-    )
+    ) : Parcelable
