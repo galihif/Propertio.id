@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.pages.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cinurawa.propertioid.data.MainRepository
@@ -34,14 +33,12 @@ class HomeViewModel
                         _isLoading.value = true
                     }
                     is Resource.Success -> {
-                        Log.d("GALIH", "getListProperty: ${it.data?.size}")
                         _isLoading.value = false
                         _listProperty.value = if (it.data.isNullOrEmpty()) emptyList() else it.data
                     }
                     is Resource.Error -> {
                         _isLoading.value = false
                         _error.value = it.message ?: "Error"
-                        Log.d("GALIH", "getListProperty: ${it.message}")
                     }
                 }
             }
