@@ -1,7 +1,7 @@
 package com.cinurawa.propertioid.data
 
-import Property
 import android.util.Log
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.data.remote.api.ApiService
 import com.cinurawa.propertioid.utils.Resource
 import com.cinurawa.propertioid.utils.toModel
