@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
 import com.cinurawa.propertioid.ui.organisms.NavTopBar
@@ -80,7 +81,11 @@ fun PropertioidApp(
             composable(Screen.Home.route) {
                 HomeScreen(
                     onPropertyClicked = {
-                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "property",
+                            it
+                        )
+                        navController.navigate(Screen.DetailProperti.createRoute(it.id))
                     },
                     onProjectClicked = {
                         navController.navigate(Screen.DetailProject.createRoute(it))
@@ -115,45 +120,46 @@ fun PropertioidApp(
                 route = Screen.DetailProperti.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) {
-                val id = it.arguments?.getInt("id") ?: 1
-                 DetailPropertiScreen(
-                    id = id
-                 )
+                val data = navController.previousBackStackEntry?.savedStateHandle?.get<Property>(
+                    "property"
+                )
+                DetailPropertiScreen(
+                    data = data,
+                )
             }
             composable(
                 route = Screen.DetailProject.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getInt("id") ?: 1
-                 DetailProjectScreen(
+                DetailProjectScreen(
                     id = id,
-                     onUnitClicked = { unitId ->
+                    onUnitClicked = { unitId ->
                         navController.navigate(Screen.DetailUnit.createRoute(unitId))
                     }
-                 )
+                )
             }
             composable(
                 route = Screen.DetailUnit.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) {
                 val id = it.arguments?.getInt("id") ?: 1
-                 DetailUnitScreen(
+                DetailUnitScreen(
                     id = id
-                 )
+                )
             }
             composable(
                 route = Screen.DetailAgent.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
-            ) {
-                val id = it.arguments?.getInt("id") ?: 1
+            ) { navBackStackEntry ->
+                val id = navBackStackEntry.arguments?.getInt("id") ?: 1
                 DetailAgentScreen(
                     id = id,
                     onPropertyClicked = {
                         navController.navigate(Screen.DetailProperti.createRoute(it))
                     },
-                 )
+                )
             }
-
 
 
         }
