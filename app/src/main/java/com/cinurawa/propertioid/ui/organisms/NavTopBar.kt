@@ -31,7 +31,8 @@ fun NavTopBar(
                 Screen.DetailProperti.route,
                 Screen.DetailProject.route,
                 Screen.DetailAgent.route,
-                Screen.DetailUnit.route
+                Screen.DetailUnit.route,
+                Screen.VirtualTour.route
                 -> {
                     IconButton(onClick = onBackClick) {
                         Icon(
