@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.HomeBanner
@@ -30,7 +32,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreen(
-    onPropertyClicked: (Int) -> Unit = {},
+    onPropertyClicked: (Property) -> Unit = {},
     onProjectClicked: (Int) -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -97,10 +99,10 @@ fun HomeScreen(
                 CircularProgressIndicator()
             }
         }
-        items(listProperty.size) {
+        items(listProperty) { property ->
             PropertyItem(
-                onDetailClicked = { onPropertyClicked(it) },
-                data = listProperty[it]
+                onDetailClicked = { onPropertyClicked(property) },
+                data = property
             )
             Spacer(modifier = Modifier.height(24.dp))
         }
