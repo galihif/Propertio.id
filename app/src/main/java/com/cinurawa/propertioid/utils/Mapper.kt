@@ -36,7 +36,8 @@ fun GetAllPropertyDto.PropertyData.toModel(): Property =
         phoneLine = this.phoneLine,
         isFurniture = this.isFurniture == 1,
 
-        virtualTour = if (this.propertyVirtualTour.isNotEmpty()) this.propertyVirtualTour[0].file else "",
+//        virtualTour = if (this.propertyVirtualTour.isNotEmpty()) this.propertyVirtualTour[0].file else "",
+        virtualTour = "https://virtualtour0001.propertio.id/",
         video = if (this.propertyVideo.isNotEmpty()) this.propertyVideo[0].link else "",
 
         latitude = this.latitude,
