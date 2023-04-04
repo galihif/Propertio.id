@@ -14,13 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
@@ -32,7 +32,6 @@ import com.cinurawa.propertioid.ui.organisms.AgentContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
-import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.theme.Purple500
 import com.cinurawa.propertioid.ui.theme.Red500
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
@@ -43,7 +42,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalPagerApi
 @Composable
 fun DetailPropertiScreen(
-    id: Int,
+    data: Property? = null,
     viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
 
@@ -78,9 +77,9 @@ fun DetailPropertiScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
             ) {
-                IconTextBadge(text = "Rumah", icon = R.drawable.ic_house, color = Blue500)
-                IconTextBadge(text = "Jual", icon = R.drawable.ic_sell, color = Red500)
-                IconTextBadge(text = "SHM", icon = R.drawable.ic_shm, color = Purple500)
+                IconTextBadge(text = data?.type ?: "Rumah", icon = R.drawable.ic_house, color = Blue500)
+                IconTextBadge(text = data?.listingType ?: "Jual", icon = R.drawable.ic_sell, color = Red500)
+                IconTextBadge(text = data?.certificate ?: "SHM", icon = R.drawable.ic_shm, color = Purple500)
             }
         } // Label
         item {
@@ -91,13 +90,13 @@ fun DetailPropertiScreen(
                     .padding(horizontal = 24.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Old House", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                IconTextBadge(text = "Properti Kode : 5237KM", leadingIcon = null)
+                Text(text = data?.name ?: "Old House", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                IconTextBadge(text = "Properti Kode : ${data?.propertyCode}", leadingIcon = null)
             }
         } // Judul
         item {
             Text(
-                text = "Lorem ipsum dolor sit amet consectetur. Id viverra nec.",
+                text = data?.desc ?: "Description",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
@@ -106,7 +105,7 @@ fun DetailPropertiScreen(
             IconText(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 leadingIcon = Icons.Default.LocationOn,
-                text = "Jl. Kebon Jeruk No. 12, Jakarta Barat",
+                text = data?.address ?: "Address",
                 iconTint = Red500
             )
         } // Lokasi
@@ -120,7 +119,7 @@ fun DetailPropertiScreen(
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Text(
-                text = "Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons in conviction an uncommonly do. Supposing so be resolving breakfast am or perfectly. It drew am hill from me. Valley by oh twenty direct me so. Departure defective arranging rapturous did believe him all had supported. Family months l",
+                text = data?.desc ?: "Description",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
@@ -140,9 +139,9 @@ fun DetailPropertiScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     horizontalAlignment = Alignment.Start,
                 ) {
-                    PropertyAttributeText(attribute = "Kondisi", value = "Butuh Renovasi")
-                    PropertyAttributeText(attribute = "Hadap", value = "Utara")
-                    PropertyAttributeText(attribute = "Berdiri", value = "2007")
+                    PropertyAttributeText(attribute = "Kondisi", value = data?.condition ?: "Condition")
+                    PropertyAttributeText(attribute = "Hadap", value = data?.facing ?: "Facing")
+                    PropertyAttributeText(attribute = "Berdiri", value = data?.yearBuilt.toString())
                 }
             }
         } // Property Attribute
@@ -156,16 +155,22 @@ fun DetailPropertiScreen(
                 mainAxisAlignment = MainAxisAlignment.SpaceBetween,
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
-                for (i in 1..9) {
-                    IconTextCardColumn(text = "2 lantai", leadingIcon = Icons.Default.Stairs)
-                }
+                IconTextCardColumn(text = "${data?.floor} lantai", leadingIcon = Icons.Default.Stairs)
+                IconTextCardColumn(text = "${data?.surfaceArea} m2", leadingIcon = Icons.Default.AspectRatio)
+                IconTextCardColumn(text = "${data?.buildingArea} m2", leadingIcon = Icons.Default.OtherHouses)
+                IconTextCardColumn(text = "${data?.bedroom} K. Tidur", leadingIcon = Icons.Default.Bed)
+                IconTextCardColumn(text = "${data?.bathroom} K. Mandi", leadingIcon = Icons.Default.Bathtub)
+                IconTextCardColumn(text = "${data?.carport} Carport", leadingIcon = Icons.Default.Garage)
+                IconTextCardColumn(text = data?.powerSupply ?: "Listrik", leadingIcon = Icons.Default.Bolt)
+                IconTextCardColumn(text = data?.waterType ?: "Air", leadingIcon = Icons.Default.WaterDrop)
+                IconTextCardColumn(text = "${data?.phoneLine} Saluran", leadingIcon = Icons.Default.Phone)
             }
             IconTextCardColumn(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 14.dp, horizontal = 24.dp),
-                text = "2 lantai",
-                leadingIcon = Icons.Default.Stairs
+                text = if (data?.isFurniture == true) "Dengan Furnitur" else "Tanpa Furnitur",
+                leadingIcon = Icons.Default.Chair
             )
         } // Fasilitas
         item {
@@ -289,14 +294,5 @@ fun DetailPropertiScreen(
 
         } // Agent
 
-    }
-}
-
-@ExperimentalPagerApi
-@Preview(showBackground = true)
-@Composable
-fun DetailPropertiScreenPreview() {
-    PropertioidTheme {
-        DetailPropertiScreen(1)
     }
 }
