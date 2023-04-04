@@ -7,11 +7,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.cinurawa.propertioid.data.model.Property
@@ -55,11 +57,18 @@ fun PropertioidApp(
 ) {
     val appState = rememberNavDrawerState()
     val navController = rememberNavController()
+
     Scaffold(
         scaffoldState = appState.scaffoldState,
         topBar = {
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
             NavTopBar(
-                onMenuClick = appState::onMenuClick
+                onMenuClick = appState::onMenuClick,
+                onBackClick = {
+                    navController.popBackStack()
+                },
+                route = currentRoute ?: ""
             )
         },
         drawerContent = {
