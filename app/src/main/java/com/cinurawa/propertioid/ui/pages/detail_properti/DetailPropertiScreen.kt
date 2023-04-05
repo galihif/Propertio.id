@@ -290,9 +290,9 @@ fun DetailPropertiScreen(
         item {
             AgentContactRow(
                 image = R.drawable.jisoo,
-                name = "Jisoo",
-                phone = "+62852102322",
-                whatsapp = "+62852102322",
+                name = data?.agentName ?: "Agent Name",
+                phone = data?.agentPhone ?: "Agent Phone",
+                whatsapp = data?.agentPhone ?: "Agent Whatsapp",
             )
             Spacer(modifier = Modifier.height(24.dp))
 
