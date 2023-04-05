@@ -9,8 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 
 @Composable
 fun RoundedImage(
@@ -29,14 +32,18 @@ fun RoundedImage(
     )
 }
 
+
 @Composable
 fun MyImage(
     modifier: Modifier = Modifier,
     height: Int = 200,
-    @DrawableRes image: Int,
+    image: String,
 ) {
-    Image(
-        painter = painterResource(image),
+    AsyncImage(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(image)
+            .crossfade(true)
+            .build(),
         contentDescription = "",
         contentScale = ContentScale.Crop,
         modifier = modifier
@@ -44,4 +51,6 @@ fun MyImage(
             .fillMaxWidth()
     )
 }
+
+
 
