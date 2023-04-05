@@ -2,6 +2,8 @@ package com.cinurawa.propertioid.ui.pages.detail_properti
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.SparseArray
 import androidx.lifecycle.ViewModel
 import androidx.media3.common.MediaItem
@@ -20,6 +22,21 @@ class DetailPropertiViewModel
 ) : ViewModel() {
 
     private var _videoUri = ""
+
+    private var _latitude = 0.0
+    private var _longitude = 0.0
+
+    fun addLatLong(latitude: Double, longitude: Double){
+        _latitude = latitude
+        _longitude = longitude
+    }
+
+    fun openMap(context: Context){
+        val mapUri: Uri = Uri.parse("geo:$_latitude,$_longitude?z=20")
+        val mapIntent = Intent(Intent.ACTION_VIEW, mapUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        context.startActivity(mapIntent)
+    }
 
     init {
         player.prepare()
