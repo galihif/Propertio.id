@@ -12,7 +12,7 @@ data class Property(
     val price: Int,
     val propertyCode: String,
 
-    val photo: List<String>,
+    val photosUrl: List<String>,
 
     val type: String,
     val listingType: String,
