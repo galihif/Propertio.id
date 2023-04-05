@@ -120,13 +120,6 @@ fun DetailPropertiScreen(
             }
         } // Judul
         item {
-            Text(
-                text = data?.desc ?: "Description",
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(horizontal = 24.dp)
-            )
-        } // Deskripsi Singkat
-        item {
             IconText(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 leadingIcon = Icons.Default.LocationOn,
@@ -140,7 +133,7 @@ fun DetailPropertiScreen(
         item {
             Text(
                 text = "Deskripsi",
-                style = MaterialTheme.typography.subtitle2,
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(horizontal = 24.dp)
             )
             Text(
