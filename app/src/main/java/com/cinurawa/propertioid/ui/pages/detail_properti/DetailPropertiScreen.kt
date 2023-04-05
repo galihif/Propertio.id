@@ -62,7 +62,7 @@ fun DetailPropertiScreen(
     }
 
     viewModel.addVideoUri("https://www.youtube.com/watch?v=YfkL3Qmxu6k", context)
-
+    viewModel.addLatLong(data?.latitude?:0.0, data?.longitude?:0.0)
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
@@ -220,7 +220,9 @@ fun DetailPropertiScreen(
                 title = "Lihat Peta Lokasi",
                 leadingIcon = Icons.Default.Map,
                 modifier = Modifier.padding(horizontal = 24.dp),
-                onClick = {}
+                onClick = {
+                    viewModel.openMap(context)
+                }
             )
         } // Peta Lokasi
         item {
