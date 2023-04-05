@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.MyImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -17,7 +16,8 @@ import com.google.accompanist.pager.rememberPagerState
 @ExperimentalPagerApi
 @Composable
 fun ImageCarousel(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    imagesUrl: List<String> = emptyList(),
 ) {
     val pagerState = rememberPagerState()
     Column(
@@ -25,9 +25,9 @@ fun ImageCarousel(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HorizontalPager(
-            count = 8, state = pagerState,
+            count = imagesUrl.size, state = pagerState,
         ) { index ->
-            MyImage(image = R.drawable.home_banner)
+            MyImage(image = imagesUrl[index])
         }
         HorizontalPagerIndicator(
             pagerState = pagerState,
