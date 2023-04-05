@@ -104,12 +104,12 @@ fun DetailPropertiScreen(
             }
         } // Label
         item {
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
-                verticalAlignment = Alignment.CenterVertically
+                horizontalAlignment = Alignment.Start
             ) {
                 Text(
                     text = data?.name ?: "Old House",
