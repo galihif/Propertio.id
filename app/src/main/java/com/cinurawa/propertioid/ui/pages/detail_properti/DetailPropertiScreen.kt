@@ -61,7 +61,7 @@ fun DetailPropertiScreen(
         }
     }
 
-    viewModel.addVideoUri("https://www.youtube.com/watch?v=YfkL3Qmxu6k", context)
+    viewModel.addVideoUri(data?.video?: "https://www.youtube.com/watch?v=YfkL3Qmxu6k", context)
     viewModel.addLatLong(data?.latitude?:0.0, data?.longitude?:0.0)
 
     LazyColumn(
