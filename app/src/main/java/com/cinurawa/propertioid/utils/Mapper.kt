@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.utils
 
+import com.cinurawa.propertioid.data.model.Infrastructure
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
 
@@ -45,7 +46,7 @@ fun GetAllPropertyDto.PropertyData.toModel(): Property =
 
         dokumen = this.propertyDocument.map { it.file },
         fasilitas = this.propertyFacility.map { it.facilityType.name },
-        infrastruktur = this.propertyInfrastructure.map { it.infrastructureType.name },
+        infrastruktur = this.propertyInfrastructure.map { Infrastructure(it.name,it.distance) },
 
         agentImage = "",
         agentName = if (this.contactProperty.isNotEmpty()) this.contactProperty[0].name else "",
