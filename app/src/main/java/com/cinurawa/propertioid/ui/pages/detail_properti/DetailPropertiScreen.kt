@@ -63,6 +63,7 @@ fun DetailPropertiScreen(
 
     viewModel.addVideoUri("https://www.youtube.com/watch?v=YfkL3Qmxu6k", context)
     viewModel.addLatLong(data?.latitude?:0.0, data?.longitude?:0.0)
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
@@ -195,19 +196,21 @@ fun DetailPropertiScreen(
             }
         } // Virtual Tour
         item {
-            Text(
-                text = "Video",
-                modifier = Modifier.padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.h6
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            VideoPlayer(
-                player = viewModel.player,
-                lifecycle = lifecycle,
-                modifier = Modifier
-                    .padding(horizontal = 24.dp)
-                    .fillMaxWidth()
-            )
+            if(!data?.video.isNullOrEmpty()){
+                Text(
+                    text = "Video",
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.h6
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                VideoPlayer(
+                    player = viewModel.player,
+                    lifecycle = lifecycle,
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth()
+                )
+            }
         } // Video
         item {
             Text(
