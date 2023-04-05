@@ -61,8 +61,12 @@ fun DetailPropertiScreen(
         }
     }
 
-    viewModel.addVideoUri(data?.video?: "https://www.youtube.com/watch?v=YfkL3Qmxu6k", context)
-    viewModel.addLatLong(data?.latitude?:0.0, data?.longitude?:0.0)
+    viewModel.addVideoUri(data?.video ?: "", context)
+    viewModel.addLocation(
+        data?.name ?: "Name",
+        data?.latitude ?: 0.0,
+        data?.longitude ?: 0.0
+    )
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -70,7 +74,8 @@ fun DetailPropertiScreen(
         item {
             ImageCarousel(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                imagesUrl = data?.photosUrl ?: emptyList()
             )
         } // Image Carousel
         item {
@@ -81,9 +86,21 @@ fun DetailPropertiScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
             ) {
-                IconTextBadge(text = data?.type ?: "Rumah", icon = R.drawable.ic_house, color = Blue500)
-                IconTextBadge(text = data?.listingType ?: "Jual", icon = R.drawable.ic_sell, color = Red500)
-                IconTextBadge(text = data?.certificate ?: "SHM", icon = R.drawable.ic_shm, color = Purple500)
+                IconTextBadge(
+                    text = data?.type ?: "Rumah",
+                    icon = R.drawable.ic_house,
+                    color = Blue500
+                )
+                IconTextBadge(
+                    text = data?.listingType ?: "Jual",
+                    icon = R.drawable.ic_sell,
+                    color = Red500
+                )
+                IconTextBadge(
+                    text = data?.certificate ?: "SHM",
+                    icon = R.drawable.ic_shm,
+                    color = Purple500
+                )
             }
         } // Label
         item {
@@ -94,7 +111,11 @@ fun DetailPropertiScreen(
                     .padding(horizontal = 24.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = data?.name ?: "Old House", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                Text(
+                    text = data?.name ?: "Old House",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
                 IconTextBadge(text = "Properti Kode : ${data?.propertyCode}", leadingIcon = null)
             }
         } // Judul
@@ -143,7 +164,10 @@ fun DetailPropertiScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                     horizontalAlignment = Alignment.Start,
                 ) {
-                    PropertyAttributeText(attribute = "Kondisi", value = data?.condition ?: "Condition")
+                    PropertyAttributeText(
+                        attribute = "Kondisi",
+                        value = data?.condition ?: "Condition"
+                    )
                     PropertyAttributeText(attribute = "Hadap", value = data?.facing ?: "Facing")
                     PropertyAttributeText(attribute = "Berdiri", value = data?.yearBuilt.toString())
                 }
@@ -159,15 +183,42 @@ fun DetailPropertiScreen(
                 mainAxisAlignment = MainAxisAlignment.SpaceBetween,
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
-                IconTextCardColumn(text = "${data?.floor} lantai", leadingIcon = Icons.Default.Stairs)
-                IconTextCardColumn(text = "${data?.surfaceArea} m2", leadingIcon = Icons.Default.AspectRatio)
-                IconTextCardColumn(text = "${data?.buildingArea} m2", leadingIcon = Icons.Default.OtherHouses)
-                IconTextCardColumn(text = "${data?.bedroom} K. Tidur", leadingIcon = Icons.Default.Bed)
-                IconTextCardColumn(text = "${data?.bathroom} K. Mandi", leadingIcon = Icons.Default.Bathtub)
-                IconTextCardColumn(text = "${data?.carport} Carport", leadingIcon = Icons.Default.Garage)
-                IconTextCardColumn(text = data?.powerSupply ?: "Listrik", leadingIcon = Icons.Default.Bolt)
-                IconTextCardColumn(text = data?.waterType ?: "Air", leadingIcon = Icons.Default.WaterDrop)
-                IconTextCardColumn(text = "${data?.phoneLine} Saluran", leadingIcon = Icons.Default.Phone)
+                IconTextCardColumn(
+                    text = "${data?.floor} lantai",
+                    leadingIcon = Icons.Default.Stairs
+                )
+                IconTextCardColumn(
+                    text = "${data?.surfaceArea} m2",
+                    leadingIcon = Icons.Default.AspectRatio
+                )
+                IconTextCardColumn(
+                    text = "${data?.buildingArea} m2",
+                    leadingIcon = Icons.Default.OtherHouses
+                )
+                IconTextCardColumn(
+                    text = "${data?.bedroom} K. Tidur",
+                    leadingIcon = Icons.Default.Bed
+                )
+                IconTextCardColumn(
+                    text = "${data?.bathroom} K. Mandi",
+                    leadingIcon = Icons.Default.Bathtub
+                )
+                IconTextCardColumn(
+                    text = "${data?.carport} Carport",
+                    leadingIcon = Icons.Default.Garage
+                )
+                IconTextCardColumn(
+                    text = data?.powerSupply ?: "Listrik",
+                    leadingIcon = Icons.Default.Bolt
+                )
+                IconTextCardColumn(
+                    text = data?.waterType ?: "Air",
+                    leadingIcon = Icons.Default.WaterDrop
+                )
+                IconTextCardColumn(
+                    text = "${data?.phoneLine} Saluran",
+                    leadingIcon = Icons.Default.Phone
+                )
             }
             IconTextCardColumn(
                 modifier = Modifier
@@ -178,7 +229,7 @@ fun DetailPropertiScreen(
             )
         } // Fasilitas
         item {
-            if(!data?.virtualTour.isNullOrEmpty()){
+            if (!data?.virtualTour.isNullOrEmpty()) {
                 Text(
                     text = "Virtual Tour",
                     modifier = Modifier.padding(horizontal = 24.dp),
@@ -196,7 +247,7 @@ fun DetailPropertiScreen(
             }
         } // Virtual Tour
         item {
-            if(!data?.video.isNullOrEmpty()){
+            if (!data?.video.isNullOrEmpty()) {
                 Text(
                     text = "Video",
                     modifier = Modifier.padding(horizontal = 24.dp),
@@ -236,7 +287,7 @@ fun DetailPropertiScreen(
                     style = MaterialTheme.typography.h6
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                data?.dokumen?.forEach {docName ->
+                data?.dokumen?.forEach { docName ->
                     DokumenButton(
                         modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
                         title = docName,
@@ -258,10 +309,12 @@ fun DetailPropertiScreen(
                     .padding(horizontal = 24.dp),
                 mainAxisSpacing = 14.dp,
                 crossAxisSpacing = 14.dp,
-                mainAxisAlignment = if((data?.fasilitas?.size ?: 0) > 3) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
+                mainAxisAlignment = if ((data?.fasilitas?.size
+                        ?: 0) > 3
+                ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
-                data?.fasilitas?.forEach {fac ->
+                data?.fasilitas?.forEach { fac ->
                     IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
                 }
             }
@@ -279,11 +332,17 @@ fun DetailPropertiScreen(
                     .padding(horizontal = 24.dp),
                 mainAxisSpacing = 14.dp,
                 crossAxisSpacing = 14.dp,
-                mainAxisAlignment = if ((data?.infrastruktur?.size ?: 0) > 3) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
+                mainAxisAlignment = if ((data?.infrastruktur?.size
+                        ?: 0) > 3
+                ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
-                data?.infrastruktur?.forEach {inf ->
-                    IconTextCardColumn(text = inf.name, leadingIcon = Icons.Default.House, subText = "${inf.distance} KM")
+                data?.infrastruktur?.forEach { inf ->
+                    IconTextCardColumn(
+                        text = inf.name,
+                        leadingIcon = Icons.Default.House,
+                        subText = "${inf.distance} KM"
+                    )
                 }
             }
         } // Infrastruktur
