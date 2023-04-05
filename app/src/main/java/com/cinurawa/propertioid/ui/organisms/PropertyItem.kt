@@ -29,7 +29,7 @@ fun PropertyItem(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        ThumbnailImage(modifier = Modifier.fillMaxWidth())
+        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = data?.photosUrl?.get(0))
         Row(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically,
