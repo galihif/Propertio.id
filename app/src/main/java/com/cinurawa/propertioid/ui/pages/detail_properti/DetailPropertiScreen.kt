@@ -229,27 +229,21 @@ fun DetailPropertiScreen(
             )
         } // Peta Lokasi
         item {
-            Text(
-                text = "Dokumen",
-                modifier = Modifier.padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.h6
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            DokumenButton(
-                modifier = Modifier.padding(horizontal = 24.dp),
-                title = "Brosur.pdf",
-                onClick = {}
-            )
-            DokumenButton(
-                modifier = Modifier.padding(horizontal = 24.dp),
-                title = "Brosur.pdf",
-                onClick = {}
-            )
-            DokumenButton(
-                modifier = Modifier.padding(horizontal = 24.dp),
-                title = "Brosur.pdf",
-                onClick = {}
-            )
+            if ((data?.dokumen?.size ?: 0) > 0) {
+                Text(
+                    text = "Dokumen",
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.h6
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                data?.dokumen?.forEach {docName ->
+                    DokumenButton(
+                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+                        title = docName,
+                        onClick = {}
+                    )
+                }
+            }
         } // Dokumen
         item {
             Text(
