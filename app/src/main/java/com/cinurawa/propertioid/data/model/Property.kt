@@ -44,7 +44,7 @@ data class Property(
 
     val dokumen: List<String>? = null,
     val fasilitas: List<String>? = null,
-    val infrastruktur: List<String>? = null,
+    val infrastruktur: List<Infrastructure>? = null,
 
     val agentImage: String,
     val agentName: String,
