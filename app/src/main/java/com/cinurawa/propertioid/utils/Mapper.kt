@@ -13,7 +13,7 @@ fun GetAllPropertyDto.PropertyData.toModel(): Property =
         price = this.price,
         propertyCode = this.propertyCode,
 
-        photo = this.propertyPhoto.map { it.file },
+        photosUrl = this.propertyPhoto.map { formatPropertyPhotoUrl(it.file) },
 
         type = this.propertyType.name,
         listingType = this.listingType,
