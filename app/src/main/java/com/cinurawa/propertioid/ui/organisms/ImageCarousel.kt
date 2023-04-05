@@ -2,6 +2,7 @@ package com.cinurawa.propertioid.ui.organisms
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,13 +22,13 @@ fun ImageCarousel(
 ) {
     val pagerState = rememberPagerState()
     Column(
-        modifier = modifier,
+        modifier = modifier.wrapContentSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HorizontalPager(
             count = imagesUrl.size, state = pagerState,
         ) { index ->
-            MyImage(image = imagesUrl[index])
+            MyImage(image = imagesUrl[index], height = 240)
         }
         HorizontalPagerIndicator(
             pagerState = pagerState,
