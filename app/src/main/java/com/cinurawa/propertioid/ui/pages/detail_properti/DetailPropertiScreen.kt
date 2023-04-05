@@ -251,17 +251,18 @@ fun DetailPropertiScreen(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 style = MaterialTheme.typography.h6
             )
+            Spacer(modifier = Modifier.height(5.dp))
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
                 mainAxisSpacing = 14.dp,
                 crossAxisSpacing = 14.dp,
-                mainAxisAlignment = MainAxisAlignment.SpaceBetween,
+                mainAxisAlignment = if((data?.fasilitas?.size ?: 0) > 3) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
-                for (i in 1..6) {
-                    IconTextCardColumn(text = "2 lantai", leadingIcon = Icons.Default.Stairs)
+                data?.fasilitas?.forEach {fac ->
+                    IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
                 }
             }
         } // Fasilitas
@@ -271,21 +272,18 @@ fun DetailPropertiScreen(
                 modifier = Modifier.padding(horizontal = 24.dp),
                 style = MaterialTheme.typography.h6
             )
+            Spacer(modifier = Modifier.height(5.dp))
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
                 mainAxisSpacing = 14.dp,
                 crossAxisSpacing = 14.dp,
-                mainAxisAlignment = MainAxisAlignment.SpaceBetween,
+                mainAxisAlignment = if ((data?.infrastruktur?.size ?: 0) > 3) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
                 crossAxisAlignment = FlowCrossAxisAlignment.Start,
             ) {
-                for (i in 1..6) {
-                    IconTextCardColumn(
-                        text = "Masjid",
-                        leadingIcon = Icons.Default.Mosque,
-                        subText = "1 KM"
-                    )
+                data?.infrastruktur?.forEach {inf ->
+                    IconTextCardColumn(text = inf.name, leadingIcon = Icons.Default.House, subText = "${inf.distance} KM")
                 }
             }
         } // Infrastruktur
