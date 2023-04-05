@@ -105,7 +105,11 @@ fun PropertioidApp(
             composable(Screen.Properti.route) {
                 PropertiScreen(
                     onPropertiClicked = {
-                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "property",
+                            it
+                        )
+                        navController.navigate(Screen.DetailProperti.createRoute(it.id))
                     }
                 )
             }
