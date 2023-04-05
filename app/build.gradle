@@ -89,4 +89,7 @@ dependencies {
 
     //YoutubeExtractor
     implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
+
+    //Coil
+    implementation 'io.coil-kt:coil-compose:2.3.0'
 }
