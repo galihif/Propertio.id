@@ -1,4 +1,4 @@
-package com.cinurawa.propertioid.ui.pages.virtual_tour
+package com.cinurawa.propertioid.ui.pages.webview
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -14,7 +14,7 @@ import com.google.accompanist.web.rememberWebViewState
 
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun VirtualTourScreen(
+fun WebViewScreen(
     url:String,
 ) {
     val webClient = remember {
