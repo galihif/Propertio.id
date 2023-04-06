@@ -29,7 +29,7 @@ import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
 import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
-import com.cinurawa.propertioid.ui.pages.virtual_tour.VirtualTourScreen
+import com.cinurawa.propertioid.ui.pages.webview.WebViewScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
 import com.cinurawa.propertioid.utils.decodeUrl
@@ -185,7 +185,7 @@ fun PropertioidApp(
                 arguments = listOf(navArgument("url") { type = NavType.StringType })
             ) { navBackStackEntry ->
                 val url = navBackStackEntry.arguments?.getString("url") ?: ""
-                VirtualTourScreen(
+                WebViewScreen(
                     url = decodeUrl(url)
                 )
 
