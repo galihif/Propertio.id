@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui.pages.virtual_tour
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.util.Log
 import android.webkit.WebView
@@ -11,11 +12,11 @@ import com.google.accompanist.web.AccompanistWebViewClient
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 
+@SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun VirtualTourScreen(
-    urlId:Int,
+    url:String,
 ) {
-    val url = "https://virtualtour0001.propertio.id/"
     val webClient = remember {
         object : AccompanistWebViewClient() {
             override fun onPageStarted(
