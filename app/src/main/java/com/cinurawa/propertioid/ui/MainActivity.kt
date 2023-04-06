@@ -32,6 +32,8 @@ import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
 import com.cinurawa.propertioid.ui.pages.virtual_tour.VirtualTourScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
+import com.cinurawa.propertioid.utils.decodeUrl
+import com.cinurawa.propertioid.utils.encodeUrl
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -140,7 +142,7 @@ fun PropertioidApp(
                 DetailPropertiScreen(
                     data = data,
                     onVirtualTourClick = {
-                        navController.navigate(Screen.VirtualTour.createRoute(it))
+                        navController.navigate(Screen.VirtualTour.createRoute(encodeUrl(it)))
                     }
                 )
             }
@@ -180,11 +182,11 @@ fun PropertioidApp(
 
             composable(
                 route = Screen.VirtualTour.route,
-                arguments = listOf(navArgument("urlId") { type = NavType.IntType })
+                arguments = listOf(navArgument("url") { type = NavType.StringType })
             ) { navBackStackEntry ->
-                val urlId = navBackStackEntry.arguments?.getInt("urlId") ?: 1
+                val url = navBackStackEntry.arguments?.getString("url") ?: ""
                 VirtualTourScreen(
-                    urlId = urlId
+                    url = decodeUrl(url)
                 )
 
             }
