@@ -92,11 +92,11 @@ fun HomeScreen(
                 title = "Rekomendasi Properti",
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(8.dp))
         }
         item{
             if(isLoading){
-                CircularProgressIndicator()
+                LoadingItem()
+                LoadingItem()
             }
         }
         items(listProperty) { property ->
