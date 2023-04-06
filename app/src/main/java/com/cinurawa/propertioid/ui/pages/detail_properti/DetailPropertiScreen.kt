@@ -258,20 +258,22 @@ fun DetailPropertiScreen(
             }
         } // Video
         item {
-            Text(
-                text = "Peta Lokasi",
-                modifier = Modifier.padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.h6
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            PrimaryButton(
-                title = "Lihat Peta Lokasi",
-                leadingIcon = Icons.Default.Map,
-                modifier = Modifier.padding(horizontal = 24.dp),
-                onClick = {
-                    viewModel.openMap(context)
-                }
-            )
+            if ((data?.latitude != 0.0) && (data?.longitude != 0.0)) {
+                Text(
+                    text = "Peta Lokasi",
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.h6
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                PrimaryButton(
+                    title = "Lihat Peta Lokasi",
+                    leadingIcon = Icons.Default.Map,
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    onClick = {
+                        viewModel.openMap(context)
+                    }
+                )
+            }
         } // Peta Lokasi
         item {
             if ((data?.dokumen?.size ?: 0) > 0) {
@@ -293,52 +295,57 @@ fun DetailPropertiScreen(
             }
         } // Dokumen
         item {
-            Text(
-                text = "Fasilitas",
-                modifier = Modifier.padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.h6
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            FlowRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-                mainAxisSpacing = 14.dp,
-                crossAxisSpacing = 14.dp,
-                mainAxisAlignment = if ((data?.fasilitas?.size
-                        ?: 0) > 3
-                ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
-                crossAxisAlignment = FlowCrossAxisAlignment.Start,
-            ) {
-                data?.fasilitas?.forEach { fac ->
-                    IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
+            if((data?.fasilitas?.size ?: 0) > 0){
+
+                Text(
+                    text = "Fasilitas",
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.h6
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                FlowRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                    mainAxisSpacing = 14.dp,
+                    crossAxisSpacing = 14.dp,
+                    mainAxisAlignment = if ((data?.fasilitas?.size
+                            ?: 0) > 3
+                    ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
+                    crossAxisAlignment = FlowCrossAxisAlignment.Start,
+                ) {
+                    data?.fasilitas?.forEach { fac ->
+                        IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
+                    }
                 }
             }
         } // Fasilitas
         item {
-            Text(
-                text = "Infrastruktur",
-                modifier = Modifier.padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.h6
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            FlowRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-                mainAxisSpacing = 14.dp,
-                crossAxisSpacing = 14.dp,
-                mainAxisAlignment = if ((data?.infrastruktur?.size
-                        ?: 0) > 3
-                ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
-                crossAxisAlignment = FlowCrossAxisAlignment.Start,
-            ) {
-                data?.infrastruktur?.forEach { inf ->
-                    IconTextCardColumn(
-                        text = inf.name,
-                        leadingIcon = Icons.Default.House,
-                        subText = "${inf.distance} KM"
-                    )
+            if((data?.infrastruktur?.size ?: 0) > 0){
+                Text(
+                    text = "Infrastruktur",
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.h6
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                FlowRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                    mainAxisSpacing = 14.dp,
+                    crossAxisSpacing = 14.dp,
+                    mainAxisAlignment = if ((data?.infrastruktur?.size
+                            ?: 0) > 3
+                    ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
+                    crossAxisAlignment = FlowCrossAxisAlignment.Start,
+                ) {
+                    data?.infrastruktur?.forEach { inf ->
+                        IconTextCardColumn(
+                            text = inf.name,
+                            leadingIcon = Icons.Default.House,
+                            subText = "${inf.distance} KM"
+                        )
+                    }
                 }
             }
         } // Infrastruktur
