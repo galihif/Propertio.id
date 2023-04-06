@@ -4,9 +4,14 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.util.Log
 import android.webkit.WebView
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.google.accompanist.web.AccompanistWebViewClient
 import com.google.accompanist.web.WebView
@@ -17,6 +22,7 @@ import com.google.accompanist.web.rememberWebViewState
 fun WebViewScreen(
     url:String,
 ) {
+    Log.d("GALIH", "WebViewScreen: $url")
     val webClient = remember {
         object : AccompanistWebViewClient() {
             override fun onPageStarted(
@@ -31,14 +37,30 @@ fun WebViewScreen(
     }
 
     val state = rememberWebViewState(url = url)
-    WebView(
-        state = state,
-        modifier = Modifier
-            .fillMaxSize(),
-        onCreated = { webView ->
-            webView.settings.javaScriptEnabled = true
-            webView.settings.useWideViewPort = true
-        },
-        client = webClient
-    )
+    LaunchedEffect(state){
+        Log.d("Accompanist WebView", "WebViewScreen: ${state.loadingState}")
+    }
+    Column{
+        if (state.isLoading){
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ){
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .align(alignment = Alignment.Center)
+                )
+            }
+        }
+        WebView(
+            state = state,
+            modifier = Modifier
+                .fillMaxSize(),
+            onCreated = { webView ->
+                webView.settings.javaScriptEnabled = true
+                webView.settings.useWideViewPort = true
+            },
+            client = webClient
+        )
+    }
 }
