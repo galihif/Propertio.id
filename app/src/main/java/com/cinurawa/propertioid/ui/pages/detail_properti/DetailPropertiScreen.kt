@@ -45,6 +45,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun DetailPropertiScreen(
     data: Property? = null,
     onVirtualTourClick: (String) -> Unit = {},
+    onDocumentClick: (String) -> Unit = {},
     viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
 
@@ -284,7 +285,9 @@ fun DetailPropertiScreen(
                     DokumenButton(
                         modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
                         title = docName,
-                        onClick = {}
+                        onClick = {
+                            onDocumentClick(docName)
+                        }
                     )
                 }
             }
