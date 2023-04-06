@@ -44,7 +44,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @Composable
 fun DetailPropertiScreen(
     data: Property? = null,
-    onVirtualTourClick: (Int) -> Unit = {},
+    onVirtualTourClick: (String) -> Unit = {},
     viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
 
@@ -234,7 +234,7 @@ fun DetailPropertiScreen(
                     leadingIcon = Icons.Default.ViewInAr,
                     modifier = Modifier.padding(horizontal = 24.dp),
                     onClick = {
-                        onVirtualTourClick(1)
+                        onVirtualTourClick(data?.virtualTour ?: "")
                     }
                 )
             }
