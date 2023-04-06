@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -14,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
+import com.cinurawa.propertioid.ui.organisms.LoadingItem
 import com.cinurawa.propertioid.ui.organisms.PropertyItem
 import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
 import com.cinurawa.propertioid.ui.theme.Green500
@@ -76,7 +76,7 @@ fun PropertiScreen(
         }
         item{
             if(isLoading){
-                CircularProgressIndicator()
+                LoadingItem()
             }
         }
         items(listProperty) {
