@@ -25,16 +25,17 @@ class HomeViewModel
     private var _error = MutableStateFlow("")
     val error = _error
 
-    private fun getListProperty(){
+    private fun getListProperty() {
         viewModelScope.launch {
             repo.getAllProperty().collect {
-                when(it){
+                when (it) {
                     is Resource.Loading -> {
                         _isLoading.value = true
                     }
                     is Resource.Success -> {
                         _isLoading.value = false
-                        _listProperty.value = if (it.data.isNullOrEmpty()) emptyList() else it.data
+                        _listProperty.value =
+                            if (it.data.isNullOrEmpty()) emptyList() else it.data.take(3)
                     }
                     is Resource.Error -> {
                         _isLoading.value = false
