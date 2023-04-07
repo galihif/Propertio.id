@@ -102,7 +102,13 @@ fun PropertioidApp(
                     },
                     onProjectClicked = {
                         navController.navigate(Screen.DetailProject.createRoute(it))
-                    }
+                    },
+                    onLihatSemuaPropertyClicked = {
+                        navController.navigate(Screen.Properti.route)
+                    },
+                    onLihatSemuaProjectClicked = {
+                        navController.navigate(Screen.Project.route)
+                    },
                 )
             }
             composable(Screen.Properti.route) {
