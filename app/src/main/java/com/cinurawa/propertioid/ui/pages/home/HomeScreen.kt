@@ -34,6 +34,8 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun HomeScreen(
     onPropertyClicked: (Property) -> Unit = {},
     onProjectClicked: (Int) -> Unit = {},
+    onLihatSemuaPropertyClicked: () -> Unit = {},
+    onLihatSemuaProjectClicked: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -44,15 +46,15 @@ fun HomeScreen(
 
     var keyword by remember { mutableStateOf("") }
 
-    val listProperty by remember{
+    val listProperty by remember {
         viewModel.listProperty
     }.collectAsState()
 
-    val isLoading by remember{
+    val isLoading by remember {
         viewModel.isLoading
     }.collectAsState()
 
-    val error by remember{
+    val error by remember {
         viewModel.error
     }.collectAsState()
 
@@ -67,10 +69,10 @@ fun HomeScreen(
         contentPadding = PaddingValues(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item{
+        item {
             HomeBanner()
         }
-        item{
+        item {
             HomeTab(selectedMenu) {
                 selectedMenu = it
             }
@@ -93,8 +95,8 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-        item{
-            if(isLoading){
+        item {
+            if (isLoading) {
                 LoadingItem()
                 LoadingItem()
             }
@@ -107,9 +109,10 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            LihatSemuaButton(Modifier.fillMaxWidth()) {
-
-            }
+            LihatSemuaButton(
+                Modifier.fillMaxWidth(),
+                onClick = onLihatSemuaPropertyClicked
+            )
         }
         item {
             TitleSectionText(
@@ -125,9 +128,10 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(24.dp))
         }
         item {
-            LihatSemuaButton(Modifier.fillMaxWidth()) {
-
-            }
+            LihatSemuaButton(
+                Modifier.fillMaxWidth(),
+                onClick = onLihatSemuaProjectClicked
+            )
         }
         item {
             Card(
