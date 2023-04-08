@@ -59,6 +59,7 @@ fun GetAllProjectDto.Data.toModel() : Project =
         id = this.id,
         name = this.title,
         desc = this.description.orEmpty(),
+        concept = this.design.orEmpty(),
         address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
         startPrice = this.priceStart,
         finalPrice = this.priceFinal,
