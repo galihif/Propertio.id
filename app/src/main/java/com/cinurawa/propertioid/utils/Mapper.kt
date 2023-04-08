@@ -16,7 +16,7 @@ fun GetAllPropertyDto.PropertyData.toModel(): Property =
         price = this.price,
         propertyCode = this.propertyCode,
 
-        photosUrl = this.propertyPhoto.map { formatPropertyPhotoUrl(it.file) },
+        photosUrl = this.propertyPhoto.map { it.file },
 
         type = this.propertyType.name,
         listingType = this.listingType,
@@ -66,7 +66,7 @@ fun GetAllProjectDto.Data.toModel() : Project =
         finalPrice = this.priceFinal,
         code = this.projectCode,
 
-        photosUrl = this.projectPhoto.map { formatProjectPhotoUrl(it.file) },
+        photosUrl = this.projectPhoto.map { it.file  },
 
         type = this.propertyType.name,
         certificate = this.certificate,
@@ -85,7 +85,7 @@ fun GetAllProjectDto.Data.toModel() : Project =
                 spec = unit.specification.orEmpty(),
                 price = unit.price,
                 code = unit.unitCode,
-                photosUrl = unit.unitPhoto.map { formatUnitPhotoUrl(it.file) },
+                photosUrl = unit.unitPhoto.map { it.file  },
                 type = unit.type,
                 floor = unit.floor,
                 surfaceArea = unit.surfaceArea,
