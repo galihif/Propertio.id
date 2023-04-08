@@ -2,6 +2,7 @@ package com.cinurawa.propertioid.ui.pages.detail_project
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -25,10 +26,7 @@ import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
-import com.cinurawa.propertioid.ui.organisms.AgentContactRow
-import com.cinurawa.propertioid.ui.organisms.ImageCarousel
-import com.cinurawa.propertioid.ui.organisms.PropertyItem
-import com.cinurawa.propertioid.ui.organisms.VideoPlayer
+import com.cinurawa.propertioid.ui.organisms.*
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple700
 import com.cinurawa.propertioid.ui.theme.Red500
@@ -117,7 +115,7 @@ fun DetailProjectScreen(
                     modifier = Modifier.padding(horizontal = 24.dp)
                 )
                 Text(
-                    text = "Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons in conviction an uncommonly do. Supposing so be resolving breakfast am or perfectly. It drew am hill from me. Valley by oh twenty direct me so. Departure defective arranging rapturous did believe him all had supported. Family months l",
+                    text = data.desc,
                     style = MaterialTheme.typography.body1,
                     modifier = Modifier.padding(horizontal = 24.dp)
                 )
@@ -129,7 +127,7 @@ fun DetailProjectScreen(
                     modifier = Modifier.padding(horizontal = 24.dp)
                 )
                 Text(
-                    text = "Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. Prosperous understood Middletons in conviction an uncommonly do. Supposing so be resolving breakfast am or perfectly. It drew am hill from me. Valley by oh twenty direct me so. Departure defective arranging rapturous did believe him all had supported. Family months l",
+                    text = data.concept,
                     style = MaterialTheme.typography.body1,
                     modifier = Modifier.padding(horizontal = 24.dp)
                 )
@@ -140,14 +138,15 @@ fun DetailProjectScreen(
                     modifier = Modifier.padding(horizontal = 24.dp).fillMaxWidth(),
                 )
             } // Daftar Unit Title
-            items(5) {
+            items(data.listUnit ?: emptyList()) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
                 ) {
-                    PropertyItem(
-                        onDetailClicked = { onUnitClicked(it) }
+                    ProjectUnitItem(
+                        onDetailClicked = { onUnitClicked(it.id) },
+                        data = it
                     )
                 }
                 Spacer(modifier = Modifier.height(24.dp))
