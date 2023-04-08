@@ -7,11 +7,6 @@ fun encodeUrl(url: String): String =
 
 fun decodeUrl(url: String): String =
     Uri.decode(url)
-fun formatPropertyPhotoUrl(id: String): String =
-    "https://dev.propertio.id/data/image/property/property_photos/$id"
-
-fun formatProjectPhotoUrl(id: String): String =
-    "https://dev.propertio.id/data/image/project/project_photos/$id"
 
 fun formatPropertyDocumentUrl(id: String): String =
     "https://drive.google.com/viewerng/viewer?embedded=true&url=https://dev.propertio.id/data/file/property/property_documents/$id"
