@@ -10,12 +10,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HargaColumn(
-    modifier: Modifier = Modifier,
     harga:Int,
     hargaTitle: String = "Harga",
 ) {
     Column(
-        modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         Text(
