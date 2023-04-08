@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
@@ -33,7 +34,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @Composable
 fun HomeScreen(
     onPropertyClicked: (Property) -> Unit = {},
-    onProjectClicked: (Int) -> Unit = {},
+    onProjectClicked: (Project) -> Unit = {},
     onLihatSemuaPropertyClicked: () -> Unit = {},
     onLihatSemuaProjectClicked: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
@@ -137,7 +138,7 @@ fun HomeScreen(
         }
         items(listProject) {
             ProjectItem(
-                onDetailClicked = { onProjectClicked(it.id) },
+                onDetailClicked = { onProjectClicked(it) },
                 data = it
             )
             Spacer(modifier = Modifier.height(24.dp))
