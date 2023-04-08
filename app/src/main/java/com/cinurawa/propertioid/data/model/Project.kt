@@ -27,6 +27,8 @@ data class Project(
     val latitude: Double,
     val longitude: Double,
 
+    val listUnit: List<ProjectUnit>? = null,
+
     val dokumen: List<String>? = null,
     val fasilitas: List<String>? = null,
     val infrastruktur: List<Infrastructure>? = null,
