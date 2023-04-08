@@ -298,10 +298,61 @@ data class GetAllProjectDto(
             val type: String,
             @SerializedName("unit_code")
             val unitCode: String,
+            @SerializedName("unit_photo")
+            val unitPhoto: List<UnitPhoto>,
+            @SerializedName("unit_video")
+            val unitVideo: List<UnitVideo>,
+            @SerializedName("unit_virtual_tour")
+            val unitVirtualTour: List<UnitVirtualTour>,
             @SerializedName("updated_at")
             val updatedAt: String,
             @SerializedName("water_type")
             val waterType: String
-        )
+        ) {
+            data class UnitPhoto(
+                @SerializedName("created_at")
+                val createdAt: String,
+                @SerializedName("file")
+                val `file`: String,
+                @SerializedName("id")
+                val id: Int,
+                @SerializedName("name")
+                val name: String,
+                @SerializedName("unit_id")
+                val unitId: Int,
+                @SerializedName("updated_at")
+                val updatedAt: String
+            )
+
+            data class UnitVideo(
+                @SerializedName("created_at")
+                val createdAt: String,
+                @SerializedName("id")
+                val id: Int,
+                @SerializedName("link")
+                val link: String,
+                @SerializedName("name")
+                val name: String,
+                @SerializedName("unit_id")
+                val unitId: Int,
+                @SerializedName("updated_at")
+                val updatedAt: String
+            )
+
+            data class UnitVirtualTour(
+                @SerializedName("created_at")
+                val createdAt: String,
+                @SerializedName("file")
+                val `file`: String,
+                @SerializedName("id")
+                val id: Int,
+                @SerializedName("name")
+                val name: String,
+                @SerializedName("unit_id")
+                val unitId: Int,
+                @SerializedName("updated_at")
+                val updatedAt: String
+            )
+        }
     }
 }
