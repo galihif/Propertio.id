@@ -50,8 +50,16 @@ fun HomeScreen(
         viewModel.listProperty
     }.collectAsState()
 
+    val listProject by remember {
+        viewModel.listProject
+    }.collectAsState()
+
     val isPropertyLoading by remember {
         viewModel.isPropertyLoading
+    }.collectAsState()
+
+    val isProjectLoading by remember {
+        viewModel.isProjectLoading
     }.collectAsState()
 
     val error by remember {
@@ -121,9 +129,16 @@ fun HomeScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
-        items(3) {
+        item {
+            if (isProjectLoading) {
+                LoadingItem()
+                LoadingItem()
+            }
+        }
+        items(listProject) {
             ProjectItem(
-                onDetailClicked = { onProjectClicked(it) }
+                onDetailClicked = { onProjectClicked(it.id) },
+                data = it
             )
             Spacer(modifier = Modifier.height(24.dp))
         }
