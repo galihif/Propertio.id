@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -26,7 +27,10 @@ import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
-import com.cinurawa.propertioid.ui.organisms.*
+import com.cinurawa.propertioid.ui.organisms.AgentContactRow
+import com.cinurawa.propertioid.ui.organisms.ImageCarousel
+import com.cinurawa.propertioid.ui.organisms.ProjectUnitItem
+import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple700
 import com.cinurawa.propertioid.ui.theme.Red500
@@ -41,8 +45,11 @@ fun DetailProjectScreen(
     data: Project?,
     viewModel: DetailProjectViewModel = hiltViewModel(),
     onUnitClicked: (Int) -> Unit = {},
+    onVirtualTourClicked: (String) -> Unit = {},
+    onDokumenClicked: (String) -> Unit = {},
 ) {
 
+    val context = LocalContext.current
     var lifecycle by remember {
         mutableStateOf(Lifecycle.Event.ON_CREATE)
     }
@@ -57,7 +64,7 @@ fun DetailProjectScreen(
 
     viewModel.addVideoUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
 
-    if (data != null){
+    if (data != null) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -77,7 +84,11 @@ fun DetailProjectScreen(
                         .padding(horizontal = 24.dp)
                 ) {
                     IconTextBadge(text = data.type, icon = R.drawable.ic_house, color = Blue500)
-                    IconTextBadge(text =data.certificate, icon = R.drawable.ic_shm, color = Purple700)
+                    IconTextBadge(
+                        text = data.certificate,
+                        icon = R.drawable.ic_shm,
+                        color = Purple700
+                    )
                 }
             } // Label
             item {
@@ -135,7 +146,9 @@ fun DetailProjectScreen(
             item {
                 TitleSectionText(
                     title = "Daftar Unit",
-                    modifier = Modifier.padding(horizontal = 24.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth(),
                 )
             } // Daftar Unit Title
             items(data.listUnit ?: emptyList()) {
@@ -152,98 +165,106 @@ fun DetailProjectScreen(
                 Spacer(modifier = Modifier.height(24.dp))
             } // Daftar Unit List
             item {
-                Text(
-                    text = "Virtual Tour",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                PrimaryButton(
-                    title = "Lihat Virtual Tour",
-                    leadingIcon = Icons.Default.ViewInAr,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    onClick = {}
-                )
+                if (!data.virtualTour.isNullOrEmpty()) {
+                    Text(
+                        text = "Virtual Tour",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    PrimaryButton(
+                        title = "Lihat Virtual Tour",
+                        leadingIcon = Icons.Default.ViewInAr,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        onClick = { onVirtualTourClicked(data.virtualTour) }
+                    )
+                }
             } // Virtual Tour
             item {
-                Text(
-                    text = "3D Site Plan",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                PrimaryButton(
-                    title = "Lihat 3D Site Plan",
-                    leadingIcon = Icons.Filled.Roofing,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    onClick = {}
-                )
+                if (!data.site3DPlan.isNullOrEmpty()) {
+                    Text(
+                        text = "3D Site Plan",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    PrimaryButton(
+                        title = "Lihat 3D Site Plan",
+                        leadingIcon = Icons.Filled.Roofing,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        onClick = {}
+                    )
+                }
             } // 3D Site Plan
             item {
-                Text(
-                    text = "AR App",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                PrimaryButton(
-                    title = "Download App",
-                    leadingIcon = Icons.Filled.Download,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    onClick = {}
-                )
+                if (!data.arApps.isNullOrEmpty()) {
+                    Text(
+                        text = "AR App",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    PrimaryButton(
+                        title = "Download App",
+                        leadingIcon = Icons.Filled.Download,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        onClick = {}
+                    )
+                }
             } // AR App
             item {
-                Text(
-                    text = "Video",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                VideoPlayer(
-                    player = viewModel.player,
-                    lifecycle = lifecycle,
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
-                        .fillMaxWidth()
-                )
+                if (!data.video.isNullOrEmpty()) {
+                    Text(
+                        text = "Video",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    VideoPlayer(
+                        player = viewModel.player,
+                        lifecycle = lifecycle,
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .fillMaxWidth()
+                    )
+                }
             } // Video
             item {
-                Text(
-                    text = "Peta Lokasi",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                PrimaryButton(
-                    title = "Lihat Peta Lokasi",
-                    leadingIcon = Icons.Default.Map,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    onClick = {}
-                )
+                if ((data.latitude != 0.0) && (data.longitude != 0.0)) {
+                    Text(
+                        text = "Peta Lokasi",
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        style = MaterialTheme.typography.h6
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    PrimaryButton(
+                        title = "Lihat Peta Lokasi",
+                        leadingIcon = Icons.Default.Map,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        onClick = {
+                            viewModel.openMap(context)
+                        }
+                    )
+                }
             } // Peta Lokasi
             item {
-                Text(
-                    text = "Dokumen",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                DokumenButton(
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    title = "Brosur.pdf",
-                    onClick = {}
-                )
-                DokumenButton(
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    title = "Brosur.pdf",
-                    onClick = {}
-                )
-                DokumenButton(
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    title = "Brosur.pdf",
-                    onClick = {}
-                )
+                if ((data.dokumen?.size ?: 0) > 0) {
+                    Text(
+                        text = "Dokumen",
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        style = MaterialTheme.typography.h6
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    data.dokumen?.forEach { docName ->
+                        DokumenButton(
+                            modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+                            title = docName,
+                            onClick = {
+                                onDokumenClicked(docName)
+                            }
+                        )
+                    }
+                }
             } // Dokumen
             item {
                 Text(
