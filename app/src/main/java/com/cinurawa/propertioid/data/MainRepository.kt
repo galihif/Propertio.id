@@ -1,6 +1,7 @@
 package com.cinurawa.propertioid.data
 
 import android.util.Log
+import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.data.remote.api.ApiService
 import com.cinurawa.propertioid.utils.Resource
@@ -32,4 +33,24 @@ class MainRepository @Inject constructor(
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
+
+    fun getAllProject(): Flow<Resource<List<Project>>> =
+        flow{
+            emit(Resource.Loading())
+            try {
+                val response = apiService.getAllProject()
+                emit(Resource.Success(response.data.map { it.toModel() }))
+            } catch (e: HttpException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "HttpException: ${e.message}")
+            }catch (e: IOException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "IOException: ${e.message}")
+            }catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "Exception: ${e.message}")
+            }
+        }
+
+
 }
