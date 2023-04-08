@@ -173,6 +173,13 @@ fun PropertioidApp(
                     data = data,
                     onUnitClicked = { unitId ->
                         navController.navigate(Screen.DetailUnit.createRoute(unitId))
+                    },
+                    onVirtualTourClicked = {url ->
+                        navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
+                    },
+                    onDokumenClicked = {url ->
+                        val docUrl = formatPropertyDocumentUrl(url)
+                        navController.navigate(Screen.Webview.createRoute(encodeUrl(docUrl)))
                     }
                 )
             }
