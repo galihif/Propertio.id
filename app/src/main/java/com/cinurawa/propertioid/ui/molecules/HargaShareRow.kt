@@ -16,7 +16,9 @@ import com.cinurawa.propertioid.ui.atoms.MyIconButton
 @Composable
 fun HargaShare(
     modifier: Modifier = Modifier,
-    harga: Int,
+    harga: Int = 0,
+    hargaTerendah: Int = 0,
+    hargaTertinggi: Int = 0,
     hargaTitle: String = "Harga",
 ) {
     Row(
@@ -24,11 +26,21 @@ fun HargaShare(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        HargaColumn( hargaTitle = hargaTitle,harga = harga)
+        if (hargaTerendah != 0 && hargaTertinggi != 0) {
+            HargaColumn(
+                modifier = Modifier.weight(1f),
+                hargaTerendah = hargaTerendah,
+                hargaTertinggi = hargaTertinggi,
+                hargaTitle = hargaTitle
+            )
+        }
+        else {
+            HargaColumn(hargaTitle = hargaTitle, harga = harga)
+        }
         Row(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             MyIconButton(icon = Icons.Default.Print, onClick = { /*TODO*/ })
             MyIconButton(icon = Icons.Default.Share, onClick = { /*TODO*/ })
             MyIconButton(icon = Icons.Default.Favorite, onClick = { /*TODO*/ })
