@@ -50,8 +50,8 @@ fun HomeScreen(
         viewModel.listProperty
     }.collectAsState()
 
-    val isLoading by remember {
-        viewModel.isLoading
+    val isPropertyLoading by remember {
+        viewModel.isPropertyLoading
     }.collectAsState()
 
     val error by remember {
@@ -96,7 +96,7 @@ fun HomeScreen(
             )
         }
         item {
-            if (isLoading) {
+            if (isPropertyLoading) {
                 LoadingItem()
                 LoadingItem()
             }
