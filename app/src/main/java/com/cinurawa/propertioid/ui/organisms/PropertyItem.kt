@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui.organisms
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.molecules.*
 import com.cinurawa.propertioid.ui.theme.Blue500
@@ -25,6 +27,7 @@ fun PropertyItem(
     onDetailClicked: () -> Unit = {},
     data: Property? = null
 ) {
+    Log.d("GALIH", "PropertyItem: ${data?.photosUrl?.get(0)}")
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(14.dp)
@@ -54,6 +57,47 @@ fun PropertyItem(
             leadingIcon = Icons.Default.LocationOn,
             text = data?.address ?: "Address",
             iconTint = Red500
+        )
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            mainAxisSpacing = 14.dp,
+            crossAxisSpacing = 14.dp
+        ) {
+            IconTextBadge(text = "${data?.floor} Lantai", leadingIcon = Icons.Default.Stairs)
+            IconTextBadge(text = "${data?.surfaceArea} m2", leadingIcon = Icons.Default.AspectRatio)
+            IconTextBadge(
+                text = "${data?.buildingArea} m2",
+                leadingIcon = Icons.Default.OtherHouses
+            )
+            IconTextBadge(text = "${data?.bedroom} K. Tidur", leadingIcon = Icons.Default.Bed)
+            IconTextBadge(text = "${data?.bathroom} K. Mandi", leadingIcon = Icons.Default.Bathroom)
+            IconTextBadge(text = "${data?.garage} Garasi", leadingIcon = Icons.Default.Garage)
+        }
+        HargaDetailRow(harga = data?.price ?: 0, onDetailClick = onDetailClicked)
+    }
+}
+
+
+@Composable
+fun ProjectUnitItem(
+    modifier: Modifier = Modifier,
+    onDetailClicked: () -> Unit = {},
+    data: ProjectUnit? = null
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = data?.photosUrl?.get(0))
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            IconTextBadge(text = data?.type ?: "Type", icon = R.drawable.ic_house, color = Blue500)
+        }
+        TitleDetailColumn(
+            title = data?.name ?: "Title",
+            detail = data?.desc ?: "Detail"
         )
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
