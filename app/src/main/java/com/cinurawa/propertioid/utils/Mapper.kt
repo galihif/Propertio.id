@@ -3,6 +3,7 @@ package com.cinurawa.propertioid.utils
 import com.cinurawa.propertioid.data.model.Infrastructure
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
+import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.data.remote.dto.GetAllProjectDto
 import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
 
@@ -75,6 +76,30 @@ fun GetAllProjectDto.Data.toModel() : Project =
 
         latitude = this.latitude,
         longitude = this.longitude,
+
+        listUnit = this.unit.map{ unit->
+            ProjectUnit(
+                id = unit.id,
+                name = unit.title,
+                desc = unit.description.orEmpty(),
+                spec = unit.specification.orEmpty(),
+                price = unit.price,
+                code = unit.unitCode,
+                photosUrl = unit.unitPhoto.map { formatUnitPhotoUrl(it.file) },
+                type = unit.type,
+                floor = unit.floor,
+                surfaceArea = unit.surfaceArea,
+                buildingArea = unit.buildingArea,
+                bedroom = unit.bedroom,
+                bathroom = unit.bathroom,
+                garage = unit.garage,
+                powerSupply = unit.powerSupply,
+                waterType = unit.waterType,
+                virtualTour = if (unit.unitVirtualTour.isNotEmpty()) unit.unitVirtualTour[0].file else "",
+                video = if (unit.unitVideo.isNotEmpty()) unit.unitVideo[0].link else "",
+
+            )
+        },
 
         dokumen = this.projectDocument.map { it.file },
         fasilitas = this.projectFacility.map { it.facilityType.name },
