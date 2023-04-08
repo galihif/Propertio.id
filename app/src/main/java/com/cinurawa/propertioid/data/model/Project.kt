@@ -8,6 +8,7 @@ data class Project(
     val id: Int,
     val name: String,
     val desc: String,
+    val concept:String,
     val address: String,
     val startPrice: Int,
     val finalPrice: Int,
