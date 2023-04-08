@@ -19,8 +19,8 @@ class HomeViewModel
     private var _listProperty = MutableStateFlow<List<Property>>(emptyList())
     val listProperty = _listProperty
 
-    private var _isLoading = MutableStateFlow(true)
-    val isLoading = _isLoading
+    private var _isPropertyLoading = MutableStateFlow(true)
+    val isPropertyLoading = _isPropertyLoading
 
     private var _error = MutableStateFlow("")
     val error = _error
@@ -30,15 +30,15 @@ class HomeViewModel
             repo.getAllProperty().collect {
                 when (it) {
                     is Resource.Loading -> {
-                        _isLoading.value = true
+                        _isPropertyLoading.value = true
                     }
                     is Resource.Success -> {
-                        _isLoading.value = false
+                        _isPropertyLoading.value = false
                         _listProperty.value =
                             if (it.data.isNullOrEmpty()) emptyList() else it.data.take(3)
                     }
                     is Resource.Error -> {
-                        _isLoading.value = false
+                        _isPropertyLoading.value = false
                         _error.value = it.message ?: "Error"
                     }
                 }
