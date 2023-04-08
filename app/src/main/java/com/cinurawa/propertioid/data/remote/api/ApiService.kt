@@ -9,7 +9,7 @@ interface ApiService {
     suspend fun getAllProperty():GetAllPropertyDto
 
     @GET("mobile/get_all_project_active")
-    suspend fun getAllProject():GetAllProjectDto
+    suspend fun getAllProject(): GetAllProjectDto
 
 
 }
