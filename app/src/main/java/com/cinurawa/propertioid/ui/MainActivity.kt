@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
@@ -101,7 +102,11 @@ fun PropertioidApp(
                         navController.navigate(Screen.DetailProperti.createRoute(it.id))
                     },
                     onProjectClicked = {
-                        navController.navigate(Screen.DetailProject.createRoute(it))
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "project",
+                            it
+                        )
+                        navController.navigate(Screen.DetailProject.createRoute(it.id))
                     },
                     onLihatSemuaPropertyClicked = {
                         navController.navigate(Screen.Properti.route)
@@ -160,10 +165,12 @@ fun PropertioidApp(
             composable(
                 route = Screen.DetailProject.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
-            ) { backStackEntry ->
-                val id = backStackEntry.arguments?.getInt("id") ?: 1
+            ) {
+                val data = navController.previousBackStackEntry?.savedStateHandle?.get<Project>(
+                    "project"
+                )
                 DetailProjectScreen(
-                    id = id,
+                    data = data,
                     onUnitClicked = { unitId ->
                         navController.navigate(Screen.DetailUnit.createRoute(unitId))
                     }
