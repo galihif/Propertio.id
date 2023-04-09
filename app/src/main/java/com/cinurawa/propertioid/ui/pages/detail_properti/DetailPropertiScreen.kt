@@ -320,6 +320,7 @@ fun DetailPropertiScreen(
                 }
             }
         } // Fasilitas
+
         item {
             if((data?.infrastruktur?.size ?: 0) > 0){
                 Text(
