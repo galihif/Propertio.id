@@ -292,28 +292,33 @@ fun DetailProjectScreen(
                     }
                 }
             } // Fasilitas
+
             item {
-                Text(
-                    text = "Infrastruktur",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                FlowRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
-                    mainAxisSpacing = 14.dp,
-                    crossAxisSpacing = 14.dp,
-                    mainAxisAlignment = MainAxisAlignment.SpaceBetween,
-                    crossAxisAlignment = FlowCrossAxisAlignment.Start,
-                ) {
-                    for (i in 1..6) {
-                        IconTextCardColumn(
-                            text = "Masjid",
-                            leadingIcon = Icons.Default.Mosque,
-                            subText = "1 KM"
-                        )
+                if((data.infrastruktur?.size ?: 0) > 0){
+                    Text(
+                        text = "Infrastruktur",
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        style = MaterialTheme.typography.h6
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    FlowRow(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp),
+                        mainAxisSpacing = 14.dp,
+                        crossAxisSpacing = 14.dp,
+                        mainAxisAlignment = if ((data.infrastruktur?.size
+                                ?: 0) > 3
+                        ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
+                        crossAxisAlignment = FlowCrossAxisAlignment.Start,
+                    ) {
+                        data.infrastruktur?.forEach { inf ->
+                            IconTextCardColumn(
+                                text = inf.name,
+                                leadingIcon = Icons.Default.House,
+                                subText = "${inf.distance} KM"
+                            )
+                        }
                     }
                 }
             } // Infrastruktur
