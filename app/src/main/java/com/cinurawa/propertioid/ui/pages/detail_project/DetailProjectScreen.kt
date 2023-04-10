@@ -267,23 +267,28 @@ fun DetailProjectScreen(
                 }
             } // Dokumen
             item {
-                Text(
-                    text = "Fasilitas",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                FlowRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
-                    mainAxisSpacing = 14.dp,
-                    crossAxisSpacing = 14.dp,
-                    mainAxisAlignment = MainAxisAlignment.SpaceBetween,
-                    crossAxisAlignment = FlowCrossAxisAlignment.Start,
-                ) {
-                    for (i in 1..6) {
-                        IconTextCardColumn(text = "2 lantai", leadingIcon = Icons.Default.Stairs)
+                if((data.fasilitas?.size ?: 0) > 0){
+
+                    Text(
+                        text = "Fasilitas",
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        style = MaterialTheme.typography.h6
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    FlowRow(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp),
+                        mainAxisSpacing = 14.dp,
+                        crossAxisSpacing = 14.dp,
+                        mainAxisAlignment = if ((data.fasilitas?.size
+                                ?: 0) > 3
+                        ) MainAxisAlignment.SpaceBetween else MainAxisAlignment.Start,
+                        crossAxisAlignment = FlowCrossAxisAlignment.Start,
+                    ) {
+                        data.fasilitas?.forEach { fac ->
+                            IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
+                        }
                     }
                 }
             } // Fasilitas
