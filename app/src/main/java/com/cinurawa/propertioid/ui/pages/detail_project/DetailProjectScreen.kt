@@ -267,7 +267,7 @@ fun DetailProjectScreen(
                 }
             } // Dokumen
             item {
-                if((data.fasilitas?.size ?: 0) > 0){
+                if ((data.fasilitas?.size ?: 0) > 0) {
 
                     Text(
                         text = "Fasilitas",
@@ -294,7 +294,7 @@ fun DetailProjectScreen(
             } // Fasilitas
 
             item {
-                if((data.infrastruktur?.size ?: 0) > 0){
+                if ((data.infrastruktur?.size ?: 0) > 0) {
                     Text(
                         text = "Infrastruktur",
                         modifier = Modifier.padding(horizontal = 24.dp),
@@ -325,9 +325,9 @@ fun DetailProjectScreen(
             item {
                 AgentContactRow(
                     image = R.drawable.jisoo,
-                    name = "Jisoo",
-                    phone = "+62852102322",
-                    whatsapp = "+62852102322",
+                    name = data.agentName,
+                    phone = data.agentPhone,
+                    whatsapp = data.agentPhone,
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
