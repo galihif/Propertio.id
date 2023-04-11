@@ -20,6 +20,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.data.model.Project
+import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
@@ -44,7 +45,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun DetailProjectScreen(
     data: Project?,
     viewModel: DetailProjectViewModel = hiltViewModel(),
-    onUnitClicked: (Int) -> Unit = {},
+    onUnitClicked: (ProjectUnit) -> Unit = {},
     onVirtualTourClicked: (String) -> Unit = {},
     onDokumenClicked: (String) -> Unit = {},
 ) {
@@ -160,7 +161,7 @@ fun DetailProjectScreen(
                         .padding(horizontal = 24.dp)
                 ) {
                     ProjectUnitItem(
-                        onDetailClicked = { onUnitClicked(it.id) },
+                        onDetailClicked = { onUnitClicked(it) },
                         data = it
                     )
                 }
