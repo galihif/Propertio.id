@@ -77,7 +77,7 @@ fun DetailPropertiScreen(
                 ImageCarousel(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    imagesUrl = data.photosUrl ?: emptyList()
+                    imagesUrl = data.photosUrl
                 )
             } // Image Carousel
             item {
@@ -89,17 +89,17 @@ fun DetailPropertiScreen(
                         .padding(horizontal = 24.dp)
                 ) {
                     IconTextBadge(
-                        text = data.type ?: "Rumah",
+                        text = data.type,
                         icon = R.drawable.ic_house,
                         color = Blue500
                     )
                     IconTextBadge(
-                        text = data.listingType ?: "Jual",
+                        text = data.listingType,
                         icon = R.drawable.ic_sell,
                         color = Red500
                     )
                     IconTextBadge(
-                        text = data.certificate ?: "SHM",
+                        text = data.certificate,
                         icon = R.drawable.ic_shm,
                         color = Purple500
                     )
@@ -114,7 +114,7 @@ fun DetailPropertiScreen(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = data.name ?: "Old House",
+                        text = data.name,
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )
@@ -125,7 +125,7 @@ fun DetailPropertiScreen(
                 IconText(
                     modifier = Modifier.padding(horizontal = 24.dp),
                     leadingIcon = Icons.Default.LocationOn,
-                    text = data.address ?: "Address",
+                    text = data.address,
                     iconTint = Red500
                 )
             } // Lokasi
@@ -139,7 +139,7 @@ fun DetailPropertiScreen(
                     modifier = Modifier.padding(horizontal = 24.dp)
                 )
                 Text(
-                    text = data.desc ?: "Description",
+                    text = data.desc,
                     style = MaterialTheme.typography.body1,
                     modifier = Modifier.padding(horizontal = 24.dp)
                 )
@@ -161,9 +161,9 @@ fun DetailPropertiScreen(
                     ) {
                         PropertyAttributeText(
                             attribute = "Kondisi",
-                            value = data.condition ?: "Condition"
+                            value = data.condition
                         )
-                        PropertyAttributeText(attribute = "Hadap", value = data.facing ?: "Facing")
+                        PropertyAttributeText(attribute = "Hadap", value = data.facing)
                         PropertyAttributeText(attribute = "Berdiri", value = data.yearBuilt.toString())
                     }
                 }
@@ -203,11 +203,11 @@ fun DetailPropertiScreen(
                         leadingIcon = Icons.Default.Garage
                     )
                     IconTextCardColumn(
-                        text = data.powerSupply ?: "Listrik",
+                        text = data.powerSupply,
                         leadingIcon = Icons.Default.Bolt
                     )
                     IconTextCardColumn(
-                        text = data.waterType ?: "Air",
+                        text = data.waterType,
                         leadingIcon = Icons.Default.WaterDrop
                     )
                     IconTextCardColumn(
@@ -219,7 +219,7 @@ fun DetailPropertiScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 14.dp, horizontal = 24.dp),
-                    text = if (data.isFurniture == true) "Dengan Furnitur" else "Tanpa Furnitur",
+                    text = if (data.isFurniture) "Dengan Furnitur" else "Tanpa Furnitur",
                     leadingIcon = Icons.Default.Chair
                 )
             } // Fasilitas
@@ -236,7 +236,7 @@ fun DetailPropertiScreen(
                         leadingIcon = Icons.Default.ViewInAr,
                         modifier = Modifier.padding(horizontal = 24.dp),
                         onClick = {
-                            onVirtualTourClick(data.virtualTour ?: "")
+                            onVirtualTourClick(data.virtualTour)
                         }
                     )
                 }
@@ -353,9 +353,9 @@ fun DetailPropertiScreen(
             item {
                 AgentContactRow(
                     image = R.drawable.jisoo,
-                    name = data.agentName ?: "Agent Name",
-                    phone = data.agentPhone ?: "Agent Phone",
-                    whatsapp = data.agentPhone ?: "Agent Whatsapp",
+                    name = data.agentName,
+                    phone = data.agentPhone,
+                    whatsapp = data.agentPhone,
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
