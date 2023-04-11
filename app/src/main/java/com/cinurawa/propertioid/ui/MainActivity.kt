@@ -179,7 +179,7 @@ fun PropertioidApp(
                         )
                         navController.navigate(Screen.DetailUnit.createRoute(unit.id))
                     },
-                    onVirtualTourClicked = { url ->
+                    onVirtualOrSiteplanClicked = { url ->
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
                     },
                     onDokumenClicked = { url ->
