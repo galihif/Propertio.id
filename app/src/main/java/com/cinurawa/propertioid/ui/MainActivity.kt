@@ -131,7 +131,11 @@ fun PropertioidApp(
             composable(Screen.Project.route) {
                 ProjectScreen(
                     onProjectClicked = {
-                        navController.navigate(Screen.DetailProject.createRoute(it))
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "project",
+                            it
+                        )
+                        navController.navigate(Screen.DetailProject.createRoute(it.id))
                     }
                 )
             }
