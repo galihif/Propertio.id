@@ -71,6 +71,7 @@ fun GetAllProjectDto.Data.toModel() : Project =
         type = this.propertyType.name,
         certificate = this.certificate,
 
+        site3DPlan = this.siteplanLink,
         virtualTour = if (this.projectVirtualTour.isNotEmpty()) this.projectVirtualTour[0].file else "",
         video = if (this.projectVideo.isNotEmpty()) this.projectVideo[0].link else "",
 
