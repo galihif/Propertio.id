@@ -144,12 +144,14 @@ fun DetailProjectScreen(
                 )
             } // Konsep
             item {
-                TitleSectionText(
-                    title = "Daftar Unit",
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
-                        .fillMaxWidth(),
-                )
+                if(data.listUnit?.isNotEmpty() == true){
+                    TitleSectionText(
+                        title = "Daftar Unit",
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .fillMaxWidth(),
+                    )
+                }
             } // Daftar Unit Title
             items(data.listUnit ?: emptyList()) {
                 Box(
