@@ -22,7 +22,6 @@ import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
-import com.cinurawa.propertioid.ui.organisms.AgentContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
@@ -35,6 +34,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @Composable
 fun DetailUnitScreen(
     data: ProjectUnit?,
+    onVirtualTourClicked: (String) -> Unit = {},
     viewModel: DetailUnitViewModel = hiltViewModel(),
 ) {
 
@@ -171,58 +171,55 @@ fun DetailUnitScreen(
                 }
             } // Fasilitas
             item {
-                Text(
-                    text = "Virtual Tour",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                PrimaryButton(
-                    title = "Lihat Virtual Tour",
-                    leadingIcon = Icons.Default.ViewInAr,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    onClick = {}
-                )
+                if (!data.virtualTour.isNullOrEmpty()) {
+                    Text(
+                        text = "Virtual Tour",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    PrimaryButton(
+                        title = "Lihat Virtual Tour",
+                        leadingIcon = Icons.Default.ViewInAr,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        onClick = { onVirtualTourClicked(data.virtualTour) }
+                    )
+                }
             } // Virtual Tour
             item {
-                Text(
-                    text = "3D Site Plan",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                PrimaryButton(
-                    title = "Lihat 3D Model",
-                    leadingIcon = Icons.Filled.Roofing,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                    onClick = {}
-                )
+                if (!data.model3D.isNullOrEmpty()) {
+                    Text(
+                        text = "3D Site Plan",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    PrimaryButton(
+                        title = "Lihat 3D Site Plan",
+                        leadingIcon = Icons.Filled.Roofing,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                        onClick = {}
+                    )
+                }
             } // 3D Site Plan
             item {
-                Text(
-                    text = "Video",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
-                )
-                Spacer(modifier = Modifier.height(5.dp))
-                VideoPlayer(
-                    player = viewModel.player,
-                    lifecycle = lifecycle,
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
-                        .fillMaxWidth()
-                )
+                if (!data.video.isNullOrEmpty()) {
+                    Text(
+                        text = "Video",
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier.padding(horizontal = 24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+                    VideoPlayer(
+                        player = viewModel.player,
+                        lifecycle = lifecycle,
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .fillMaxWidth()
+                    )
+                }
             } // Video
-            item {
-                AgentContactRow(
-                    image = R.drawable.jisoo,
-                    name = "Jisoo",
-                    phone = "+62852102322",
-                    whatsapp = "+62852102322",
-                )
-                Spacer(modifier = Modifier.height(24.dp))
 
-            } // Agent
 
         }
     }
