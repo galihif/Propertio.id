@@ -197,6 +197,9 @@ fun PropertioidApp(
                 )
                 DetailUnitScreen(
                     data = data,
+                    onVirtualTourClicked = { url ->
+                        navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
+                    },
                 )
             }
             composable(
