@@ -1,14 +1,20 @@
 package com.cinurawa.propertioid.ui.pages.project
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
+import com.cinurawa.propertioid.ui.organisms.LoadingItem
 import com.cinurawa.propertioid.ui.organisms.ProjectItem
 import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
 import com.cinurawa.propertioid.ui.utils.DataProvider
@@ -16,11 +22,31 @@ import com.cinurawa.propertioid.ui.utils.DataProvider
 @ExperimentalMaterialApi
 @Composable
 fun ProjectScreen(
-    onProjectClicked: (Int) -> Unit
+    onProjectClicked: (Project) -> Unit,
+    viewModel: ProjectViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+
     var selectedOption by remember { mutableStateOf("") }
     val listOptions = DataProvider.typeList()
     var keyword by remember { mutableStateOf("") }
+
+    val listProject by remember{
+        viewModel.listProject
+    }.collectAsState()
+    val isLoading by remember{
+        viewModel.isProjectLoading
+    }.collectAsState()
+
+    val error by remember{
+        viewModel.error
+    }.collectAsState()
+
+    LaunchedEffect(error) {
+        if (error.isNotEmpty()) {
+            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        }
+    }
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
@@ -46,14 +72,21 @@ fun ProjectScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-        items(5) {
+
+        item{
+            if(isLoading){
+                LoadingItem()
+            }
+        }
+        items(listProject) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
-            ) {
+            ){
                 ProjectItem(
-                    onDetailClicked = {  onProjectClicked(it) }
+                    onDetailClicked = { onProjectClicked(it) },
+                    data = it
                 )
             }
             Spacer(modifier = Modifier.height(24.dp))
