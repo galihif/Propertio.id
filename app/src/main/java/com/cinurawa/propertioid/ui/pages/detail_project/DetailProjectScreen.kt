@@ -46,7 +46,7 @@ fun DetailProjectScreen(
     data: Project?,
     viewModel: DetailProjectViewModel = hiltViewModel(),
     onUnitClicked: (ProjectUnit) -> Unit = {},
-    onVirtualTourClicked: (String) -> Unit = {},
+    onVirtualOrSiteplanClicked: (String) -> Unit = {},
     onDokumenClicked: (String) -> Unit = {},
 ) {
 
@@ -63,8 +63,12 @@ fun DetailProjectScreen(
         }
     }
 
-    viewModel.addVideoUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
-
+    viewModel.addVideoUri(data?.video ?: "", context)
+    viewModel.addLocation(
+        data?.name ?: "Name",
+        data?.latitude ?: 0.0,
+        data?.longitude ?: 0.0
+    )
     if (data != null) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -179,7 +183,7 @@ fun DetailProjectScreen(
                         title = "Lihat Virtual Tour",
                         leadingIcon = Icons.Default.ViewInAr,
                         modifier = Modifier.padding(horizontal = 24.dp),
-                        onClick = { onVirtualTourClicked(data.virtualTour) }
+                        onClick = { onVirtualOrSiteplanClicked(data.virtualTour) }
                     )
                 }
             } // Virtual Tour
@@ -195,7 +199,7 @@ fun DetailProjectScreen(
                         title = "Lihat 3D Site Plan",
                         leadingIcon = Icons.Filled.Roofing,
                         modifier = Modifier.padding(horizontal = 24.dp),
-                        onClick = {}
+                        onClick = { onVirtualOrSiteplanClicked(data.site3DPlan) }
                     )
                 }
             } // 3D Site Plan
