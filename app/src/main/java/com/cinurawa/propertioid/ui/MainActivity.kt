@@ -17,6 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.cinurawa.propertioid.data.model.Project
+import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
@@ -171,13 +172,17 @@ fun PropertioidApp(
                 )
                 DetailProjectScreen(
                     data = data,
-                    onUnitClicked = { unitId ->
-                        navController.navigate(Screen.DetailUnit.createRoute(unitId))
+                    onUnitClicked = { unit ->
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "unit",
+                            unit
+                        )
+                        navController.navigate(Screen.DetailUnit.createRoute(unit.id))
                     },
-                    onVirtualTourClicked = {url ->
+                    onVirtualTourClicked = { url ->
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
                     },
-                    onDokumenClicked = {url ->
+                    onDokumenClicked = { url ->
                         val docUrl = formatPropertyDocumentUrl(url)
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(docUrl)))
                     }
@@ -187,9 +192,11 @@ fun PropertioidApp(
                 route = Screen.DetailUnit.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) {
-                val id = it.arguments?.getInt("id") ?: 1
+                val data = navController.previousBackStackEntry?.savedStateHandle?.get<ProjectUnit>(
+                    "unit"
+                )
                 DetailUnitScreen(
-                    id = id
+                    data = data,
                 )
             }
             composable(
@@ -215,8 +222,6 @@ fun PropertioidApp(
                 )
 
             }
-
-
 
 
         }
