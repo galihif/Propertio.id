@@ -66,7 +66,9 @@ fun AgentScreen(
                     .padding(horizontal = 24.dp)
             ) {
                 AgentItem(
-                    onDetailClicked = onAgentClicked,
+                    onDetailClicked = {
+                        onAgentClicked(it.id)
+                    },
                     data = it
                 )
             }
