@@ -21,3 +21,16 @@ data class Agent(
 ): Parcelable{
     var propertyList:List<Property> = emptyList()
 }
+
+fun getEmptyAgent():Agent =
+    Agent(
+        0,
+        "",
+        "",
+        "",
+        "",
+        0,
+        0,
+        0,
+        ""
+    )
