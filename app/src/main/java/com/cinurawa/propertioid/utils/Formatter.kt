@@ -2,6 +2,9 @@ package com.cinurawa.propertioid.utils
 
 import android.net.Uri
 
+fun formatAgentPhotoUrl(id: String): String =
+    "https://dev.propertio.id/data/image/users//$id"
+
 fun encodeUrl(url: String): String =
     Uri.encode(url)
 
