@@ -20,9 +20,11 @@ fun TitleDetailColumn(
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold
         )
-        Text(
-            text = detail,
-            style = MaterialTheme.typography.body2
-        )
+        if (detail.isNotEmpty()) {
+            Text(
+                text = detail,
+                style = MaterialTheme.typography.body2
+            )
+        }
     }
 }
