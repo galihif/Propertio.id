@@ -76,7 +76,12 @@ fun PropertiScreen(
         }
         item{
             if(isLoading){
-                LoadingItem()
+                LoadingItem(
+                    Modifier.padding(24.dp)
+                )
+                LoadingItem(
+                    Modifier.padding(24.dp)
+                )
             }
         }
         items(listProperty) {
