@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
+import com.cinurawa.propertioid.data.model.Agent
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.molecules.IconText
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
@@ -23,50 +24,53 @@ import com.cinurawa.propertioid.ui.theme.Red500
 @Composable
 fun AgentItem(
     modifier: Modifier = Modifier,
-    onDetailClicked: (Int) -> Unit = {}
+    onDetailClicked: (Int) -> Unit = {},
+    data: Agent? = null
 ) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(14.dp)
-    ) {
-        ThumbnailImage(
-            modifier = Modifier.fillMaxWidth(),
-            image = R.drawable.jisoo,
-            isAgent = true,
-        )
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(14.dp),
-            verticalAlignment = Alignment.CenterVertically,
+    if (data != null) {
+        Column(
+            modifier = modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            IconTextBadge(
-                text = "10 Properti",
-                icon = R.drawable.ic_house,
-                color = MaterialTheme.colors.primary
+            ThumbnailImage(
+                imageUrl = data.photoUrl,
+                modifier = Modifier.fillMaxWidth(),
+                isAgent = true
             )
-            IconTextBadge(
-                text = "10 Terjual",
-                leadingIcon = Icons.Filled.LocalOffer,
-                color = Color(0xFF43936C)
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(14.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                IconTextBadge(
+                    text = "${data.propertyCount} Properti",
+                    icon = R.drawable.ic_house,
+                    color = MaterialTheme.colors.primary
+                )
+                IconTextBadge(
+                    text = "${data.propertySold} Terjual",
+                    leadingIcon = Icons.Filled.LocalOffer,
+                    color = Color(0xFF43936C)
+                )
+                IconTextBadge(
+                    text = "${data.propertyRented} Tersewa",
+                    leadingIcon = Icons.Default.Key,
+                    color = Color(0xFFCD7B2E)
+                )
+            }
+            TitleDetailColumn(
+                title = data.name,
+                detail = "",
             )
-            IconTextBadge(
-                text = "10 Tersewa",
-                leadingIcon = Icons.Default.Key,
-                color = Color(0xFFCD7B2E)
+            IconText(
+                text = data.address,
+                leadingIcon = Icons.Default.LocationOn,
+                iconTint = Red500
+            )
+            PrimaryButton(
+                title = "Lihat Detail",
+                onClick = { onDetailClicked(1) },
+                contentPadding = PaddingValues(vertical = 12.dp)
             )
         }
-        TitleDetailColumn(
-            title = "Jisoo Park",
-            detail = "The most beautiful woman in the world",
-        )
-        IconText(
-            text = "Gunpo, Gyeonggi Province, South Korea",
-            leadingIcon = Icons.Default.LocationOn,
-            iconTint = Red500
-        )
-        PrimaryButton(
-            title = "Lihat Detail",
-            onClick = { onDetailClicked(1) },
-            contentPadding = PaddingValues(vertical = 12.dp)
-        )
     }
 }
