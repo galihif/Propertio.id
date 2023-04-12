@@ -143,7 +143,7 @@ fun PropertioidApp(
                 AgentScreen(
                     onAgentClicked = {
                         navController.navigate(Screen.DetailAgent.createRoute(it))
-                    }
+                    },
                 )
             }
             composable(Screen.Developer.route) {
