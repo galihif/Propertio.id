@@ -210,7 +210,7 @@ fun PropertioidApp(
                 route = Screen.DetailAgent.route,
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) { navBackStackEntry ->
-                val id = navBackStackEntry.arguments?.getInt("id") ?: 1
+                val id = navBackStackEntry.arguments?.getInt("id") ?: 0
                 DetailAgentScreen(
                     id = id,
                     onPropertyClicked = {
