@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.data.remote.api
 
+import com.cinurawa.propertioid.data.remote.dto.GetAllAgentDto
 import com.cinurawa.propertioid.data.remote.dto.GetAllProjectDto
 import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
 import retrofit2.http.GET
@@ -10,6 +11,9 @@ interface ApiService {
 
     @GET("mobile/get_all_project_active")
     suspend fun getAllProject(): GetAllProjectDto
+
+    @GET("mobile/get_all_agent")
+    suspend fun getAllAgent(): GetAllAgentDto
 
 
 }
