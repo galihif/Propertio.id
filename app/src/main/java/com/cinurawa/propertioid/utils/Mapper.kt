@@ -1,9 +1,7 @@
 package com.cinurawa.propertioid.utils
 
-import com.cinurawa.propertioid.data.model.Infrastructure
-import com.cinurawa.propertioid.data.model.Project
-import com.cinurawa.propertioid.data.model.Property
-import com.cinurawa.propertioid.data.model.ProjectUnit
+import com.cinurawa.propertioid.data.model.*
+import com.cinurawa.propertioid.data.remote.dto.GetAllAgentDto
 import com.cinurawa.propertioid.data.remote.dto.GetAllProjectDto
 import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
 
@@ -109,5 +107,20 @@ fun GetAllProjectDto.Data.toModel() : Project =
         agentImage = "",
         agentName = if (this.contactProject.isNotEmpty()) this.contactProject[0].name else "",
         agentPhone = if (this.contactProject.isNotEmpty()) this.contactProject[0].phone else "",
+    )
+
+fun GetAllAgentDto.Data.toModel(): Agent =
+    Agent(
+        id = this.id,
+        name = this.userDatas.fullname,
+        desc = "",
+        address = "${this.userDatas.address}, ${this.userDatas.city}, ${this.userDatas.province}",
+        photoUrl = formatAgentPhotoUrl(this.userDatas.pictureProfile.orEmpty()),
+
+        propertyCount = this.agentProperties.size,
+        propertySold = 0,
+        propertyRented = 0,
+
+        phone = this.userDatas.phone,
     )
 
