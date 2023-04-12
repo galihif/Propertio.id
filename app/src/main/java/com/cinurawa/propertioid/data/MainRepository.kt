@@ -71,5 +71,23 @@ class MainRepository @Inject constructor(
             }
         }
 
+    fun getDetailAgent(agentId: Int): Flow<Resource<Agent>> =
+        flow{
+            emit(Resource.Loading())
+            try {
+                val response = apiService.getDetailAgent(agentId)
+                emit(Resource.Success(response.data.toModel()))
+            } catch (e: HttpException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "HttpException: ${e.message}")
+            }catch (e: IOException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "IOException: ${e.message}")
+            }catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "Exception: ${e.message}")
+            }
+        }
+
 
 }
