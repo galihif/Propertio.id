@@ -24,7 +24,7 @@ import com.cinurawa.propertioid.ui.theme.Red500
 @Composable
 fun AgentItem(
     modifier: Modifier = Modifier,
-    onDetailClicked: (Int) -> Unit = {},
+    onDetailClicked: () -> Unit = {},
     data: Agent? = null
 ) {
     if (data != null) {
@@ -68,7 +68,7 @@ fun AgentItem(
             )
             PrimaryButton(
                 title = "Lihat Detail",
-                onClick = { onDetailClicked(1) },
+                onClick = onDetailClicked,
                 contentPadding = PaddingValues(vertical = 12.dp)
             )
         }
