@@ -1,29 +1,22 @@
 package com.cinurawa.propertioid.utils
 
 import com.cinurawa.propertioid.data.model.*
-import com.cinurawa.propertioid.data.remote.dto.GetAllAgentDto
-import com.cinurawa.propertioid.data.remote.dto.GetAllProjectDto
-import com.cinurawa.propertioid.data.remote.dto.GetAllPropertyDto
-import com.cinurawa.propertioid.data.remote.dto.GetDetailAgentDto
+import com.cinurawa.propertioid.data.remote.dto.*
 
 fun GetAllPropertyDto.PropertyData.toModel(): Property =
     Property(
         id = this.id,
+        slug = this.slug,
         name = this.title,
         desc = this.description,
         address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
         price = this.price,
-        propertyCode = this.propertyCode,
 
         photosUrl = this.propertyPhoto.map { it.file },
 
         type = this.propertyType.name,
         listingType = this.listingType,
         certificate = this.certificate,
-
-        condition = this.condition,
-        facing = this.facing,
-        yearBuilt = this.yearBuilt,
 
         floor = this.floor,
         surfaceArea = this.surfaceArea,
@@ -32,46 +25,73 @@ fun GetAllPropertyDto.PropertyData.toModel(): Property =
         bathroom = this.bathroom,
         garage = this.garage,
         carport = this.cartport,
-        maidBedroom = this.maidBedroom,
-        maidBathroom = this.maidBathroom,
-        powerSupply = this.powerSupply,
-        waterType = this.waterType,
-        phoneLine = this.phoneLine,
-        isFurniture = this.isFurniture == 1,
-
-        virtualTour = if (this.propertyVirtualTour.isNotEmpty()) this.propertyVirtualTour[0].file else "",
-        video = if (this.propertyVideo.isNotEmpty()) this.propertyVideo[0].link else "",
-
-        latitude = this.latitude,
-        longitude = this.longitude,
-
-        dokumen = this.propertyDocument.map { it.file },
-        fasilitas = this.propertyFacility.map { it.facilityType.name },
-        infrastruktur = this.propertyInfrastructure.map { Infrastructure(it.name,it.distance) },
-
-        agentImage = "",
-        agentName = if (this.contactProperty.isNotEmpty()) this.contactProperty[0].name else "",
-        agentPhone = if (this.contactProperty.isNotEmpty()) this.contactProperty[0].phone else "",
     )
 
-fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
+fun GetDetailPropertyDto.Data.toModel(): Property =
     Property(
         id = this.id,
+        slug = this.slug,
         name = this.title,
         desc = this.description,
         address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
         price = this.price,
-        propertyCode = this.propertyCode,
+
+        photosUrl = this.propertyPhoto.map { it.file },
+
+        type = this.propertyType.name,
+        listingType = this.listingType,
+        certificate = this.certificate,
+
+        floor = this.floor,
+        surfaceArea = this.surfaceArea,
+        buildingArea = this.buildingArea,
+        bedroom = this.bedroom,
+        bathroom = this.bathroom,
+        garage = this.garage,
+        carport = this.cartport,
+    ).apply {
+        this.propertyCode = this@toModel.propertyCode
+
+        this.facing = this@toModel.facing
+        this.condition = this@toModel.condition
+        this.yearBuilt = this@toModel.yearBuilt
+
+        this.maidBathroom = this@toModel.maidBathroom
+        this.maidBedroom = this@toModel.maidBedroom
+        this.powerSupply = this@toModel.powerSupply
+        this.waterType = this@toModel.waterType
+        this.phoneLine = this@toModel.phoneLine
+        this.isFurniture = this@toModel.isFurniture == 1
+
+        this.virtualTour = if (this@toModel.propertyVirtualTour.isNotEmpty()) this@toModel.propertyVirtualTour[0].file else ""
+        this.video = if (this@toModel.propertyVideo.isNotEmpty()) this@toModel.propertyVideo[0].link else ""
+
+        this.latitude = this@toModel.latitude
+        this.longitude = this@toModel.longitude
+
+        this.dokumen = this@toModel.propertyDocument.map { it.file }
+        this.fasilitas = this@toModel.propertyDocument.map { it.name }
+        this.infrastruktur = this@toModel.propertyInfrastructure.map { Infrastructure(it.name,it.distance) }
+
+        this.agentImage = this@toModel.agent.user.userDatas.pictureProfile
+        this.agentName = this@toModel.agent.user.userDatas.fullname
+        this.agentPhone = this@toModel.agent.user.userDatas.phone
+    }
+
+fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
+    Property(
+        id = this.id,
+        slug = this.slug,
+        name = this.title,
+        desc = this.description,
+        address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
+        price = this.price,
 
         photosUrl = this.propertyPhoto.map { it.file },
 
         type = "",
         listingType = this.listingType,
         certificate = this.certificate,
-
-        condition = this.condition,
-        facing = this.facing,
-        yearBuilt = this.yearBuilt,
 
         floor = this.floor,
         surfaceArea = this.surfaceArea,
@@ -80,26 +100,6 @@ fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
         bathroom = this.bathroom,
         garage = this.garage,
         carport = this.cartport?:0,
-        maidBedroom = this.maidBedroom?:0,
-        maidBathroom = this.maidBathroom?:0,
-        powerSupply = this.powerSupply,
-        waterType = this.waterType,
-        phoneLine = this.phoneLine ?: 0,
-        isFurniture = this.isFurniture == 1,
-
-        virtualTour = "",
-        video =  "",
-
-        latitude = this.latitude,
-        longitude = this.longitude,
-
-        dokumen = emptyList(),
-        fasilitas = emptyList(),
-        infrastruktur = emptyList(),
-
-        agentImage = "",
-        agentName = "",
-        agentPhone = "",
     )
 
 
