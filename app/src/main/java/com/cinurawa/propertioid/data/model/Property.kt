@@ -1,26 +1,18 @@
 package com.cinurawa.propertioid.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Property(
     val id: Int,
+    val slug:String,
     val name: String,
     val desc: String,
     val address: String,
     val price: Int,
-    val propertyCode: String,
 
     val photosUrl: List<String>,
 
     val type: String,
     val listingType: String,
     val certificate: String,
-
-    val condition: String,
-    val facing: String,
-    val yearBuilt: Int,
 
     val floor: Int,
     val surfaceArea: Int,
@@ -29,25 +21,55 @@ data class Property(
     val bathroom: Int,
     val garage: Int,
     val carport: Int,
-    val maidBedroom: Int,
-    val maidBathroom: Int,
-    val powerSupply: String,
-    val waterType: String,
-    val phoneLine: Int,
-    val isFurniture: Boolean,
+    ) {
 
-    val virtualTour: String? = null,
-    val video: String? = null,
+    var propertyCode: String = ""
 
-    val latitude: Double,
-    val longitude: Double,
+    var condition: String = ""
+    var facing: String = ""
+    var yearBuilt: Int = 0
 
-    val dokumen: List<String>? = null,
-    val fasilitas: List<String>? = null,
-    val infrastruktur: List<Infrastructure>? = null,
+    var maidBedroom: Int = 0
+    var maidBathroom: Int = 0
+    var powerSupply: String = ""
+    var waterType: String = ""
+    var phoneLine: Int = 0
+    var isFurniture: Boolean = false
 
-    val agentImage: String,
-    val agentName: String,
-    val agentPhone: String,
+    var virtualTour: String = ""
+    var video: String = ""
 
-    ) : Parcelable
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+
+    var dokumen: List<String>? = null
+    var fasilitas: List<String>? = null
+    var infrastruktur: List<Infrastructure>? = null
+
+    var agentImage: String = ""
+    var agentName: String = ""
+    var agentPhone: String = ""
+
+}
+
+fun emptyProperty(): Property {
+    return Property(
+        id = 0,
+        slug = "",
+        name = "",
+        desc = "",
+        address = "",
+        price = 0,
+        photosUrl = emptyList(),
+        type = "",
+        listingType = "",
+        certificate = "",
+        floor = 0,
+        surfaceArea = 0,
+        buildingArea = 0,
+        bedroom = 0,
+        bathroom = 0,
+        garage = 0,
+        carport = 0
+    )
+}
