@@ -4,8 +4,8 @@ package com.cinurawa.propertioid.ui.navigation
 sealed class Screen(val route: String) {
     object Home : Screen("Home")
     object Properti : Screen("Properti")
-    object DetailProperti : Screen("DetailProperti/{id}") {
-        fun createRoute(id: Int) = "DetailProperti/$id"
+    object DetailProperti : Screen("DetailProperti/{slug}") {
+        fun createRoute(slug: String) = "DetailProperti/$slug"
     }
     object DetailProject : Screen("DetailProject/{id}") {
         fun createRoute(id: Int) = "DetailProject/$id"
