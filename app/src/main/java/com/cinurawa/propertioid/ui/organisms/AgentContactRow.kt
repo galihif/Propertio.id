@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.organisms
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -9,13 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
-import com.cinurawa.propertioid.ui.atoms.RoundedImage
+import com.cinurawa.propertioid.ui.atoms.MyImage
 import com.cinurawa.propertioid.ui.molecules.ContactCard
 
 @Composable
 fun AgentContactRow(
     modifier: Modifier = Modifier,
-    @DrawableRes image: Int,
+    image: String,
     name: String,
     phone: String,
     whatsapp: String,
@@ -26,11 +25,12 @@ fun AgentContactRow(
             .height(IntrinsicSize.Min)
             .padding(horizontal = 24.dp),
     ) {
-        RoundedImage(
+        MyImage(
             image = image,
             modifier = Modifier
                 .height(140.dp)
-                .weight(1f)
+                .weight(1f),
+            cornerRadius = 14
         )
         Column(
             modifier = Modifier
@@ -62,3 +62,4 @@ fun AgentContactRow(
         }
     }
 }
+
