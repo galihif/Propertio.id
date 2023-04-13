@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.organisms
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,12 +26,11 @@ fun PropertyItem(
     onDetailClicked: () -> Unit = {},
     data: Property? = null
 ) {
-    Log.d("GALIH", "PropertyItem: ${data?.photosUrl?.get(0)}")
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = data?.photosUrl?.get(0))
+        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = if(data?.photosUrl?.isNotEmpty() == true) data.photosUrl[0] else "")
         Row(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically,
