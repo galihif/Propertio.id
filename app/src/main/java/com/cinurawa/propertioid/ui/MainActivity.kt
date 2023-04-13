@@ -214,7 +214,11 @@ fun PropertioidApp(
                 DetailAgentScreen(
                     id = id,
                     onPropertyClicked = {
-                        navController.navigate(Screen.DetailProperti.createRoute(it))
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "property",
+                            it
+                        )
+                        navController.navigate(Screen.DetailProperti.createRoute(it.id))
                     },
                 )
             }
