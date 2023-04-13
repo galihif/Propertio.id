@@ -31,13 +31,12 @@ fun RoundedImage(
             .clip(RoundedCornerShape(cornerRadius.dp))
     )
 }
-
-
 @Composable
 fun MyImage(
     modifier: Modifier = Modifier,
     height: Int = 200,
     image: String,
+    cornerRadius: Int = 0
 ) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -49,6 +48,7 @@ fun MyImage(
         modifier = modifier
             .height(height.dp)
             .fillMaxWidth()
+            .clip(RoundedCornerShape(cornerRadius.dp))
     )
 }
 
