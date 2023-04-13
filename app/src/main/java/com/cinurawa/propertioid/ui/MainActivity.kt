@@ -18,7 +18,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.ProjectUnit
-import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
 import com.cinurawa.propertioid.ui.organisms.NavTopBar
@@ -96,11 +95,7 @@ fun PropertioidApp(
             composable(Screen.Home.route) {
                 HomeScreen(
                     onPropertyClicked = {
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "property",
-                            it
-                        )
-                        navController.navigate(Screen.DetailProperti.createRoute(it.id))
+                        navController.navigate(Screen.DetailProperti.createRoute(it.slug))
                     },
                     onProjectClicked = {
                         navController.currentBackStackEntry?.savedStateHandle?.set(
@@ -120,11 +115,7 @@ fun PropertioidApp(
             composable(Screen.Properti.route) {
                 PropertiScreen(
                     onPropertiClicked = {
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "property",
-                            it
-                        )
-                        navController.navigate(Screen.DetailProperti.createRoute(it.id))
+                        navController.navigate(Screen.DetailProperti.createRoute(it.slug))
                     }
                 )
             }
@@ -151,13 +142,11 @@ fun PropertioidApp(
             }
             composable(
                 route = Screen.DetailProperti.route,
-                arguments = listOf(navArgument("id") { type = NavType.IntType })
-            ) {
-                val data = navController.previousBackStackEntry?.savedStateHandle?.get<Property>(
-                    "property"
-                )
+                arguments = listOf(navArgument("slug") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val slug = backStackEntry.arguments?.getString("slug")
                 DetailPropertiScreen(
-                    data = data,
+                    slug = slug ?: "",
                     onVirtualTourClick = {
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(it)))
                     },
@@ -214,11 +203,7 @@ fun PropertioidApp(
                 DetailAgentScreen(
                     id = id,
                     onPropertyClicked = {
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "property",
-                            it
-                        )
-                        navController.navigate(Screen.DetailProperti.createRoute(it.id))
+                        navController.navigate(Screen.DetailProperti.createRoute(it.slug))
                     },
                 )
             }
