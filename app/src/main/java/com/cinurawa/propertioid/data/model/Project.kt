@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Project(
     val id: Int,
+    val slug: String,
     val name: String,
     val desc: String,
     val concept:String,
