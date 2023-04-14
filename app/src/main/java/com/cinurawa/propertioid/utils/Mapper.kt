@@ -107,6 +107,7 @@ fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
 fun GetAllProjectDto.Data.toModel() : Project =
     Project(
         id = this.id,
+        slug = this.slug,
         name = this.title,
         desc = this.description.orEmpty(),
         concept = this.design.orEmpty(),
