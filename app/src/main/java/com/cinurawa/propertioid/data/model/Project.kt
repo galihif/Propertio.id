@@ -1,9 +1,5 @@
 package com.cinurawa.propertioid.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Project(
     val id: Int,
     val slug: String,
@@ -20,22 +16,38 @@ data class Project(
     val type: String,
     val certificate: String,
 
-    val virtualTour: String? = null,
-    val site3DPlan: String? = null,
-    val arApps: String? = null,
-    val video: String? = null,
+    ){
+    var virtualTour: String = ""
+    var site3DPlan: String = ""
+    var arApps: String = ""
+    var video: String = ""
 
-    val latitude: Double,
-    val longitude: Double,
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
-    val listUnit: List<ProjectUnit>? = null,
+    var listUnit: List<ProjectUnit> = emptyList()
 
-    val dokumen: List<String>? = null,
-    val fasilitas: List<String>? = null,
-    val infrastruktur: List<Infrastructure>? = null,
+    var dokumen: List<String> = emptyList()
+    var fasilitas: List<String> = emptyList()
+    var infrastruktur: List<Infrastructure> = emptyList()
 
-    val agentImage: String,
-    val agentName: String,
-    val agentPhone: String,
+    var agentImage: String = ""
+    var agentName: String = ""
+    var agentPhone: String = ""
+}
 
-    ) : Parcelable
+fun getEmptyProject() =
+    Project(
+        id = 0,
+        slug = "",
+        name = "",
+        desc = "",
+        concept = "",
+        address = "",
+        startPrice = 0,
+        finalPrice = 0,
+        code = "",
+        photosUrl = emptyList(),
+        type = "",
+        certificate = ""
+    )
