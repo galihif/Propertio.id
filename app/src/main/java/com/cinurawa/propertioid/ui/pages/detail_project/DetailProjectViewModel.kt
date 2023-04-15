@@ -5,17 +5,24 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
+import com.cinurawa.propertioid.data.MainRepository
+import com.cinurawa.propertioid.data.model.getEmptyProject
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
+import com.cinurawa.propertioid.utils.Resource
 import com.cinurawa.propertioid.utils.formatGmapsUri
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailProjectViewModel
 @Inject constructor(
-    val player: Player
+    val player: Player,
+    private val repo:MainRepository
 ) : ViewModel() {
 
     private var _videoUri = ""
@@ -23,6 +30,44 @@ class DetailProjectViewModel
     private var _locationName = ""
     private var _latitude = 0.0
     private var _longitude = 0.0
+
+    private var _slug = ""
+
+    private var _project = MutableStateFlow(getEmptyProject())
+    val project = _project
+
+    private var _loading = MutableStateFlow(false)
+    val loading = _loading
+
+    private var _error = MutableStateFlow("")
+    val error = _error
+
+    fun setSlug(slug: String){
+        _slug = slug
+        getDetailProject()
+    }
+
+    private fun getDetailProject(){
+        viewModelScope.launch {
+            repo.getDetailProject(_slug).collect{
+                when(it){
+                    is Resource.Loading -> {
+                        loading.value = true
+                    }
+                    is Resource.Success -> {
+                        _loading.value = false
+                        if (it.data != null) {
+                            _project.value = it.data
+                        }
+                    }
+                    is Resource.Error -> {
+                        _loading.value = false
+                        _error.value = it.message ?: "Error"
+                    }
+                }
+            }
+        }
+    }
 
     fun addLocation(locationName:String,latitude: Double, longitude: Double){
         _locationName = locationName
