@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.cinurawa.propertioid.ui.organisms.NavDrawer
@@ -98,11 +97,7 @@ fun PropertioidApp(
                         navController.navigate(Screen.DetailProperti.createRoute(it.slug))
                     },
                     onProjectClicked = {
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "project",
-                            it
-                        )
-                        navController.navigate(Screen.DetailProject.createRoute(it.id))
+                        navController.navigate(Screen.DetailProject.createRoute(it.slug))
                     },
                     onLihatSemuaPropertyClicked = {
                         navController.navigate(Screen.Properti.route)
@@ -126,7 +121,7 @@ fun PropertioidApp(
                             "project",
                             it
                         )
-                        navController.navigate(Screen.DetailProject.createRoute(it.id))
+                        navController.navigate(Screen.DetailProject.createRoute(it.slug))
                     }
                 )
             }
@@ -158,13 +153,11 @@ fun PropertioidApp(
             }
             composable(
                 route = Screen.DetailProject.route,
-                arguments = listOf(navArgument("id") { type = NavType.IntType })
-            ) {
-                val data = navController.previousBackStackEntry?.savedStateHandle?.get<Project>(
-                    "project"
-                )
+                arguments = listOf(navArgument("slug") { type = NavType.StringType })
+            ) {backStackEntry ->
+                val slug = backStackEntry.arguments?.getString("slug")
                 DetailProjectScreen(
-                    data = data,
+                    slug = slug ?: "",
                     onUnitClicked = { unit ->
                         navController.currentBackStackEntry?.savedStateHandle?.set(
                             "unit",
