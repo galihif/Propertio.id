@@ -7,8 +7,8 @@ sealed class Screen(val route: String) {
     object DetailProperti : Screen("DetailProperti/{slug}") {
         fun createRoute(slug: String) = "DetailProperti/$slug"
     }
-    object DetailProject : Screen("DetailProject/{id}") {
-        fun createRoute(id: Int) = "DetailProject/$id"
+    object DetailProject : Screen("DetailProject/{slug}") {
+        fun createRoute(slug: String) = "DetailProject/$slug"
     }
     object DetailUnit : Screen("DetailUnit/{id}") {
         fun createRoute(id: Int) = "DetailUnit/$id"
