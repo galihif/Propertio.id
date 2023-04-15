@@ -63,19 +63,78 @@ fun GetDetailPropertyDto.Data.toModel(): Property =
         this.phoneLine = this@toModel.phoneLine
         this.isFurniture = this@toModel.isFurniture == 1
 
-        this.virtualTour = if (this@toModel.propertyVirtualTour.isNotEmpty()) this@toModel.propertyVirtualTour[0].file else ""
-        this.video = if (this@toModel.propertyVideo.isNotEmpty()) this@toModel.propertyVideo[0].link else ""
+        this.virtualTour =
+            if (this@toModel.propertyVirtualTour.isNotEmpty()) this@toModel.propertyVirtualTour[0].file else ""
+        this.video =
+            if (this@toModel.propertyVideo.isNotEmpty()) this@toModel.propertyVideo[0].link else ""
 
         this.latitude = this@toModel.latitude
         this.longitude = this@toModel.longitude
 
         this.dokumen = this@toModel.propertyDocument.map { it.file }
         this.fasilitas = this@toModel.propertyDocument.map { it.name }
-        this.infrastruktur = this@toModel.propertyInfrastructure.map { Infrastructure(it.name,it.distance) }
+        this.infrastruktur =
+            this@toModel.propertyInfrastructure.map { Infrastructure(it.name, it.distance) }
 
         this.agentImage = this@toModel.agent.user.userDatas.pictureProfile
         this.agentName = this@toModel.agent.user.userDatas.fullname
         this.agentPhone = this@toModel.agent.user.userDatas.phone
+    }
+
+fun GetDetailProjectDto.Data.toModel(): Project =
+    Project(
+        id = this.id,
+        slug = this.slug,
+        name = this.title,
+        desc = this.description,
+        concept = this.design,
+        address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
+        startPrice = this.priceStart,
+        finalPrice = this.priceFinal,
+        code = this.projectCode,
+
+        photosUrl = this.projectPhoto.map { it.file },
+
+        type = this.listingPackageType.toString(),
+        certificate = this.certificate,
+
+        ).apply {
+        this.virtualTour = if(this@toModel.projectVirtualTour.isNotEmpty()) this@toModel.projectVirtualTour[0].file else ""
+        this.site3DPlan = this@toModel.siteplanLink
+        this.arApps = this@toModel.appsLink.toString()
+        this.video = if(this@toModel.projectVideo.isNotEmpty()) this@toModel.projectVideo[0].link else ""
+
+        this.latitude = this@toModel.latitude
+        this.longitude = this@toModel.longitude
+
+        this.listUnit = this@toModel.unit.map {
+            ProjectUnit(
+                id = it.id,
+                name = it.title,
+                desc = it.description,
+                code = it.unitCode,
+                price = it.price,
+                photosUrl = it.unitPhoto.map { photo -> photo.file },
+                type = it.type,
+                floor = it.floor,
+                surfaceArea = it.surfaceArea,
+                buildingArea = it.buildingArea,
+                bedroom = it.bedroom,
+                bathroom = it.bathroom,
+                garage = it.garage,
+                powerSupply = it.powerSupply,
+                waterType = it.waterType,
+                spec = "",
+            )
+        }
+
+        this.dokumen = this@toModel.projectDocument.map { it.file }
+        this.fasilitas = this@toModel.projectFacility.map { it.facilityType.name }
+        this.infrastruktur = this@toModel.projectInfrastructure.map { Infrastructure(it.name, it.distance) }
+
+        this.agentName = if (this@toModel.contactProject.isNotEmpty()) this@toModel.contactProject[0].name else ""
+        this.agentPhone = if (this@toModel.contactProject.isNotEmpty()) this@toModel.contactProject[0].phone else ""
+
     }
 
 fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
@@ -99,12 +158,11 @@ fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
         bedroom = this.bedroom,
         bathroom = this.bathroom,
         garage = this.garage,
-        carport = this.cartport?:0,
+        carport = this.cartport ?: 0,
     )
 
 
-
-fun GetAllProjectDto.Data.toModel() : Project =
+fun GetAllProjectDto.Data.toModel(): Project =
     Project(
         id = this.id,
         slug = this.slug,
@@ -116,49 +174,10 @@ fun GetAllProjectDto.Data.toModel() : Project =
         finalPrice = this.priceFinal,
         code = this.projectCode,
 
-        photosUrl = this.projectPhoto.map { it.file  },
+        photosUrl = this.projectPhoto.map { it.file },
 
         type = this.propertyType.name,
         certificate = this.certificate,
-
-        site3DPlan = this.siteplanLink,
-        virtualTour = if (this.projectVirtualTour.isNotEmpty()) this.projectVirtualTour[0].file else "",
-        video = if (this.projectVideo.isNotEmpty()) this.projectVideo[0].link else "",
-
-        latitude = this.latitude,
-        longitude = this.longitude,
-
-        listUnit = this.unit.map{ unit->
-            ProjectUnit(
-                id = unit.id,
-                name = unit.title,
-                desc = unit.description.orEmpty(),
-                spec = unit.specification.orEmpty(),
-                price = unit.price,
-                code = unit.unitCode,
-                photosUrl = unit.unitPhoto.map { it.file  },
-                type = unit.type,
-                floor = unit.floor,
-                surfaceArea = unit.surfaceArea,
-                buildingArea = unit.buildingArea,
-                bedroom = unit.bedroom,
-                bathroom = unit.bathroom,
-                garage = unit.garage,
-                powerSupply = unit.powerSupply,
-                waterType = unit.waterType,
-                virtualTour = if (unit.unitVirtualTour.isNotEmpty()) unit.unitVirtualTour[0].file else "",
-                video = if (unit.unitVideo.isNotEmpty()) unit.unitVideo[0].link else "",
-
-            )
-        },
-
-        dokumen = this.projectDocument.map { it.file },
-        fasilitas = this.projectFacility.map { it.facilityType.name },
-        infrastruktur = this.projectInfrastructure.map { Infrastructure(it.name,it.distance) },
-
-        agentImage = "",
-        agentName = if (this.contactProject.isNotEmpty()) this.contactProject[0].name else "",
-        agentPhone = if (this.contactProject.isNotEmpty()) this.contactProject[0].phone else "",
     )
 
 fun GetAllAgentDto.Data.toModel(): Agent =
@@ -176,7 +195,7 @@ fun GetAllAgentDto.Data.toModel(): Agent =
         phone = this.userDatas.phone,
     )
 
-fun GetDetailAgentDto.Data.toModel():Agent {
+fun GetDetailAgentDto.Data.toModel(): Agent {
     val agent = Agent(
         id = this.id,
         name = this.userDatas.fullname,
