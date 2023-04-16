@@ -28,7 +28,7 @@ fun ProjectItem(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = data?.photosUrl?.get(0) ?: "https://www.cinurawa.com/wp-content/uploads/2021/05/IMG_20210518_105000.jpg")
+        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = if (data?.photosUrl?.isNotEmpty() == true) data.photosUrl[0] else "https://www.cinurawa.com/wp-content/uploads/2021/05/IMG_20210518_105000.jpg")
         Row(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically,
