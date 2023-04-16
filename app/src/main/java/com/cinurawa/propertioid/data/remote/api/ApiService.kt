@@ -14,6 +14,11 @@ interface ApiService {
     @GET("mobile/get_all_agent")
     suspend fun getAllAgent(): GetAllAgentDto
 
+    @GET("mobile/get_all_developer")
+    suspend fun getAllDeveloper(): GetAllDeveloperDto
+
+
+
     @GET("mobile/get_detail_property/{slug}")
     suspend fun getDetailProperty(
         @Path("slug") slug: String
