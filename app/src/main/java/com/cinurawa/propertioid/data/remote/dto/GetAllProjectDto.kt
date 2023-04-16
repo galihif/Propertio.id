@@ -69,7 +69,7 @@ data class GetAllProjectDto(
         @SerializedName("project_virtual_tour")
         val projectVirtualTour: List<ProjectVirtualTour>,
         @SerializedName("property_type")
-        val propertyType: PropertyType,
+        val propertyType: PropertyType?,
         @SerializedName("property_type_id")
         val propertyTypeId: Int,
         @SerializedName("province")
