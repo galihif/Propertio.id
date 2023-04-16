@@ -18,12 +18,13 @@ sealed class Screen(val route: String) {
         fun createRoute(id: Int) = "DetailAgent/$id"
     }
 
+    object DetailDeveloper : Screen("DetailDeveloper/{id}") {
+        fun createRoute(id: Int) = "DetailDeveloper/$id"
+    }
+
     object Webview : Screen("Webview/{url}") {
         fun createRoute(url: String) = "Webview/$url"
     }
-
-
-
 
     object Project : Screen("Project")
     object Agent : Screen("Agent")
