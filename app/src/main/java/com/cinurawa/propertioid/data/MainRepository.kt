@@ -144,5 +144,22 @@ class MainRepository @Inject constructor(
             }
         }
 
+    fun getDetailDeveloper(developerId: Int): Flow<Resource<Developer>> =
+        flow{
+            emit(Resource.Loading())
+            try {
+                val response = apiService.getDetailDeveloper(developerId)
+                emit(Resource.Success(response.data.toModel()))
+            } catch (e: HttpException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH HttpException", "HttpException: ${e.message}")
+            }catch (e: IOException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH IOException", "IOException: ${e.message}")
+            }catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH Exception", "Exception: ${e.message}")
+            }
+        }
 
 }
