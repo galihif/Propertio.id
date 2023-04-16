@@ -176,7 +176,7 @@ fun GetAllProjectDto.Data.toModel(): Project =
 
         photosUrl = this.projectPhoto.map { it.file },
 
-        type = this.propertyType.name,
+        type = if (this.propertyType != null)   this.propertyType.name else "",
         certificate = this.certificate,
     )
 
@@ -221,4 +221,16 @@ fun GetAllDeveloperDto.Data.toModel() =
         imageUrl = this.userDatas.pictureProfile.toString(),
         projectCount = this.developerProjects.size,
     )
+
+fun GetDetailDeveloperDto.Data.toModel() =
+    Developer(
+        id = this.id,
+        name = this.userDatas.fullname,
+        address = "${this.userDatas.address}, ${this.userDatas.city} ${this.userDatas.province} ",
+        imageUrl = this.userDatas.pictureProfile.toString(),
+        projectCount = this.developerProjects.size,
+    ).apply {
+        this.phone = this@toModel.userDatas.phone
+        this.projectList = this@toModel.developerProjects.map { it.toModel() }
+    }
 
