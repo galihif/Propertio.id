@@ -213,3 +213,12 @@ fun GetDetailAgentDto.Data.toModel(): Agent {
     return agent
 }
 
+fun GetAllDeveloperDto.Data.toModel() =
+    Developer(
+        id = this.id,
+        name = this.userDatas.fullname,
+        address = "${this.userDatas.address}, ${this.userDatas.city} ${this.userDatas.province} ",
+        imageUrl = this.userDatas.pictureProfile.toString(),
+        projectCount = this.developerProjects.size,
+    )
+
