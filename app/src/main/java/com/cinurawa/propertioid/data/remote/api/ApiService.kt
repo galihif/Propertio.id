@@ -17,8 +17,6 @@ interface ApiService {
     @GET("mobile/get_all_developer")
     suspend fun getAllDeveloper(): GetAllDeveloperDto
 
-
-
     @GET("mobile/get_detail_property/{slug}")
     suspend fun getDetailProperty(
         @Path("slug") slug: String
@@ -34,5 +32,9 @@ interface ApiService {
         @Path("agentId") agentId: Int
     ): GetDetailAgentDto
 
+    @GET("mobile/get_detail_developer/{id}")
+    suspend fun getDetailDeveloper(
+        @Path("id") id: Int
+    ): GetDetailDeveloperDto
 
 }
