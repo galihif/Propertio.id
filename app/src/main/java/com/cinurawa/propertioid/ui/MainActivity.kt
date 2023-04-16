@@ -129,7 +129,11 @@ fun PropertioidApp(
                 )
             }
             composable(Screen.Developer.route) {
-                DeveloperScreen()
+                DeveloperScreen(
+                    onDetailClicked = {
+
+                    }
+                )
             }
             composable(
                 route = Screen.DetailProperti.route,
