@@ -32,6 +32,7 @@ fun NavTopBar(
                 Screen.DetailProject.route,
                 Screen.DetailAgent.route,
                 Screen.DetailUnit.route,
+                Screen.DetailDeveloper.route,
                 Screen.Webview.route
                 -> {
                     IconButton(onClick = onBackClick) {
