@@ -8,5 +8,5 @@ data class Developer(
     var projectCount:Int = 0,
 ){
     var phone = ""
-    var projectList = ArrayList<Project>()
+    var projectList:List<Project> = emptyList()
 }
