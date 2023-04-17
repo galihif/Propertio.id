@@ -76,17 +76,19 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxWidth(),
         contentPadding = PaddingValues(24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.Top
     ) {
         item {
             HomeBanner()
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             HomeTab(selectedMenu) {
                 selectedMenu = it
             }
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             PropertySearchBox(
                 options = listOptions,
                 onOptionSelected = { selectedOption = it },
@@ -96,9 +98,11 @@ fun HomeScreen(
             )
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             HomeCarousel(modifier = Modifier.fillMaxWidth())
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             TitleSectionText(
                 title = "Rekomendasi Properti",
                 modifier = Modifier.fillMaxWidth()
@@ -106,50 +110,55 @@ fun HomeScreen(
         }
         item {
             if (isPropertyLoading) {
+                Spacer(modifier = Modifier.height(24.dp))
                 LoadingItem()
                 LoadingItem()
             }
         }
         items(listProperty) { property ->
+            Spacer(modifier = Modifier.height(24.dp))
             PropertyItem(
                 onDetailClicked = { onPropertyClicked(property) },
                 data = property
             )
-            Spacer(modifier = Modifier.height(24.dp))
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             LihatSemuaButton(
                 Modifier.fillMaxWidth(),
                 onClick = onLihatSemuaPropertyClicked
             )
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             TitleSectionText(
                 title = "Project Pilihan",
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(8.dp))
         }
         item {
             if (isProjectLoading) {
+                Spacer(modifier = Modifier.height(24.dp))
                 LoadingItem()
                 LoadingItem()
             }
         }
         items(listProject) {
+            Spacer(modifier = Modifier.height(24.dp))
             ProjectItem(
                 onDetailClicked = { onProjectClicked(it) },
                 data = it
             )
-            Spacer(modifier = Modifier.height(24.dp))
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             LihatSemuaButton(
                 Modifier.fillMaxWidth(),
                 onClick = onLihatSemuaProjectClicked
             )
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 elevation = 0.dp,
@@ -254,6 +263,7 @@ fun HomeScreen(
             }
         }
         item {
+            Spacer(modifier = Modifier.height(24.dp))
             Card(
                 Modifier.wrapContentSize(),
                 shape = RoundedCornerShape(10.dp),
