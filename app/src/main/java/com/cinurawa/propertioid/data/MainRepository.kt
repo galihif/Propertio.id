@@ -28,7 +28,11 @@ class MainRepository @Inject constructor(
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
             }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
             }catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
