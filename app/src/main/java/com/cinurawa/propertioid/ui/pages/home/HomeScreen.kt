@@ -7,17 +7,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Error
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,6 +22,7 @@ import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
+import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.molecules.HomeBanner
 import com.cinurawa.propertioid.ui.organisms.*
 import com.cinurawa.propertioid.ui.theme.Blue700
@@ -78,11 +75,7 @@ fun HomeScreen(
     }
 
     if (error.isNotEmpty()){
-        Column(modifier = Modifier.fillMaxSize().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-            Icon(imageVector = Icons.Default.Error, contentDescription = "", modifier = Modifier.size(64.dp), tint = Blue700)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = error, textAlign = TextAlign.Center,style = MaterialTheme.typography.h6.copy(color = DarkBlue500, fontWeight = FontWeight.Bold))
-        }
+        ErrorColumn(error = error)
     } else {
         LazyColumn(
             modifier = Modifier
