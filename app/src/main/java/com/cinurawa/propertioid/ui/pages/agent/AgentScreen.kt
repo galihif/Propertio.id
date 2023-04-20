@@ -10,6 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
+import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.organisms.AgentItem
 import com.cinurawa.propertioid.ui.organisms.LoadingItem
 
@@ -36,43 +37,47 @@ fun AgentScreen(
         }
     }
 
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ){
-        item {
-            TitleSectionText(
-                title = "List Agent",
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-        item{
-            if (isLoading) {
-                LoadingItem(
+    if (error.isNotEmpty()){
+        ErrorColumn(error = error)
+    }else{
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ){
+            item {
+                TitleSectionText(
+                    title = "List Agent",
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+            item{
+                if (isLoading) {
+                    LoadingItem(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp)
+                    )
+                    LoadingItem(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp)
+                    )
+                }
+            }
+            items(listAgent) {
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
-                )
-                LoadingItem(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                )
+                ) {
+                    AgentItem(
+                        onDetailClicked = {
+                            onAgentClicked(it.id)
+                        },
+                        data = it
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
             }
-        }
-        items(listAgent) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
-            ) {
-                AgentItem(
-                    onDetailClicked = {
-                        onAgentClicked(it.id)
-                    },
-                    data = it
-                )
-            }
-            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
