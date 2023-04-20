@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
+import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.organisms.LoadingItem
 import com.cinurawa.propertioid.ui.organisms.ProjectItem
 import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
@@ -47,54 +48,58 @@ fun ProjectScreen(
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
     }
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        item {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                backgroundColor = MaterialTheme.colors.primary
-            ) {
-                PropertySearchBox(
-                    modifier = Modifier.padding(24.dp),
-                    options = listOptions,
-                    onOptionSelected = { selectedOption = it },
-                    selectedOption = selectedOption,
-                    keyword = keyword,
-                    onKeywordChanged = { keyword = it }
+    if (error.isNotEmpty()){
+        ErrorColumn(error = error)
+    }else {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    backgroundColor = MaterialTheme.colors.primary
+                ) {
+                    PropertySearchBox(
+                        modifier = Modifier.padding(24.dp),
+                        options = listOptions,
+                        onOptionSelected = { selectedOption = it },
+                        selectedOption = selectedOption,
+                        keyword = keyword,
+                        onKeywordChanged = { keyword = it }
+                    )
+                }
+            }
+            item {
+                TitleSectionText(
+                    title = "List Iklan Project",
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
-        }
-        item {
-            TitleSectionText(
-                title = "List Iklan Project",
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
 
-        item{
-            if(isLoading){
-                LoadingItem(
-                    Modifier.padding(24.dp)
-                )
-                LoadingItem(
-                    Modifier.padding(24.dp)
-                )
+            item{
+                if(isLoading){
+                    LoadingItem(
+                        Modifier.padding(24.dp)
+                    )
+                    LoadingItem(
+                        Modifier.padding(24.dp)
+                    )
+                }
             }
-        }
-        items(listProject) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
-            ){
-                ProjectItem(
-                    onDetailClicked = { onProjectClicked(it) },
-                    data = it
-                )
+            items(listProject) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                ){
+                    ProjectItem(
+                        onDetailClicked = { onProjectClicked(it) },
+                        data = it
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
             }
-            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
