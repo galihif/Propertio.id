@@ -48,91 +48,95 @@ fun DetailAgentScreen(
         }
     }
 
-    LazyColumn(
-        contentPadding = PaddingValues(24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ){
-        item{
-            if (isLoading){
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
+    if (error.isNotEmpty()){
+        ErrorColumn(error = error)
+    }else{
+        LazyColumn(
+            contentPadding = PaddingValues(24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ){
+            item{
+                if (isLoading){
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
                 }
             }
-        }
-        item{
-            ThumbnailImage(
-                modifier = Modifier.fillMaxWidth(),
-                imageUrl = agent.photoUrl,
-                isAgent = true,
-            )
-        } // ThumbnailImage
-        item{
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(14.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                IconTextBadge(
-                    text = "${agent.propertyCount} Properti",
-                    icon = R.drawable.ic_house,
-                    color = MaterialTheme.colors.primary
+            item{
+                ThumbnailImage(
+                    modifier = Modifier.fillMaxWidth(),
+                    imageUrl = agent.photoUrl,
+                    isAgent = true,
                 )
-                IconTextBadge(
-                    text = "${agent.propertySold} Terjual",
-                    leadingIcon = Icons.Filled.LocalOffer,
-                    color = Color(0xFF43936C)
+            } // ThumbnailImage
+            item{
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    IconTextBadge(
+                        text = "${agent.propertyCount} Properti",
+                        icon = R.drawable.ic_house,
+                        color = MaterialTheme.colors.primary
+                    )
+                    IconTextBadge(
+                        text = "${agent.propertySold} Terjual",
+                        leadingIcon = Icons.Filled.LocalOffer,
+                        color = Color(0xFF43936C)
+                    )
+                    IconTextBadge(
+                        text = "${agent.propertyRented} Tersewa",
+                        leadingIcon = Icons.Default.Key,
+                        color = Color(0xFFCD7B2E)
+                    )
+                }
+            } // Label
+            item{
+                TitleDetailColumn(
+                    title = agent.name,
+                    detail = "",
                 )
-                IconTextBadge(
-                    text = "${agent.propertyRented} Tersewa",
-                    leadingIcon = Icons.Default.Key,
-                    color = Color(0xFFCD7B2E)
+                IconText(
+                    text = agent.address,
+                    leadingIcon = Icons.Default.LocationOn,
+                    iconTint = Red500
+                )
+            } // Title & Location
+            item {
+                ContactCard(
+                    text = agent.phone,
+                    leadingIcon = R.drawable.ic_phone,
+                    onClick = {}
+                )
+            }// Phone
+            item{
+                ContactCard(
+                    text = "Chat via Whatsapp",
+                    leadingIcon = R.drawable.ic_wa,
+                    bgColor = Color(0xFFF6F6F6),
+                    onClick = {}
+                )
+            } // Whatsapp
+            item{
+                TitleSectionText(
+                    title = "Daftar Properti",
+                    modifier = Modifier
+                        .fillMaxWidth(),
                 )
             }
-        } // Label
-        item{
-            TitleDetailColumn(
-                title = agent.name,
-                detail = "",
-            )
-            IconText(
-                text = agent.address,
-                leadingIcon = Icons.Default.LocationOn,
-                iconTint = Red500
-            )
-        } // Title & Location
-        item {
-            ContactCard(
-                text = agent.phone,
-                leadingIcon = R.drawable.ic_phone,
-                onClick = {}
-            )
-        }// Phone
-        item{
-            ContactCard(
-                text = "Chat via Whatsapp",
-                leadingIcon = R.drawable.ic_wa,
-                bgColor = Color(0xFFF6F6F6),
-                onClick = {}
-            )
-        } // Whatsapp
-        item{
-            TitleSectionText(
-                title = "Daftar Properti",
-                modifier = Modifier
-                    .fillMaxWidth(),
-            )
-        }
-        items(agent.propertyList){
-            PropertyItem(
-                modifier = Modifier.fillMaxWidth(),
-                onDetailClicked = {
-                    onPropertyClicked(it)
-                },
-                data = it
-            )
-            Spacer(modifier = Modifier.height(16.dp))
+            items(agent.propertyList){
+                PropertyItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    onDetailClicked = {
+                        onPropertyClicked(it)
+                    },
+                    data = it
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }
