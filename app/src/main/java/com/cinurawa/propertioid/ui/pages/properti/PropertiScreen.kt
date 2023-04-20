@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
+import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.organisms.LoadingItem
 import com.cinurawa.propertioid.ui.organisms.PropertyItem
 import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
@@ -31,15 +32,15 @@ fun PropertiScreen(
     val listOptions = DataProvider.typeList()
     var keyword by remember { mutableStateOf("") }
 
-    val listProperty by remember{
+    val listProperty by remember {
         viewModel.listProperty
     }.collectAsState()
 
-    val isLoading by remember{
+    val isLoading by remember {
         viewModel.isLoading
     }.collectAsState()
 
-    val error by remember{
+    val error by remember {
         viewModel.error
     }.collectAsState()
 
@@ -49,53 +50,57 @@ fun PropertiScreen(
         }
     }
 
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ){
-        item {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                backgroundColor = Green500
-            ){
-                PropertySearchBox(
-                    modifier = Modifier.padding(24.dp),
-                    options = listOptions,
-                    onOptionSelected = { selectedOption = it },
-                    selectedOption = selectedOption,
-                    keyword = keyword,
-                    onKeywordChanged = { keyword = it }
+    if (error.isNotEmpty()) {
+        ErrorColumn(error = error)
+    } else {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    backgroundColor = Green500
+                ) {
+                    PropertySearchBox(
+                        modifier = Modifier.padding(24.dp),
+                        options = listOptions,
+                        onOptionSelected = { selectedOption = it },
+                        selectedOption = selectedOption,
+                        keyword = keyword,
+                        onKeywordChanged = { keyword = it }
+                    )
+                }
+            }
+            item {
+                TitleSectionText(
+                    title = "List Iklan Properti",
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
-        }
-        item {
-            TitleSectionText(
-                title = "List Iklan Properti",
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-        item{
-            if(isLoading){
-                LoadingItem(
-                    Modifier.padding(24.dp)
-                )
-                LoadingItem(
-                    Modifier.padding(24.dp)
-                )
+            item {
+                if (isLoading) {
+                    LoadingItem(
+                        Modifier.padding(24.dp)
+                    )
+                    LoadingItem(
+                        Modifier.padding(24.dp)
+                    )
+                }
             }
-        }
-        items(listProperty) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
-            ){
-                PropertyItem(
-                    onDetailClicked = { onPropertiClicked(it) },
-                    data = it
-                )
+            items(listProperty) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                ) {
+                    PropertyItem(
+                        onDetailClicked = { onPropertiClicked(it) },
+                        data = it
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
             }
-            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
