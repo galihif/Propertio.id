@@ -2,7 +2,7 @@ package com.cinurawa.propertioid.ui.pages.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cinurawa.propertioid.data.MainRepository
+import com.cinurawa.propertioid.data.MainRepositoryImpl
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.utils.Resource
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel
 @Inject constructor(
-    private val repo: MainRepository
+    private val repo: MainRepositoryImpl
 ) : ViewModel() {
 
     private var _listProperty = MutableStateFlow<List<Property>>(emptyList())
