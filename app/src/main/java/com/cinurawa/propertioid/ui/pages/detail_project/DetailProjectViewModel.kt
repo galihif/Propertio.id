@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
-import com.cinurawa.propertioid.data.MainRepositoryImpl
+import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.getEmptyProject
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class DetailProjectViewModel
 @Inject constructor(
     val player: Player,
-    private val repo:MainRepositoryImpl
+    private val repo: MainRepository
 ) : ViewModel() {
 
     private var _videoUri = ""
