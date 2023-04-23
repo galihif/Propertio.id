@@ -13,9 +13,11 @@ import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.RoundedImage
 
 @Composable
-fun HomeBanner() {
+fun HomeBanner(
+    modifier: Modifier = Modifier
+) {
     Box(
-        modifier = Modifier.wrapContentSize(),
+        modifier = modifier.wrapContentSize(),
     ) {
         RoundedImage(
             modifier = Modifier
