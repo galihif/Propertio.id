@@ -1,6 +1,6 @@
 package com.cinurawa.propertioid.di
 
-import com.cinurawa.propertioid.data.MainRepository
+import com.cinurawa.propertioid.data.MainRepositoryImpl
 import com.cinurawa.propertioid.data.remote.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -36,6 +36,6 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideMainRepository(apiService: ApiService) = MainRepository(apiService)
+    fun provideMainRepository(apiService: ApiService) = MainRepositoryImpl(apiService)
 
 }
