@@ -2,7 +2,7 @@ package com.cinurawa.propertioid.ui.pages.agent
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cinurawa.propertioid.data.MainRepositoryImpl
+import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.Agent
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AgentViewModel
 @Inject constructor(
-    private val repo:MainRepositoryImpl
+    private val repo:MainRepository
 ) : ViewModel() {
 
     private var _listAgent = MutableStateFlow<List<Agent>>(emptyList())
