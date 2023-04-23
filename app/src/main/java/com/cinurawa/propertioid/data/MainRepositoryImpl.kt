@@ -16,9 +16,9 @@ import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
     private val apiService: ApiService
-) {
+):MainRepository {
 
-    fun getAllProperty(): Flow<Resource<List<Property>>> =
+    override fun getAllProperty(): Flow<Resource<List<Property>>> =
         flow{
             emit(Resource.Loading())
             try {
@@ -40,7 +40,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getAllProject(): Flow<Resource<List<Project>>> =
+    override fun getAllProject(): Flow<Resource<List<Project>>> =
         flow{
             emit(Resource.Loading())
             try {
@@ -58,7 +58,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getAllAgent(): Flow<Resource<List<Agent>>> =
+    override fun getAllAgent(): Flow<Resource<List<Agent>>> =
         flow{
             emit(Resource.Loading())
             try {
@@ -76,7 +76,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getAllDeveloper():Flow<Resource<List<Developer>>> =
+    override fun getAllDeveloper():Flow<Resource<List<Developer>>> =
         flow {
             emit(Resource.Loading())
             try {
@@ -94,7 +94,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getDetailProperty(slug: String): Flow<Resource<Property>> =
+    override fun getDetailProperty(slug: String): Flow<Resource<Property>> =
         flow{
             emit(Resource.Loading())
             try {
@@ -112,7 +112,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getDetailProject(slug: String):Flow<Resource<Project>> =
+    override fun getDetailProject(slug: String):Flow<Resource<Project>> =
         flow {
             emit(Resource.Loading())
             try {
@@ -130,7 +130,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getDetailAgent(agentId: Int): Flow<Resource<Agent>> =
+    override fun getDetailAgent(agentId: Int): Flow<Resource<Agent>> =
         flow{
             emit(Resource.Loading())
             try {
@@ -148,7 +148,7 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
-    fun getDetailDeveloper(developerId: Int): Flow<Resource<Developer>> =
+    override fun getDetailDeveloper(developerId: Int): Flow<Resource<Developer>> =
         flow{
             emit(Resource.Loading())
             try {
