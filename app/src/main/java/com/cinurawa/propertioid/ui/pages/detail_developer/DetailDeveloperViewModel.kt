@@ -2,7 +2,7 @@ package com.cinurawa.propertioid.ui.pages.detail_developer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cinurawa.propertioid.data.MainRepository
+import com.cinurawa.propertioid.data.MainRepositoryImpl
 import com.cinurawa.propertioid.data.model.Developer
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailDeveloperViewModel
 @Inject constructor(
-    private val repo:MainRepository
+    private val repo:MainRepositoryImpl
 ) : ViewModel() {
     private var _id = 0
 
