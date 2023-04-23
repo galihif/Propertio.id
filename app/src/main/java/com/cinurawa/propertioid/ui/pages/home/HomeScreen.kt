@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -84,17 +85,23 @@ fun HomeScreen(
             verticalArrangement = Arrangement.Top
         ) {
             item {
-                HomeBanner()
+                HomeBanner(
+                    modifier = Modifier.testTag("home_banner")
+                )
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
-                HomeTab(selectedMenu) {
+                HomeTab(
+                    Modifier.testTag("home_tab"),
+                    selectedMenu
+                ) {
                     selectedMenu = it
                 }
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 PropertySearchBox(
+                    Modifier.testTag("home_search_box"),
                     options = listOptions,
                     onOptionSelected = { selectedOption = it },
                     selectedOption = selectedOption,
@@ -104,13 +111,13 @@ fun HomeScreen(
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
-                HomeCarousel(modifier = Modifier.fillMaxWidth())
+                HomeCarousel(modifier = Modifier.fillMaxWidth().testTag("home_carousel"))
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 TitleSectionText(
                     title = "Rekomendasi Properti",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.testTag("rekomendasi_properti").fillMaxWidth()
                 )
             }
             item {
