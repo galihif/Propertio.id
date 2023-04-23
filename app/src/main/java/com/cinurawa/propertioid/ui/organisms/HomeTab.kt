@@ -23,10 +23,12 @@ object HomeTab {
 
 @Composable
 fun HomeTab(
+    modifier: Modifier = Modifier,
     selectedMenu: String = HomeTab.Beli,
     onMenuSelected: (String) -> Unit
 ) {
     Row(
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         ItemHomeTab(
