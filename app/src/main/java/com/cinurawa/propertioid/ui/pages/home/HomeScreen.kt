@@ -12,8 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -75,24 +76,31 @@ fun HomeScreen(
         }
     }
 
-    if (error.isNotEmpty()){
+    if (error.isNotEmpty()) {
         ErrorColumn(error = error)
     } else {
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .semantics {
+                    contentDescription = "home_screen"
+                },
             contentPadding = PaddingValues(24.dp),
             verticalArrangement = Arrangement.Top
         ) {
             item {
                 HomeBanner(
-                    modifier = Modifier.testTag("home_banner")
+                    modifier = Modifier.semantics {
+                        contentDescription = "home_banner"
+                    }
                 )
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 HomeTab(
-                    Modifier.testTag("home_tab"),
+                    Modifier.semantics {
+                        contentDescription = "home_tab"
+                    },
                     selectedMenu
                 ) {
                     selectedMenu = it
@@ -101,7 +109,9 @@ fun HomeScreen(
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 PropertySearchBox(
-                    Modifier.testTag("home_search_box"),
+                    Modifier.semantics {
+                        contentDescription = "home_search"
+                    },
                     options = listOptions,
                     onOptionSelected = { selectedOption = it },
                     selectedOption = selectedOption,
@@ -111,13 +121,22 @@ fun HomeScreen(
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
-                HomeCarousel(modifier = Modifier.fillMaxWidth().testTag("home_carousel"))
+                HomeCarousel(modifier = Modifier
+                    .fillMaxWidth()
+                    .semantics {
+                        contentDescription = "home_carousel"
+                    }
+                )
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 TitleSectionText(
                     title = "Rekomendasi Properti",
-                    modifier = Modifier.testTag("rekomendasi_properti").fillMaxWidth()
+                    modifier = Modifier
+                        .semantics {
+                            contentDescription = "rekomendasi_properti"
+                        }
+                        .fillMaxWidth()
                 )
             }
             item {
@@ -130,6 +149,7 @@ fun HomeScreen(
             items(listProperty) { property ->
                 Spacer(modifier = Modifier.height(24.dp))
                 PropertyItem(
+                    modifier = Modifier,
                     onDetailClicked = { onPropertyClicked(property) },
                     data = property
                 )
