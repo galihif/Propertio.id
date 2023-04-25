@@ -64,33 +64,6 @@ object DummyData {
         )
         propertyList.add(property2)
 
-        // Contoh property 3
-        val property3 = Property(
-            id = 3,
-            slug = "contoh-property-3",
-            name = "Contoh Property 3",
-            desc = "Ini adalah contoh deskripsi property 3",
-            address = "Jalan Contoh No. 3",
-            price = 1000000000,
-
-            photosUrl = listOf(
-                "https://example.com/property3/photo1.jpg",
-            ),
-
-            type = "Villa",
-            listingType = "Jual",
-            certificate = "SHM",
-
-            floor = 1,
-            surfaceArea = 1000,
-            buildingArea = 800,
-            bedroom = 6,
-            bathroom = 5,
-            garage = 2,
-            carport = 3,
-        )
-        propertyList.add(property3)
-
         return propertyList
     }
 
@@ -143,27 +116,6 @@ object DummyData {
         )
         projectList.add(project2)
 
-        // Contoh proyek 3
-        val project3 = Project(
-            id = 3,
-            slug = "contoh-proyek-3",
-            name = "Contoh Proyek 3",
-            desc = "Ini adalah contoh deskripsi proyek 3",
-            concept = "Perumahan eksklusif dengan akses langsung ke pantai",
-            address = "Jalan Contoh No. 3",
-            startPrice = 2000000000,
-            finalPrice = 1800000000,
-            code = "CP003",
-
-            photosUrl = listOf(
-                "https://example.com/project3/photo1.jpg",
-                "https://example.com/project3/photo2.jpg",
-            ),
-
-            type = "Rumah",
-            certificate = "SHM",
-        )
-        projectList.add(project3)
 
         return projectList
     }
