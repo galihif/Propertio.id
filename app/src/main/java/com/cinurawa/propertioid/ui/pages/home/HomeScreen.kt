@@ -18,8 +18,6 @@ import com.cinurawa.propertioid.ui.atoms.LihatSemuaButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.molecules.HomeBanner
-import com.cinurawa.propertioid.ui.molecules.MariKamiPanduCard
-import com.cinurawa.propertioid.ui.molecules.MarketOutlookCard
 import com.cinurawa.propertioid.ui.organisms.*
 import com.cinurawa.propertioid.ui.utils.DataProvider
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -180,16 +178,6 @@ fun HomeScreen(
                     Modifier.fillMaxWidth(),
                     onClick = onLihatSemuaProjectClicked
                 )
-            }
-            item {
-                Spacer(modifier = Modifier.height(24.dp))
-                MarketOutlookCard()
-                Spacer(modifier = Modifier.height(14.dp))
-                CeritaInspiratifRow()
-            }
-            item {
-                Spacer(modifier = Modifier.height(24.dp))
-                MariKamiPanduCard()
             }
         }
     }
