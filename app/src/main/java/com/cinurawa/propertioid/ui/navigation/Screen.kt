@@ -1,9 +1,17 @@
 package com.cinurawa.propertioid.ui.navigation
 
+import com.cinurawa.propertioid.utils.enum.PropertyType
 
-sealed class Screen(val route: String) {
-    object Home : Screen("Home")
-    object Properti : Screen("Properti")
+
+sealed class Screen(val route: String, val title: String? = null) {
+    object Home : Screen("Home", "Home")
+    object Properti : Screen("Properti/{keyword}/{propertyType}/{listingType}", "Properti"){
+        fun createRoute(
+            keyword: String,
+            propertyType: String,
+            listingType: String
+        ) = "Properti/$keyword/$propertyType/$listingType"
+    }
     object DetailProperti : Screen("DetailProperti/{slug}") {
         fun createRoute(slug: String) = "DetailProperti/$slug"
     }
