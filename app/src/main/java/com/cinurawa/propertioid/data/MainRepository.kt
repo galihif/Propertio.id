@@ -9,6 +9,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainRepository {
     fun getAllProperty(): Flow<Resource<List<Property>>>
+    fun getAllProperty(
+        keyword: String,
+        propertyType: String,
+        listingType: String
+    ): Flow<Resource<List<Property>>>
     fun getAllProject(): Flow<Resource<List<Project>>>
     fun getAllAgent(): Flow<Resource<List<Agent>>>
     fun getAllDeveloper(): Flow<Resource<List<Developer>>>
