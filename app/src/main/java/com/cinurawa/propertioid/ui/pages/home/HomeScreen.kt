@@ -19,7 +19,6 @@ import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.molecules.HomeBanner
 import com.cinurawa.propertioid.ui.organisms.*
-import com.cinurawa.propertioid.ui.utils.DataProvider
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 @ExperimentalPagerApi
@@ -30,15 +29,14 @@ fun HomeScreen(
     onProjectClicked: (Project) -> Unit = {},
     onLihatSemuaPropertyClicked: () -> Unit = {},
     onLihatSemuaProjectClicked: () -> Unit = {},
+    onSearch: (
+        keyword: String,
+        selectedProType: String,
+        listingType: String,
+    ) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    var selectedMenu by remember { mutableStateOf(HomeTab.Beli) }
-
-    var selectedOption by remember { mutableStateOf("") }
-    val listOptions = DataProvider.typeList()
-
-    var keyword by remember { mutableStateOf("") }
 
     val listProperty by remember {
         viewModel.listProperty
@@ -88,13 +86,12 @@ fun HomeScreen(
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 HomeTab(
-                    Modifier.semantics {
+                    modifier = Modifier.semantics {
                         contentDescription = "home_tab"
                     },
-                    selectedMenu
-                ) {
-                    selectedMenu = it
-                }
+                    selectedMenu = viewModel.selectedMenu.value,
+                    onMenuSelected = { viewModel.selectedMenu.value = it }
+                )
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
@@ -102,11 +99,18 @@ fun HomeScreen(
                     Modifier.semantics {
                         contentDescription = "home_search"
                     },
-                    options = listOptions,
-                    onOptionSelected = { selectedOption = it },
-                    selectedOption = selectedOption,
-                    keyword = keyword,
-                    onKeywordChanged = { keyword = it }
+                    options = viewModel.listPropertyType,
+                    onOptionSelected = { viewModel.selectedPropertyType.value = it },
+                    selectedOption = viewModel.selectedPropertyType.value,
+                    keyword = viewModel.keyword.value,
+                    onKeywordChanged = { viewModel.keyword.value = it },
+                    onSearchClick = {
+                        onSearch(
+                            viewModel.keyword.value,
+                            viewModel.selectedPropertyType.value,
+                            viewModel.selectedMenu.value
+                        )
+                    }
                 )
             }
             item {
