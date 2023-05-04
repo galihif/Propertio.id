@@ -31,12 +31,15 @@ class PropertiViewModel
     var keyword = mutableStateOf("")
     var propertyType = mutableStateOf("")
     var listingType = mutableStateOf("")
+    var isSearch = mutableStateOf(false)
 
     fun setQuery(keyword: String, propertyType: String, listingType: String) {
         if (keyword == "default" && propertyType == "default" && listingType == "default") {
             getListProperty()
+            isSearch.value = false
             return
         }
+        isSearch.value = true
         this.keyword.value = if (keyword == "default") "" else keyword
         this.propertyType.value = if (propertyType == "default") "" else propertyType
         this.listingType.value = if (listingType == "default") "" else listingType
