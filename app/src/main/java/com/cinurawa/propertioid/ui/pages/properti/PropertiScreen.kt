@@ -78,7 +78,7 @@ fun PropertiScreen(
             }
             item {
                 TitleSectionText(
-                    title = "List Iklan Properti",
+                    title = if (viewModel.isSearch.value) "Hasil Pencarian" else "Properti Unggulan",
                     modifier = Modifier.fillMaxWidth()
                 )
             }
