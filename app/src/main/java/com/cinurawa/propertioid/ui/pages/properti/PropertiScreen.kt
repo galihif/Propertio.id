@@ -19,7 +19,6 @@ import com.cinurawa.propertioid.ui.organisms.LoadingItem
 import com.cinurawa.propertioid.ui.organisms.PropertyItem
 import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
 import com.cinurawa.propertioid.ui.theme.Green500
-import com.cinurawa.propertioid.ui.utils.DataProvider
 
 @ExperimentalMaterialApi
 @Composable
@@ -30,14 +29,12 @@ fun PropertiScreen(
     onPropertiClicked: (Property) -> Unit,
     viewModel: PropertiViewModel = hiltViewModel()
 ) {
+    viewModel.setQuery(keyword, selectedProType, listingType)
     val context = LocalContext.current
 
     LaunchedEffect(Unit){
         Log.d("GALIH", "PropertiScreen: $keyword $selectedProType $listingType")
     }
-    var selectedOption by remember { mutableStateOf("") }
-    val listOptions = DataProvider.listPropertyType
-    var keyword by remember { mutableStateOf("") }
 
     val listProperty by remember {
         viewModel.listProperty
@@ -71,11 +68,11 @@ fun PropertiScreen(
                 ) {
                     PropertySearchBox(
                         modifier = Modifier.padding(24.dp),
-                        options = listOptions,
-                        onOptionSelected = { selectedOption = it },
-                        selectedOption = selectedOption,
-                        keyword = keyword,
-                        onKeywordChanged = { keyword = it }
+                        options = viewModel.listPropertyType,
+                        onOptionSelected = { viewModel.propertyType.value = it },
+                        selectedOption = viewModel.propertyType.value,
+                        keyword = viewModel.keyword.value,
+                        onKeywordChanged = { viewModel.keyword.value = it }
                     )
                 }
             }
