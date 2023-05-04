@@ -23,30 +23,35 @@ import com.cinurawa.propertioid.ui.navigation.Screen
 val menuItems = listOf(
     MenuItem(
         title = Screen.Home.route,
+        route = Screen.Home.route,
         icon = Icons.Default.Home
     ),
     MenuItem(
-        title = Screen.Properti.route,
-        icon = Icons.Default.Favorite
+        title = Screen.Properti.title?:"",
+        icon = Icons.Default.Favorite,
+        route = Screen.Properti.createRoute("default","default","default")
     ),
     MenuItem(
         title = Screen.Project.route,
-        icon = Icons.Default.AccountCircle
+        icon = Icons.Default.AccountCircle,
+        route = Screen.Project.route
     ),
     MenuItem(
         title = Screen.Agent.route,
-        icon = Icons.Default.AccountCircle
+        icon = Icons.Default.AccountCircle,
+        route = Screen.Agent.route
     ),
     MenuItem(
         title = Screen.Developer.route,
-        icon = Icons.Default.AccountCircle
+        icon = Icons.Default.AccountCircle,
+        route = Screen.Developer.route
     ),
 )
 
 @Composable
 fun NavDrawer(
     modifier: Modifier = Modifier,
-    onItemSelected: (title: String) -> Unit,
+    onItemSelected: (route: String) -> Unit,
     onBackPress: () -> Unit,
 ) {
 
@@ -60,7 +65,7 @@ fun NavDrawer(
         for (item in menuItems) {
             Column(
                 modifier = Modifier
-                    .clickable { onItemSelected(item.title) }
+                    .clickable { onItemSelected(item.route) }
                     .padding(vertical = 12.dp, horizontal = 16.dp)
                     .fillMaxWidth(),
                 horizontalAlignment = Alignment.Start
