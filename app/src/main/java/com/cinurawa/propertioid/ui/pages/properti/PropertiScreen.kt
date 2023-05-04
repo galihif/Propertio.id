@@ -1,5 +1,6 @@
 package com.cinurawa.propertioid.ui.pages.properti
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,13 +24,19 @@ import com.cinurawa.propertioid.ui.utils.DataProvider
 @ExperimentalMaterialApi
 @Composable
 fun PropertiScreen(
+    keyword: String,
+    selectedProType:String,
+    listingType:String,
     onPropertiClicked: (Property) -> Unit,
     viewModel: PropertiViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
 
+    LaunchedEffect(Unit){
+        Log.d("GALIH", "PropertiScreen: $keyword $selectedProType $listingType")
+    }
     var selectedOption by remember { mutableStateOf("") }
-    val listOptions = DataProvider.typeList()
+    val listOptions = DataProvider.listPropertyType
     var keyword by remember { mutableStateOf("") }
 
     val listProperty by remember {
