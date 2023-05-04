@@ -1,10 +1,13 @@
 package com.cinurawa.propertioid.ui.pages.home
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
+import com.cinurawa.propertioid.ui.organisms.HomeTab
+import com.cinurawa.propertioid.ui.utils.DataProvider
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +34,11 @@ class HomeViewModel
 
     private var _error = MutableStateFlow("")
     val error = _error
+
+    val listPropertyType = DataProvider.listPropertyType
+    var selectedMenu = mutableStateOf(HomeTab.Beli)
+    var selectedPropertyType = mutableStateOf("")
+    var keyword = mutableStateOf("")
 
     private fun getListProperty() {
         viewModelScope.launch {
