@@ -7,6 +7,7 @@ import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 import com.cinurawa.propertioid.data.remote.api.ApiService
 import com.cinurawa.propertioid.utils.Resource
+import com.cinurawa.propertioid.utils.enum.PropertyType
 import com.cinurawa.propertioid.utils.toModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,6 +24,35 @@ class MainRepositoryImpl @Inject constructor(
             emit(Resource.Loading())
             try {
                 val response = apiService.getAllProperty()
+                emit(Resource.Success(response.propertyData.map { it.toModel() }))
+            } catch (e: HttpException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "HttpException: ${e.message}")
+            }catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
+                Log.d("GALIH", "IOException: ${e.message}")
+            }catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "Exception: ${e.message}")
+            }
+        }
+    override fun getAllProperty(
+        keyword:String,
+        propertyType:String,
+        listingType:String,
+    ): Flow<Resource<List<Property>>> =
+        flow{
+            emit(Resource.Loading())
+            try {
+                val response = apiService.getAllProperty(
+                    title = keyword,
+                    proTypeId = PropertyType.fromValue(propertyType)?.id ?: 0,
+                    listingType = listingType
+                )
                 emit(Resource.Success(response.propertyData.map { it.toModel() }))
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
