@@ -25,7 +25,8 @@ fun PropertySearchBox(
     onOptionSelected: (String) -> Unit = {},
     selectedOption: String = "",
     keyword: String = "",
-    onKeywordChanged: (String) -> Unit = {}
+    onKeywordChanged: (String) -> Unit = {},
+    onSearchClick: () -> Unit = {}
 ) {
     Card(
         modifier = modifier
@@ -58,7 +59,7 @@ fun PropertySearchBox(
             PrimaryButton(
                 title = "Cari",
                 trailingIcon = Icons.Default.Search,
-                onClick = {}
+                onClick = onSearchClick
             )
         }
     }
