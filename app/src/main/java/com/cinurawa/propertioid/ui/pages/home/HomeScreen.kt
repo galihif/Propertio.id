@@ -106,9 +106,9 @@ fun HomeScreen(
                     onKeywordChanged = { viewModel.keyword.value = it },
                     onSearchClick = {
                         onSearch(
-                            viewModel.keyword.value,
-                            viewModel.selectedPropertyType.value,
-                            viewModel.selectedMenu.value
+                            viewModel.keyword.value.ifEmpty { "default" },
+                            viewModel.selectedPropertyType.value.ifEmpty { "default" },
+                            viewModel.selectedMenu.value.ifEmpty { "default" }
                         )
                     }
                 )
