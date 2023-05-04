@@ -29,7 +29,7 @@ fun ProjectScreen(
     val context = LocalContext.current
 
     var selectedOption by remember { mutableStateOf("") }
-    val listOptions = DataProvider.typeList()
+    val listOptions = DataProvider.listPropertyType
     var keyword by remember { mutableStateOf("") }
 
     val listProject by remember{
