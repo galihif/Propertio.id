@@ -106,10 +106,26 @@ fun PropertioidApp(
                     onLihatSemuaProjectClicked = {
                         navController.navigate(Screen.Project.route)
                     },
+                    onSearch = {keyword, selectedProType, listingType ->  
+                        navController.navigate(Screen.Properti.createRoute(keyword,selectedProType,listingType))
+                    }
                 )
             }
-            composable(Screen.Properti.route) {
+            composable(
+                Screen.Properti.route,
+                arguments = listOf(
+                    navArgument("keyword") { type = NavType.StringType },
+                    navArgument("propertyType") { type = NavType.StringType },
+                    navArgument("listingType") { type = NavType.StringType },
+                )
+            ) {
+                val keyword = it.arguments?.getString("keyword")
+                val selectedProType = it.arguments?.getString("propertyType")
+                val listingType = it.arguments?.getString("listingType")
                 PropertiScreen(
+                    keyword = keyword ?: "",
+                    selectedProType = selectedProType?:"",
+                    listingType = listingType?:"",
                     onPropertiClicked = {
                         navController.navigate(Screen.DetailProperti.createRoute(it.slug))
                     }
