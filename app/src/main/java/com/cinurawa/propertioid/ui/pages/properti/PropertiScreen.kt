@@ -68,9 +68,12 @@ fun PropertiScreen(
                 ) {
                     PropertySearchBox(
                         modifier = Modifier.padding(24.dp),
-                        options = viewModel.listPropertyType,
-                        onOptionSelected = { viewModel.propertyType.value = it },
-                        selectedOption = viewModel.propertyType.value,
+                        proTypeOptions = viewModel.listPropertyType,
+                        onProTypeSelected = { viewModel.propertyType.value = it },
+                        selectedProType = viewModel.propertyType.value,
+                        listingTypeOptions = viewModel.listListingType,
+                        onListingTypeSelected = { viewModel.listingType.value = it },
+                        selectedListingType = viewModel.listingType.value,
                         keyword = viewModel.keyword.value,
                         onKeywordChanged = { viewModel.keyword.value = it }
                     )
