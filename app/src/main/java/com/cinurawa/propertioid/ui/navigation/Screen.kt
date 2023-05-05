@@ -12,6 +12,14 @@ sealed class Screen(val route: String, val title: String? = null) {
             listingType: String
         ) = "Properti/$keyword/$propertyType/$listingType"
     }
+
+
+    object Project : Screen("Project/{keyword}/{propertyType}", "Project"){
+        fun createRoute(
+            keyword: String,
+            propertyType: String
+        ) = "Project/$keyword/$propertyType"
+    }
     object DetailProperti : Screen("DetailProperti/{slug}") {
         fun createRoute(slug: String) = "DetailProperti/$slug"
     }
@@ -34,7 +42,6 @@ sealed class Screen(val route: String, val title: String? = null) {
         fun createRoute(url: String) = "Webview/$url"
     }
 
-    object Project : Screen("Project")
     object Agent : Screen("Agent")
     object Developer : Screen("Developer")
 }
