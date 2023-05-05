@@ -10,9 +10,10 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalMaterialApi
 @Composable
-fun TipePropertiDropdown(
+fun SelectDropdown(
     options: List<String>,
     selectedOption: String = "",
+    label: String = "",
     onOptionSelected: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -26,9 +27,9 @@ fun TipePropertiDropdown(
         OutlinedTextField(
             value = if (selectedOption == "") "" else selectedOption,
             onValueChange = {},
-            placeholder = { Text(text = "Pilih Tipe Properti") },
+            placeholder = { Text(text = label) },
             readOnly = true,
-            label = { Text(text = "Pilih Tipe Properti") },
+            label = { Text(text = label) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(
                     expanded = expanded
