@@ -62,9 +62,9 @@ fun ProjectScreen(
                 ) {
                     PropertySearchBox(
                         modifier = Modifier.padding(24.dp),
-                        options = listOptions,
-                        onOptionSelected = { selectedOption = it },
-                        selectedOption = selectedOption,
+                        proTypeOptions = listOptions,
+                        onProTypeSelected = { selectedOption = it },
+                        selectedProType = selectedOption,
                         keyword = keyword,
                         onKeywordChanged = { keyword = it }
                     )
