@@ -88,6 +88,30 @@ class MainRepositoryImpl @Inject constructor(
             }
         }
 
+    override fun getAllProject(
+        keyword: String,
+        propertyType: String
+    ): Flow<Resource<List<Project>>> =
+        flow{
+            emit(Resource.Loading())
+            try {
+                val response = apiService.getAllProject(
+                    title = keyword,
+                    proTypeId = PropertyType.fromValue(propertyType)?.id ?: 0
+                )
+                emit(Resource.Success(response.data.map { it.toModel() }))
+            } catch (e: HttpException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "HttpException: ${e.message}")
+            }catch (e: IOException) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "IOException: ${e.message}")
+            }catch (e: Exception) {
+                emit(Resource.Error(e.message ?: "Error"))
+                Log.d("GALIH", "Exception: ${e.message}")
+            }
+        }
+
     override fun getAllAgent(): Flow<Resource<List<Agent>>> =
         flow{
             emit(Resource.Loading())
