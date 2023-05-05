@@ -19,6 +19,14 @@ interface ApiService {
     @GET("mobile/get_all_project_active")
     suspend fun getAllProject(): GetAllProjectDto
 
+    @GET("mobile/get_all_project_active")
+    suspend fun getAllProject(
+        @Query("title") title: String,
+        @Query("property_type_id") proTypeId: Int,
+    ): GetAllProjectDto
+
+
+
     @GET("mobile/get_all_agent")
     suspend fun getAllAgent(): GetAllAgentDto
 
