@@ -15,15 +15,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
-import com.cinurawa.propertioid.ui.molecules.TipePropertiDropdown
+import com.cinurawa.propertioid.ui.molecules.SelectDropdown
 
 @ExperimentalMaterialApi
 @Composable
 fun PropertySearchBox(
     modifier: Modifier = Modifier,
-    options: List<String> = listOf("Option 1", "Option 2", "Option 3"),
-    onOptionSelected: (String) -> Unit = {},
-    selectedOption: String = "",
+    proTypeOptions: List<String>,
+    onProTypeSelected: (String) -> Unit = {},
+    selectedProType: String = "",
+    listingTypeOptions: List<String> = listOf(),
+    onListingTypeSelected: (String) -> Unit = {},
+    selectedListingType: String = "",
     keyword: String = "",
     onKeywordChanged: (String) -> Unit = {},
     onSearchClick: () -> Unit = {}
@@ -40,13 +43,23 @@ fun PropertySearchBox(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            TipePropertiDropdown(
-                options = options,
-                selectedOption = selectedOption,
+            SelectDropdown(
+                options = proTypeOptions,
+                selectedOption = selectedProType,
+                label = "Tipe Properti",
                 onOptionSelected = { newOption ->
-                    onOptionSelected(newOption)
+                    onProTypeSelected(newOption)
                 }
             )
+            SelectDropdown(
+                options = listingTypeOptions,
+                selectedOption = selectedListingType,
+                label = "Tipe Listing",
+                onOptionSelected = { newOption ->
+                    onListingTypeSelected(newOption)
+                }
+            )
+
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(6.dp),
