@@ -15,6 +15,10 @@ interface MainRepository {
         listingType: String
     ): Flow<Resource<List<Property>>>
     fun getAllProject(): Flow<Resource<List<Project>>>
+    fun getAllProject(
+        keyword: String,
+        propertyType: String,
+    ): Flow<Resource<List<Project>>>
     fun getAllAgent(): Flow<Resource<List<Agent>>>
     fun getAllDeveloper(): Flow<Resource<List<Developer>>>
 
