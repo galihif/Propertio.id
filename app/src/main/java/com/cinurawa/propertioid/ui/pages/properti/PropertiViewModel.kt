@@ -28,6 +28,7 @@ class PropertiViewModel
     val error = _error
 
     val listPropertyType = DataProvider.listPropertyType
+    val listListingType = DataProvider.listListingType
     var keyword = mutableStateOf("")
     var propertyType = mutableStateOf("")
     var listingType = mutableStateOf("")
