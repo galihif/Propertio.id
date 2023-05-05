@@ -85,30 +85,23 @@ fun HomeScreen(
             }
             item {
                 Spacer(modifier = Modifier.height(24.dp))
-                HomeTab(
-                    modifier = Modifier.semantics {
-                        contentDescription = "home_tab"
-                    },
-                    selectedMenu = viewModel.selectedMenu.value,
-                    onMenuSelected = { viewModel.selectedMenu.value = it }
-                )
-            }
-            item {
-                Spacer(modifier = Modifier.height(24.dp))
                 PropertySearchBox(
                     Modifier.semantics {
                         contentDescription = "home_search"
                     },
-                    options = viewModel.listPropertyType,
-                    onOptionSelected = { viewModel.selectedPropertyType.value = it },
-                    selectedOption = viewModel.selectedPropertyType.value,
+                    proTypeOptions = viewModel.listPropertyType,
+                    onProTypeSelected = { viewModel.selectedPropertyType.value = it },
+                    selectedProType = viewModel.selectedPropertyType.value,
+                    listingTypeOptions = viewModel.listListingType,
+                    onListingTypeSelected = { viewModel.selectedListingType.value = it },
+                    selectedListingType = viewModel.selectedListingType.value,
                     keyword = viewModel.keyword.value,
                     onKeywordChanged = { viewModel.keyword.value = it },
                     onSearchClick = {
                         onSearch(
                             viewModel.keyword.value.ifEmpty { "default" },
                             viewModel.selectedPropertyType.value.ifEmpty { "default" },
-                            viewModel.selectedMenu.value.ifEmpty { "default" }
+                            viewModel.selectedListingType.value.ifEmpty { "default" }
                         )
                     }
                 )
