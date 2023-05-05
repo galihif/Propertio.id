@@ -44,7 +44,7 @@ class PropertiViewModel
         this.keyword.value = if (keyword == "default") "" else keyword
         this.propertyType.value = if (propertyType == "default") "" else propertyType
         this.listingType.value = if (listingType == "default") "" else listingType
-        getSearchProperty()
+        searchProperty()
     }
 
 
@@ -68,7 +68,7 @@ class PropertiViewModel
         }
     }
 
-    private fun getSearchProperty() {
+    fun searchProperty() {
         viewModelScope.launch {
             repo.getAllProperty(
                 keyword = keyword.value,
