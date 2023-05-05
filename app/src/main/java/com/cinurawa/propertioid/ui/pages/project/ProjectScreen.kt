@@ -17,20 +17,18 @@ import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.ErrorColumn
 import com.cinurawa.propertioid.ui.organisms.LoadingItem
 import com.cinurawa.propertioid.ui.organisms.ProjectItem
-import com.cinurawa.propertioid.ui.organisms.PropertySearchBox
-import com.cinurawa.propertioid.ui.utils.DataProvider
+import com.cinurawa.propertioid.ui.organisms.ProjectSearchBox
 
 @ExperimentalMaterialApi
 @Composable
 fun ProjectScreen(
+    keyword:String,
+    selectedProType:String,
     onProjectClicked: (Project) -> Unit,
     viewModel: ProjectViewModel = hiltViewModel()
 ) {
+    viewModel.setQuery(keyword,selectedProType)
     val context = LocalContext.current
-
-    var selectedOption by remember { mutableStateOf("") }
-    val listOptions = DataProvider.listPropertyType
-    var keyword by remember { mutableStateOf("") }
 
     val listProject by remember{
         viewModel.listProject
@@ -60,13 +58,14 @@ fun ProjectScreen(
                         .fillMaxWidth(),
                     backgroundColor = MaterialTheme.colors.primary
                 ) {
-                    PropertySearchBox(
+                    ProjectSearchBox(
                         modifier = Modifier.padding(24.dp),
-                        proTypeOptions = listOptions,
-                        onProTypeSelected = { selectedOption = it },
-                        selectedProType = selectedOption,
-                        keyword = keyword,
-                        onKeywordChanged = { keyword = it }
+                        proTypeOptions = viewModel.listPropertyType,
+                        onProTypeSelected = { viewModel.selectedProType.value = it },
+                        selectedProType = viewModel.selectedProType.value,
+                        keyword = viewModel.keyword.value,
+                        onKeywordChanged = { viewModel.keyword.value = it },
+                        onSearchClick = { viewModel.searchProject() }
                     )
                 }
             }
