@@ -32,9 +32,9 @@ val menuItems = listOf(
         route = Screen.Properti.createRoute("default","default","default")
     ),
     MenuItem(
-        title = Screen.Project.route,
+        title = Screen.Project.title?:"",
         icon = Icons.Default.AccountCircle,
-        route = Screen.Project.route
+        route = Screen.Project.createRoute("default","default")
     ),
     MenuItem(
         title = Screen.Agent.route,
