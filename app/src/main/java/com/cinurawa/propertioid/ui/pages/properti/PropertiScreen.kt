@@ -75,7 +75,8 @@ fun PropertiScreen(
                         onListingTypeSelected = { viewModel.listingType.value = it },
                         selectedListingType = viewModel.listingType.value,
                         keyword = viewModel.keyword.value,
-                        onKeywordChanged = { viewModel.keyword.value = it }
+                        onKeywordChanged = { viewModel.keyword.value = it },
+                        onSearchClick = { viewModel.searchProperty() }
                     )
                 }
             }
