@@ -288,12 +288,12 @@ fun DetailPropertiScreen(
                         style = MaterialTheme.typography.h6
                     )
                     Spacer(modifier = Modifier.height(5.dp))
-                    property.dokumen?.forEach { docName ->
+                    property.dokumen?.forEach { doc ->
                         DokumenButton(
                             modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                            title = docName,
+                            title = doc.nama,
                             onClick = {
-                                onDocumentClick(docName)
+                                onDocumentClick(doc.link)
                             }
                         )
                     }
