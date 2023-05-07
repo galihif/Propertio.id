@@ -37,10 +37,8 @@ class PropertiViewModel
     fun setQuery(keyword: String, propertyType: String, listingType: String) {
         if (keyword == "default" && propertyType == "default" && listingType == "default") {
             getListProperty()
-            isSearch.value = false
             return
         }
-        isSearch.value = true
         this.keyword.value = if (keyword == "default") "" else keyword
         this.propertyType.value = if (propertyType == "default") "" else propertyType
         this.listingType.value = if (listingType == "default") "" else listingType
@@ -49,6 +47,7 @@ class PropertiViewModel
 
 
     private fun getListProperty() {
+        isSearch.value = false
         viewModelScope.launch {
             repo.getAllProperty().collect {
                 when (it) {
@@ -69,6 +68,7 @@ class PropertiViewModel
     }
 
     fun searchProperty() {
+        isSearch.value = true
         viewModelScope.launch {
             repo.getAllProperty(
                 keyword = keyword.value,
