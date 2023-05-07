@@ -27,7 +27,7 @@ data class Project(
 
     var listUnit: List<ProjectUnit> = emptyList()
 
-    var dokumen: List<String> = emptyList()
+    var dokumen: List<Dokumen> = emptyList()
     var fasilitas: List<String> = emptyList()
     var infrastruktur: List<Infrastructure> = emptyList()
 
