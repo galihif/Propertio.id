@@ -76,7 +76,7 @@ fun GetDetailPropertyDto.Data.toModel(): Property =
         this.infrastruktur =
             this@toModel.propertyInfrastructure.map { Infrastructure(it.name, it.distance) }
 
-        this.agentImage = this@toModel.agent.user.userDatas.pictureProfile
+        this.agentImage = formatAgentPhotoUrl(this@toModel.agent.user.userDatas.pictureProfile)
         this.agentName = this@toModel.agent.user.userDatas.fullname
         this.agentPhone = this@toModel.agent.user.userDatas.phone
     }
@@ -132,8 +132,9 @@ fun GetDetailProjectDto.Data.toModel(): Project =
         this.fasilitas = this@toModel.projectFacility.map { it.facilityType.name }
         this.infrastruktur = this@toModel.projectInfrastructure.map { Infrastructure(it.name, it.distance) }
 
-        this.agentName = if (this@toModel.contactProject.isNotEmpty()) this@toModel.contactProject[0].name else ""
-        this.agentPhone = if (this@toModel.contactProject.isNotEmpty()) this@toModel.contactProject[0].phone else ""
+        this.agentName = this@toModel.developer.user.userDatas.fullname
+        this.agentPhone = this@toModel.developer.user.userDatas.phone
+        this.agentImage = formatAgentPhotoUrl(this@toModel.developer.user.userDatas.pictureProfile?:"")
 
     }
 
