@@ -268,12 +268,12 @@ fun DetailProjectScreen(
                         style = MaterialTheme.typography.h6
                     )
                     Spacer(modifier = Modifier.height(5.dp))
-                    project.dokumen.forEach { docName ->
+                    project.dokumen.forEach { doc ->
                         DokumenButton(
                             modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                            title = docName,
+                            title = doc.nama,
                             onClick = {
-                                onDokumenClicked(docName)
+                                onDokumenClicked(doc.link)
                             }
                         )
                     }
