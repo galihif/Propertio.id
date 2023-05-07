@@ -208,7 +208,7 @@ data class GetDetailProjectDto(
                     @SerializedName("phone")
                     val phone: String,
                     @SerializedName("picture_profile")
-                    val pictureProfile: Any?,
+                    val pictureProfile: String?,
                     @SerializedName("province")
                     val province: String,
                     @SerializedName("updated_at")
