@@ -25,7 +25,7 @@ import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.PropertyAttributeText
 import com.cinurawa.propertioid.ui.molecules.*
-import com.cinurawa.propertioid.ui.organisms.AgentContactRow
+import com.cinurawa.propertioid.ui.organisms.ContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
@@ -355,8 +355,9 @@ fun DetailPropertiScreen(
                 }
             } // Infrastruktur
             item {
-                AgentContactRow(
+                ContactRow(
                     image = property.agentImage,
+                    desc = "Agen",
                     name = property.agentName,
                     phone = property.agentPhone,
                     whatsapp = property.agentPhone,
