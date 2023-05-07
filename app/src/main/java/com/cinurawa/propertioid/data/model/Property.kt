@@ -42,7 +42,7 @@ data class Property(
     var latitude: Double = 0.0
     var longitude: Double = 0.0
 
-    var dokumen: List<String>? = null
+    var dokumen: List<Dokumen>? = null
     var fasilitas: List<String>? = null
     var infrastruktur: List<Infrastructure>? = null
 
