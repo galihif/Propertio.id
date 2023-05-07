@@ -54,7 +54,8 @@ fun PropertyItem(
         IconText(
             leadingIcon = Icons.Default.LocationOn,
             text = data?.address ?: "Address",
-            iconTint = Red500
+            iconTint = Red500,
+            maxLines = 2
         )
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
