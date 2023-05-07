@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.cinurawa.propertioid.utils.formatHarga
 
 @Composable
 fun HargaColumn(
@@ -21,7 +22,7 @@ fun HargaColumn(
             style = MaterialTheme.typography.body2
         )
         Text(
-            text = "Rp. $harga",
+            text = "Rp ${formatHarga(harga.toLong())}",
             style = MaterialTheme.typography.h6,
             color = MaterialTheme.colors.primary
         )
@@ -43,7 +44,7 @@ fun HargaColumn(
             style = MaterialTheme.typography.body2
         )
         Text(
-            text = "Rp. $hargaTerendah - Rp. $hargaTertinggi",
+            text = "Rp ${formatHarga(hargaTerendah.toLong())} - Rp. ${formatHarga(hargaTertinggi.toLong())}",
             style = MaterialTheme.typography.h6,
             color = MaterialTheme.colors.primary
         )
