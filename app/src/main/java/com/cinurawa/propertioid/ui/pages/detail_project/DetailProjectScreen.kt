@@ -335,7 +335,7 @@ fun DetailProjectScreen(
             } // Infrastruktur
             item {
                 AgentContactRow(
-                    image = "R.drawable.jisoo",
+                    image = project.agentImage,
                     name = project.agentName,
                     phone = project.agentPhone,
                     whatsapp = project.agentPhone,
