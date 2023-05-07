@@ -71,7 +71,7 @@ fun GetDetailPropertyDto.Data.toModel(): Property =
         this.latitude = this@toModel.latitude
         this.longitude = this@toModel.longitude
 
-        this.dokumen = this@toModel.propertyDocument.map { it.file }
+        this.dokumen = this@toModel.propertyDocument.map { Dokumen(it.name, it.file) }
         this.fasilitas = this@toModel.propertyFacility.map { it.facilityType.name }
         this.infrastruktur =
             this@toModel.propertyInfrastructure.map { Infrastructure(it.name, it.distance) }
@@ -128,7 +128,7 @@ fun GetDetailProjectDto.Data.toModel(): Project =
             )
         }
 
-        this.dokumen = this@toModel.projectDocument.map { it.file }
+        this.dokumen = this@toModel.projectDocument.map { Dokumen(it.name, it.file) }
         this.fasilitas = this@toModel.projectFacility.map { it.facilityType.name }
         this.infrastruktur = this@toModel.projectInfrastructure.map { Infrastructure(it.name, it.distance) }
 
