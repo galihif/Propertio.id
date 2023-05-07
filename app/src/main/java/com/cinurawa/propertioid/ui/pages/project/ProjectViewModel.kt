@@ -25,6 +25,7 @@ class ProjectViewModel
     private var _error = MutableStateFlow("")
     val error = _error
 
+    val isSearch = mutableStateOf(false)
     val listPropertyType = DataProvider.listPropertyType
     val keyword = mutableStateOf("")
     val selectedProType = mutableStateOf("")
@@ -38,6 +39,7 @@ class ProjectViewModel
         searchProject()
     }
     fun searchProject() {
+        isSearch.value = true
         viewModelScope.launch {
             repo.getAllProject(keyword.value, selectedProType.value).collect {
                 when (it) {
@@ -59,6 +61,7 @@ class ProjectViewModel
     }
 
     private fun getListProject() {
+        isSearch.value = false
         viewModelScope.launch {
             repo.getAllProject().collect {
                 when (it) {
