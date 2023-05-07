@@ -24,7 +24,7 @@ import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
 import com.cinurawa.propertioid.ui.molecules.*
-import com.cinurawa.propertioid.ui.organisms.AgentContactRow
+import com.cinurawa.propertioid.ui.organisms.ContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.ProjectUnitItem
 import com.cinurawa.propertioid.ui.organisms.VideoPlayer
@@ -334,8 +334,9 @@ fun DetailProjectScreen(
                 }
             } // Infrastruktur
             item {
-                AgentContactRow(
+                ContactRow(
                     image = project.agentImage,
+                    desc = "Developer",
                     name = project.agentName,
                     phone = project.agentPhone,
                     whatsapp = project.agentPhone,
