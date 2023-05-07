@@ -71,7 +71,7 @@ fun ProjectScreen(
             }
             item {
                 TitleSectionText(
-                    title = "List Iklan Project",
+                    title = if (viewModel.isSearch.value) "Hasil Pencarian" else "Project",
                     modifier = Modifier.fillMaxWidth()
                 )
             }
