@@ -2,6 +2,11 @@ package com.cinurawa.propertioid.utils
 
 import android.net.Uri
 
+fun formatHarga(value: Long): String {
+    return String.format("%,d", value).replace(",", ".")
+}
+
+
 fun formatAgentPhotoUrl(id: String): String =
     "https://dev.propertio.id/data/image/users//$id"
 
