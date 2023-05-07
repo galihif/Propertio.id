@@ -6,6 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -23,7 +24,9 @@ fun TitleDetailColumn(
         if (detail.isNotEmpty()) {
             Text(
                 text = detail,
-                style = MaterialTheme.typography.body2
+                style = MaterialTheme.typography.body2,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
