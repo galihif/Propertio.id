@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -19,7 +20,8 @@ fun IconText(
     text:String,
     trailingIcon:ImageVector?=null,
     iconTint:Color = Color.Gray,
-    spacing:Int = 5
+    spacing:Int = 5,
+    maxLines:Int = 5
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(spacing.dp),
@@ -29,7 +31,11 @@ fun IconText(
         if (leadingIcon!=null){
             Icon(imageVector = leadingIcon, contentDescription = "", tint = iconTint)
         }
-        Text(text = text, style = MaterialTheme.typography.body2, color = Color.Gray)
+        Text(text = text,
+            style = MaterialTheme.typography.body2,
+            maxLines = maxLines,
+            overflow = TextOverflow.Ellipsis,
+            color = Color.Gray)
         if (trailingIcon!=null){
             Icon(imageVector = trailingIcon, contentDescription = "", tint = iconTint)
         }
