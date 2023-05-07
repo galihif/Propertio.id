@@ -12,8 +12,9 @@ import com.cinurawa.propertioid.ui.atoms.MyImage
 import com.cinurawa.propertioid.ui.molecules.ContactCard
 
 @Composable
-fun AgentContactRow(
+fun ContactRow(
     modifier: Modifier = Modifier,
+    desc:String,
     image: String,
     name: String,
     phone: String,
@@ -45,7 +46,7 @@ fun AgentContactRow(
                 style = MaterialTheme.typography.h6,
             )
             Text(
-                text = "Agen Properti",
+                text = desc,
                 style = MaterialTheme.typography.body1,
             )
             ContactCard(
