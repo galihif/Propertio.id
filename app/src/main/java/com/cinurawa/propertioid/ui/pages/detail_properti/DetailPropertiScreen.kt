@@ -119,7 +119,7 @@ fun DetailPropertiScreen(
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     )
-                    IconTextBadge(text = "Properti Kode : ${property.propertyCode}", leadingIcon = null)
+                    IconTextBadge(text = "Kode Properti : ${property.propertyCode}", leadingIcon = null)
                 }
             } // Judul
             item {
