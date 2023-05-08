@@ -35,7 +35,6 @@ import com.cinurawa.propertioid.ui.theme.PropertioidTheme
 import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
 import com.cinurawa.propertioid.utils.decodeUrl
 import com.cinurawa.propertioid.utils.encodeUrl
-import com.cinurawa.propertioid.utils.formatPropertyDocumentUrl
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -132,8 +131,8 @@ fun PropertioidApp(
                     keyword = keyword ?: "",
                     selectedProType = selectedProType ?: "",
                     listingType = listingType ?: "",
-                    onPropertiClicked = {
-                        navController.navigate(Screen.DetailProperti.createRoute(it.slug))
+                    onPropertiClicked = {prop->
+                        navController.navigate(Screen.DetailProperti.createRoute(prop.slug))
                     }
                 )
             }
@@ -149,8 +148,8 @@ fun PropertioidApp(
                 ProjectScreen(
                     keyword = keyword ?: "",
                     selectedProType = selectedProType ?: "",
-                    onProjectClicked = {
-                        navController.navigate(Screen.DetailProject.createRoute(it.slug))
+                    onProjectClicked = {proj ->
+                        navController.navigate(Screen.DetailProject.createRoute(proj.slug))
                     }
                 )
             }
@@ -197,10 +196,6 @@ fun PropertioidApp(
                     onVirtualOrSiteplanClicked = { url ->
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
                     },
-                    onDokumenClicked = { url ->
-                        val docUrl = formatPropertyDocumentUrl(url)
-                        navController.navigate(Screen.Webview.createRoute(encodeUrl(docUrl)))
-                    }
                 )
             }
             composable(
