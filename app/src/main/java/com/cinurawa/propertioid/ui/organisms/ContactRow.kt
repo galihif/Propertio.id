@@ -18,10 +18,11 @@ fun ContactRow(
     image: String,
     name: String,
     phone: String,
-    whatsapp: String,
+    onPhoneClick: () -> Unit = {},
+    onWhatsappClick: () -> Unit = {},
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .padding(horizontal = 24.dp),
@@ -52,13 +53,13 @@ fun ContactRow(
             ContactCard(
                 text = phone,
                 leadingIcon = R.drawable.ic_phone,
-                onClick = {}
+                onClick = onPhoneClick
             )
             ContactCard(
                 text = "Chat via Whatsapp",
                 leadingIcon = R.drawable.ic_wa,
                 bgColor = Color(0xFFF6F6F6),
-                onClick = {}
+                onClick = onWhatsappClick
             )
         }
     }
