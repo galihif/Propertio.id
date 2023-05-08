@@ -43,7 +43,6 @@ fun DetailProjectScreen(
     viewModel: DetailProjectViewModel = hiltViewModel(),
     onUnitClicked: (ProjectUnit) -> Unit = {},
     onVirtualOrSiteplanClicked: (String) -> Unit = {},
-    onDokumenClicked: (String) -> Unit = {},
 ) {
     viewModel.setSlug(slug)
     val context = LocalContext.current
@@ -273,7 +272,7 @@ fun DetailProjectScreen(
                             modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
                             title = doc.nama,
                             onClick = {
-                                onDokumenClicked(doc.link)
+                                viewModel.openDokumen(context, doc.link)
                             }
                         )
                     }
@@ -339,8 +338,12 @@ fun DetailProjectScreen(
                     desc = "Developer",
                     name = project.agentName,
                     phone = project.agentPhone,
-                    onPhoneClick = {},
-                    onWhatsappClick = {}
+                    onPhoneClick = {
+                        viewModel.callNumber(context, project.agentPhone)
+                    },
+                    onWhatsappClick = {
+                        viewModel.openWhatsapp(context, project.agentPhone)
+                    },
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
