@@ -178,10 +178,6 @@ fun PropertioidApp(
                     onVirtualTourClick = {
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(it)))
                     },
-                    onDocumentClick = {
-                        val docUrl = formatPropertyDocumentUrl(it)
-                        navController.navigate(Screen.Webview.createRoute(encodeUrl(docUrl)))
-                    }
                 )
             }
             composable(
