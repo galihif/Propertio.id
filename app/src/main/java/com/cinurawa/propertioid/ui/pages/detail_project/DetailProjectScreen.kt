@@ -111,7 +111,7 @@ fun DetailProjectScreen(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(text = project.name, fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                    IconTextBadge(text = "Unit Kode : ${project.code}", leadingIcon = null)
+                    IconTextBadge(text = "Kode Proyek : ${project.code}", leadingIcon = null)
                 }
             } // Title
             item {
