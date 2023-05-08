@@ -339,7 +339,8 @@ fun DetailProjectScreen(
                     desc = "Developer",
                     name = project.agentName,
                     phone = project.agentPhone,
-                    whatsapp = project.agentPhone,
+                    onPhoneClick = {},
+                    onWhatsappClick = {}
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
