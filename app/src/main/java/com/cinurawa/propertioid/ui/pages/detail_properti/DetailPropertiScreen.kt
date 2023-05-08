@@ -41,7 +41,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 fun DetailPropertiScreen(
     slug: String,
     onVirtualTourClick: (String) -> Unit = {},
-    onDocumentClick: (String) -> Unit = {},
     viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
     viewModel.setSlug(slug)
@@ -293,7 +292,7 @@ fun DetailPropertiScreen(
                             modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
                             title = doc.nama,
                             onClick = {
-                                onDocumentClick(doc.link)
+                                viewModel.openDokumen(context, doc.link)
                             }
                         )
                     }
@@ -360,7 +359,12 @@ fun DetailPropertiScreen(
                     desc = "Agen",
                     name = property.agentName,
                     phone = property.agentPhone,
-                    whatsapp = property.agentPhone,
+                    onPhoneClick = {
+                        viewModel.callNumber(context, property.agentPhone)
+                    },
+                    onWhatsappClick = {
+                        viewModel.openWhatsapp(context, property.agentPhone)
+                    }
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
