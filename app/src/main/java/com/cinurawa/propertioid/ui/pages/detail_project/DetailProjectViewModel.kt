@@ -10,6 +10,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.getEmptyProject
+import com.cinurawa.propertioid.ui.utils.IntentHelper
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
 import com.cinurawa.propertioid.utils.formatGmapsUri
@@ -93,7 +94,15 @@ class DetailProjectViewModel
             player.addMediaItem(MediaItem.fromUri(_videoUri))
         }
     }
-
+    fun openDokumen(context: Context,link:String){
+        IntentHelper.openDokumen(context,link)
+    }
+    fun openWhatsapp(context: Context, number: String){
+        IntentHelper.openWhatsapp(context,number)
+    }
+    fun callNumber(context: Context, number: String){
+        IntentHelper.callNumber(context,number)
+    }
     override fun onCleared() {
         super.onCleared()
         player.release()
