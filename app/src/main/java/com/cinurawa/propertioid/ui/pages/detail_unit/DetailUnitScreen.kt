@@ -83,7 +83,7 @@ fun DetailUnitScreen(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(text = data.name, fontWeight = FontWeight.Bold, fontSize = 20.sp)
-                    IconTextBadge(text = "Unit Kode : ${data.code}", leadingIcon = null)
+                    IconTextBadge(text = "Kode Unit : ${data.code}", leadingIcon = null)
                 }
             } // Title
             item {
