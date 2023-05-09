@@ -1,0 +1,132 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package data {
+    interface MainRepository {
+     + getAllProperty(): List<Property>
+     + getAllProject(): List<Project>
+     + getAllAgent(): List<Agent>
+     + getAllDeveloper(): List<Developer>
+    }
+
+    interface ApiService {
+        + getAllProperty(): ApiResponse
+        + getAllProject(): ApiResponse
+        + getAllAgent(): ApiResponse
+        + getAllDeveloper(): ApiResponse
+    }
+
+    class MainRepositoryImpl {
+        - apiService: ApiService
+        + MainRepositoryImpl(apiService: ApiService)
+    }
+}
+
+class ViewModel {
+    - repo: MainRepository
+    + ViewModel(repo: MainRepository)
+}
+class Screen {
+    - viewModel: ViewModel
+    + Screen(viewModel: ViewModel)
+}
+package model {
+    class Property{
+    - id: Int
+        - slug: String
+        - name: String
+        - desc: String
+        - address: String
+        - price: Int
+        - photosUrl: List<String>
+        - type: String
+        - listingType: String
+        - certificate: String
+        - floor: Int
+        - surfaceArea: Int
+        - buildingArea: Int
+        - bedroom: Int
+        - bathroom: Int
+        - garage: Int
+        - carport: Int
+
+    }
+    class Project {
+        - id: Int
+        - slug: String
+        - name: String
+        - desc: String
+        - concept: String
+        - address: String
+        - startPrice: Int
+        - finalPrice: Int
+        - code: String
+        - photosUrl: List<String>
+        - type: String
+        - certificate: String
+    }
+
+    class Agent {
+        - id: Int
+        - name: String
+        - desc: String
+        - address: String
+        - photoUrl: String
+        - propertyCount: Int
+        - propertySold: Int
+        - propertyRented: Int
+        - phone: String
+        - propertyList: List<Property>
+    }
+
+    class Developer {
+        - id: Int
+        - name: String
+        - address: String
+        - imageUrl: String
+        - projectCount: Int
+        - phone: String
+        - projectList: List<Project>
+    }
+}
+package di {
+    abstract class RepositoryModule {
+        <<Module>>
+        + bindsMainRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository
+    }
+
+    class RemoteModule {
+        <<Module>>
+        + provideApiService(): ApiService
+    }
+}
+
+class SingletonComponent {
+    <<InstallIn>>
+}
+
+interface MainRepository {
+}
+
+class MainRepositoryImpl {
+}
+
+SingletonComponent --> di.RepositoryModule
+SingletonComponent --> di.RemoteModule
+di.RemoteModule ..> data.ApiService : creates
+di.RepositoryModule --> data.MainRepository : binds
+di.RepositoryModule --> data.MainRepositoryImpl : creates
+data.MainRepository <|-- data.MainRepositoryImpl : implements
+
+model.Agent --> model.Property : 0..*
+model.Developer --> model.Project : 0..*
+data.MainRepository --> model.Property
+data.MainRepository --> model.Project
+data.MainRepository --> model.Agent
+data.MainRepository --> model.Developer
+data.MainRepositoryImpl --> data.ApiService : 1
+ViewModel --> data.MainRepository
+Screen --> ViewModel
+
+
+@enduml
