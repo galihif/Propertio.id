@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+|User|
+start
+:Membuka app;
+|App|
+:Menampilkan Halaman Home;
+|User|
+:Membuka halaman proyek;
+|App|
+:Menampilkan halaman proyek;
+|User|
+:Mengisi tipe proyek, dan keyword;
+:Menekan tombol cari;
+|App|
+:Menampilkan hasil pencarian proyek;
+|User|
+stop
+@enduml
