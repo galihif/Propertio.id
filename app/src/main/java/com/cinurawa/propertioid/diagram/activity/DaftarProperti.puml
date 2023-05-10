@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+|User|
+start
+:Membuka app;
+|App|
+:Menampilkan Halaman Home;
+|User|
+:Memilih navbar menu;
+|App|
+:Menampilkan daftar menu;
+|User|
+:Memilih menu properti;
+|App|
+:Menampilkan daftar properti;
+|User|
+stop
+@enduml
