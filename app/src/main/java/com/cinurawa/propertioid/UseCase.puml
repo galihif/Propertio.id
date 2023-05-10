@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+actor User
+
+rectangle Propertio {
+    usecase DaftarProperti as (Melihat Daftar Properti)
+    usecase DaftarProyek as (Melihat Daftar Proyek)
+    usecase DaftarUnit as (Melihat Daftar Unit)
+    usecase DaftarAgent as (Melihat Daftar Agent)
+    usecase DaftarPengembang as (Melihat Daftar Pengembang)
+    usecase SearchProperty as (Mencari Properti)
+    usecase SearchProyek as (Mencari Proyek)
+    usecase DetailProperti as (Melihat Detail Properti)
+    usecase DetailProyek as (Melihat Detail Proyek)
+    usecase DetailUnit as (Melihat Detail Unit)
+    usecase DetailAgent as (Melihat Detail Agent)
+    usecase DetailPengembang as (Melihat Detail Pengembang)
+}
+
+User --> DaftarProperti
+User --> DaftarProyek
+User --> DaftarAgent
+User --> DaftarPengembang
+User --> SearchProperty
+User --> SearchProyek
+DaftarProperti <|-- DetailProperti : <<extend>>
+DaftarProyek <|-- DetailProyek : <<extend>>
+DetailProyek <|-- DaftarUnit : <<extend>>
+DaftarUnit <|-- DetailUnit : <<extend>>
+DaftarAgent <|-- DetailAgent : <<extend>>
+DaftarPengembang <|-- DetailPengembang : <<extend>>
+@enduml
