@@ -30,7 +30,7 @@ class ProjectViewModel
     val keyword = mutableStateOf("")
     val selectedProType = mutableStateOf("")
     fun setQuery(keyword: String, selectedProType: String) {
-        if (keyword == "default" && selectedProType == "default"){
+        if (keyword == "default" && selectedProType == "default") {
             getListProject()
             return
         }
@@ -38,6 +38,7 @@ class ProjectViewModel
         this.selectedProType.value = selectedProType
         searchProject()
     }
+
     fun searchProject() {
         isSearch.value = true
         viewModelScope.launch {
@@ -46,11 +47,13 @@ class ProjectViewModel
                     is Resource.Loading -> {
                         _isProjectLoading.value = true
                     }
+
                     is Resource.Success -> {
                         _isProjectLoading.value = false
                         _listProject.value =
                             if (it.data.isNullOrEmpty()) emptyList() else it.data.take(3)
                     }
+
                     is Resource.Error -> {
                         _isProjectLoading.value = false
                         _error.value = it.message ?: "Error"
@@ -68,11 +71,13 @@ class ProjectViewModel
                     is Resource.Loading -> {
                         _isProjectLoading.value = true
                     }
+
                     is Resource.Success -> {
                         _isProjectLoading.value = false
                         _listProject.value =
                             if (it.data.isNullOrEmpty()) emptyList() else it.data.take(3)
                     }
+
                     is Resource.Error -> {
                         _isProjectLoading.value = false
                         _error.value = it.message ?: "Error"
@@ -81,8 +86,4 @@ class ProjectViewModel
             }
         }
     }
-
-
-
-
 }
