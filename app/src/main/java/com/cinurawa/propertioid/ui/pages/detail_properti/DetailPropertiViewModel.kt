@@ -27,7 +27,6 @@ class DetailPropertiViewModel
     val player: Player,
     private val repo: MainRepository
 ) : ViewModel() {
-
     private var _videoUri = ""
 
     private var _locationName = ""
@@ -35,34 +34,32 @@ class DetailPropertiViewModel
     private var _longitude = 0.0
 
     private var _slug = ""
-
     private var _property = MutableStateFlow(emptyProperty())
     val property = _property
-
     private var _loading = MutableStateFlow(false)
     val loading = _loading
-
     private var _error = MutableStateFlow("")
     val error = _error
-
-    fun setSlug(slug: String){
+    fun setSlug(slug: String) {
         _slug = slug
         getDetailProperty()
     }
 
-    private fun getDetailProperty(){
+    private fun getDetailProperty() {
         viewModelScope.launch {
-            repo.getDetailProperty(_slug).collect{
-                when(it){
+            repo.getDetailProperty(_slug).collect {
+                when (it) {
                     is Resource.Loading -> {
                         _loading.value = true
                     }
+
                     is Resource.Success -> {
                         _loading.value = false
-                        if (it.data != null){
+                        if (it.data != null) {
                             _property.value = it.data
                         }
                     }
+
                     is Resource.Error -> {
                         _loading.value = false
                         _error.value = it.message ?: "Error"
@@ -72,14 +69,14 @@ class DetailPropertiViewModel
         }
     }
 
-    fun addLocation(locationName:String,latitude: Double, longitude: Double){
+    fun addLocation(locationName: String, latitude: Double, longitude: Double) {
         _locationName = locationName
         _latitude = latitude
         _longitude = longitude
     }
 
-    fun openMap(context: Context){
-        val mapUri: Uri = formatGmapsUri(_locationName,_latitude,_longitude)
+    fun openMap(context: Context) {
+        val mapUri: Uri = formatGmapsUri(_locationName, _latitude, _longitude)
         val mapIntent = Intent(Intent.ACTION_VIEW, mapUri)
         mapIntent.setPackage("com.google.android.apps.maps")
         context.startActivity(mapIntent)
@@ -90,7 +87,7 @@ class DetailPropertiViewModel
     }
 
     @SuppressLint("StaticFieldLeak")
-    fun addVideoUri(uri: String, context: Context){
+    fun addVideoUri(uri: String, context: Context) {
         try {
             getPlayableYoutubeUrl(context, uri) {
                 _videoUri = it
@@ -104,18 +101,20 @@ class DetailPropertiViewModel
         }
     }
 
-    fun openDokumen(context: Context,link:String){
-        IntentHelper.openDokumen(context,link)
+    fun openDokumen(context: Context, link: String) {
+        IntentHelper.openDokumen(context, link)
     }
-    fun openWhatsapp(context: Context, number: String){
-        IntentHelper.openWhatsapp(context,number)
+
+    fun openWhatsapp(context: Context, number: String) {
+        IntentHelper.openWhatsapp(context, number)
     }
-    fun callNumber(context: Context, number: String){
-        IntentHelper.callNumber(context,number)
+
+    fun callNumber(context: Context, number: String) {
+        IntentHelper.callNumber(context, number)
     }
+
     override fun onCleared() {
         super.onCleared()
         player.release()
     }
-
 }
