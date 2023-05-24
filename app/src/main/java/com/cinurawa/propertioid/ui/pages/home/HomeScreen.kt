@@ -82,7 +82,7 @@ fun HomeScreen(
                         contentDescription = "home_banner"
                     }
                 )
-            }
+            } // banner
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 PropertySearchBox(
@@ -105,7 +105,7 @@ fun HomeScreen(
                         )
                     }
                 )
-            }
+            } // search box
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 HomeCarousel(modifier = Modifier
@@ -114,7 +114,7 @@ fun HomeScreen(
                         contentDescription = "home_carousel"
                     }
                 )
-            }
+            } // carousel
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 TitleSectionText(
@@ -125,14 +125,14 @@ fun HomeScreen(
                         }
                         .fillMaxWidth()
                 )
-            }
+            } // title
             item {
                 if (isPropertyLoading) {
                     Spacer(modifier = Modifier.height(24.dp))
                     LoadingItem()
                     LoadingItem()
                 }
-            }
+            } // loading
             items(listProperty) { property ->
                 Spacer(modifier = Modifier.height(24.dp))
                 PropertyItem(
@@ -140,42 +140,42 @@ fun HomeScreen(
                     onDetailClicked = { onPropertyClicked(property) },
                     data = property
                 )
-            }
+            } // property item
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 LihatSemuaButton(
                     Modifier.fillMaxWidth(),
                     onClick = onLihatSemuaPropertyClicked
                 )
-            }
+            } // lihat semua
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 TitleSectionText(
                     title = "Project Pilihan",
                     modifier = Modifier.fillMaxWidth()
                 )
-            }
+            } // title
             item {
                 if (isProjectLoading) {
                     Spacer(modifier = Modifier.height(24.dp))
                     LoadingItem()
                     LoadingItem()
                 }
-            }
+            } // loading
             items(listProject) {
                 Spacer(modifier = Modifier.height(24.dp))
                 ProjectItem(
                     onDetailClicked = { onProjectClicked(it) },
                     data = it
                 )
-            }
+            } // project item
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 LihatSemuaButton(
                     Modifier.fillMaxWidth(),
                     onClick = onLihatSemuaProjectClicked
                 )
-            }
+            } // lihat semua
         }
     }
 }
