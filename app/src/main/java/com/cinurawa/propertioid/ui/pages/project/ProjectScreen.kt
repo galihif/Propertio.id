@@ -1,13 +1,22 @@
 package com.cinurawa.propertioid.ui.pages.project
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -22,22 +31,22 @@ import com.cinurawa.propertioid.ui.organisms.ProjectSearchBox
 @ExperimentalMaterialApi
 @Composable
 fun ProjectScreen(
-    keyword:String,
-    selectedProType:String,
+    keyword: String,
+    selectedProType: String,
     onProjectClicked: (Project) -> Unit,
     viewModel: ProjectViewModel = hiltViewModel()
 ) {
-    viewModel.setQuery(keyword,selectedProType)
+    viewModel.setQuery(keyword, selectedProType)
     val context = LocalContext.current
 
-    val listProject by remember{
+    val listProject by remember {
         viewModel.listProject
     }.collectAsState()
-    val isLoading by remember{
+    val isLoading by remember {
         viewModel.isProjectLoading
     }.collectAsState()
 
-    val error by remember{
+    val error by remember {
         viewModel.error
     }.collectAsState()
 
@@ -46,9 +55,9 @@ fun ProjectScreen(
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
     }
-    if (error.isNotEmpty()){
+    if (error.isNotEmpty()) {
         ErrorColumn(error = error)
-    }else {
+    } else {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -76,8 +85,8 @@ fun ProjectScreen(
                 )
             }
 
-            item{
-                if(isLoading){
+            item {
+                if (isLoading) {
                     LoadingItem(
                         Modifier.padding(24.dp)
                     )
@@ -91,7 +100,7 @@ fun ProjectScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
-                ){
+                ) {
                     ProjectItem(
                         onDetailClicked = { onProjectClicked(it) },
                         data = it
