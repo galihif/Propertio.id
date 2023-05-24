@@ -31,25 +31,25 @@ fun AgentScreen(
         viewModel.error
     }.collectAsState()
 
-    LaunchedEffect(error){
+    LaunchedEffect(error) {
         if (error.isNotEmpty()) {
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
     }
 
-    if (error.isNotEmpty()){
+    if (error.isNotEmpty()) {
         ErrorColumn(error = error)
-    }else{
+    } else {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-        ){
+        ) {
             item {
                 TitleSectionText(
                     title = "List Agent",
                     modifier = Modifier.fillMaxWidth()
                 )
             }
-            item{
+            item {
                 if (isLoading) {
                     LoadingItem(
                         modifier = Modifier
