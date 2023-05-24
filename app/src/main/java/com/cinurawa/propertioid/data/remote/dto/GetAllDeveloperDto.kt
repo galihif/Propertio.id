@@ -58,13 +58,13 @@ data class GetAllDeveloperDto(
             @SerializedName("id")
             val id: Int,
             @SerializedName("image_cover")
-            val imageCover: Any?,
+            val imageCover: String?,
             @SerializedName("laravel_through_key")
             val laravelThroughKey: Int,
             @SerializedName("phone")
             val phone: String,
             @SerializedName("picture_profile")
-            val pictureProfile: Any?,
+            val pictureProfile: String?,
             @SerializedName("province")
             val province: String,
             @SerializedName("updated_at")
