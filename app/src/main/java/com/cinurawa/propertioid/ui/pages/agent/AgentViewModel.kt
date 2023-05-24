@@ -13,29 +13,27 @@ import javax.inject.Inject
 @HiltViewModel
 class AgentViewModel
 @Inject constructor(
-    private val repo:MainRepository
+    private val repo: MainRepository
 ) : ViewModel() {
-
     private var _listAgent = MutableStateFlow<List<Agent>>(emptyList())
     val listAgent = _listAgent
-
     private var _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading
-
     private var _error = MutableStateFlow("")
     val error = _error
-
-    private fun getListAgent(){
+    private fun getListAgent() {
         viewModelScope.launch {
-            repo.getAllAgent().collect{
-                when(it){
+            repo.getAllAgent().collect {
+                when (it) {
                     is Resource.Loading -> {
                         _isLoading.value = true
                     }
+
                     is Resource.Success -> {
                         _isLoading.value = false
                         if (it.data != null) it.data.also { res -> _listAgent.value = res }
                     }
+
                     is Resource.Error -> {
                         _isLoading.value = false
                         _error.value = it.message ?: "Error"
@@ -48,5 +46,4 @@ class AgentViewModel
     init {
         getListAgent()
     }
-
 }
