@@ -15,16 +15,12 @@ class DeveloperViewModel
 @Inject constructor(
     private val repo: MainRepository
 ) : ViewModel() {
-
     private var _listDeveloper = MutableStateFlow<List<Developer>>(emptyList())
     val listDeveloper = _listDeveloper
-
     private var _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading
-
     private var _error = MutableStateFlow("")
     val error = _error
-
     private fun getListDeveloper(){
         viewModelScope.launch {
             repo.getAllDeveloper().collect {
@@ -46,7 +42,6 @@ class DeveloperViewModel
             }
         }
     }
-
     init {
         getListDeveloper()
     }
