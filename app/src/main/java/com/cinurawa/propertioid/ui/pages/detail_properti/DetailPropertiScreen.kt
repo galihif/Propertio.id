@@ -165,7 +165,9 @@ fun DetailPropertiScreen(
                 HargaShare(
                     harga = property.price,
                     modifier = Modifier.padding(horizontal = 24.dp),
-                    onShareClick = {}
+                    onShareClick = {
+                        viewModel.shareProperty(context)
+                    }
                 )
             } // Harga Share
             item {
