@@ -80,4 +80,16 @@ class HomeScreenTest {
             }
         }
     }
+
+    @Test
+    fun test_search_property() = runTest{
+        composeTestRule.onNodeWithContentDescription("home_search").assertExists()
+        composeTestRule.onNodeWithText("Tipe Properti").performClick()
+        composeTestRule.onNodeWithText("Rumah").performClick()
+        composeTestRule.onNodeWithText("Tipe Listing").performClick()
+        composeTestRule.onNodeWithText("Beli").performClick()
+        composeTestRule.onNodeWithText("Cari properti disini...").performTextInput("Melati")
+        composeTestRule.onNodeWithText("Cari").performClick()
+        composeTestRule.onNodeWithTag("properti_screen").assertExists()
+    }
 }
