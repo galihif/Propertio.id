@@ -24,6 +24,17 @@ fun formatShareMessage(
             "$name \n" +
             "Harga Rp $price \n" +
             "Lihat di https://dev.propertio.id/iklan-properti/detail/$slug"
+fun formatShareMessageUnit(
+    name: String,
+    price: String,
+    slug: String,
+    code: String
+):String =
+    "Yuk cek unit ini di Propertio.id \n" +
+            "$name \n" +
+            "Harga mulai dari Rp $price \n" +
+            "Lihat di https://dev.propertio.id/iklan-project/detail/$slug/unit/$code"
+
 
 fun formatShareMessage(
     name: String,
