@@ -115,7 +115,9 @@ fun DetailUnitScreen(
                     hargaTitle = "Harga mulai dari",
                     harga = data.price,
                     modifier = Modifier.padding(horizontal = 24.dp),
-                    onShareClick = {}
+                    onShareClick = {
+                        viewModel.shareUnit(context,data.name,data.price,data.code)
+                    }
                 )
             } // Harga Share
             item {
