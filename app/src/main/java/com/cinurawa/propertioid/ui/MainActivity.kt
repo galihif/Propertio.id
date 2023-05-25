@@ -100,10 +100,10 @@ fun PropertioidApp(
                         navController.navigate(Screen.DetailProject.createRoute(it.slug))
                     },
                     onLihatSemuaPropertyClicked = {
-                        navController.navigate(Screen.Properti.route)
+                        navController.navigate(Screen.Properti.createRoute("default", "default", "default"))
                     },
                     onLihatSemuaProjectClicked = {
-                        navController.navigate(Screen.Project.route)
+                        navController.navigate(Screen.Project.createRoute("default", "default"))
                     },
                     onSearch = { keyword, selectedProType, listingType ->
                         navController.navigate(
