@@ -93,6 +93,7 @@ class DetailProjectViewModel
     fun addVideoUri(uri: String, context: Context){
         getPlayableYoutubeUrl(context, uri) {
             _videoUri = it
+            player.clearMediaItems()
             player.addMediaItem(MediaItem.fromUri(_videoUri))
         }
     }
