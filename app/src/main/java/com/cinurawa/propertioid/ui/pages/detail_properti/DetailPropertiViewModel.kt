@@ -12,9 +12,11 @@ import androidx.media3.common.Player
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.emptyProperty
 import com.cinurawa.propertioid.ui.utils.IntentHelper
+import com.cinurawa.propertioid.ui.utils.formatGmapsUri
+import com.cinurawa.propertioid.ui.utils.formatHarga
+import com.cinurawa.propertioid.ui.utils.formatShareMessage
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
-import com.cinurawa.propertioid.utils.formatGmapsUri
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -116,5 +118,11 @@ class DetailPropertiViewModel
     override fun onCleared() {
         super.onCleared()
         player.release()
+    }
+
+    fun shareProperty(context: Context) {
+        val propertyName = _property.value.name
+        val propertyPrice = formatHarga(_property.value.price.toLong())
+        IntentHelper.shareToApps(context, formatShareMessage(propertyName, propertyPrice, _slug))
     }
 }
