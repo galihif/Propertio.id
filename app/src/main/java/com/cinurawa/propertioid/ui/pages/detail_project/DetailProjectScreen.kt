@@ -126,7 +126,8 @@ fun DetailProjectScreen(
                     hargaTitle = "Harga mulai dari",
                     hargaTerendah = project.startPrice,
                     hargaTertinggi = project.finalPrice,
-                    modifier = Modifier.padding(horizontal = 24.dp)
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    onShareClick = {}
                 )
             } // Harga Share
             item {
