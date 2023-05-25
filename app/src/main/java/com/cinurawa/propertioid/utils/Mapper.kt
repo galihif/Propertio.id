@@ -2,6 +2,7 @@ package com.cinurawa.propertioid.utils
 
 import com.cinurawa.propertioid.data.model.*
 import com.cinurawa.propertioid.data.remote.dto.*
+import com.cinurawa.propertioid.utils.enum.PropertyType
 
 fun GetAllPropertyDto.PropertyData.toModel(): Property =
     Property(
@@ -95,7 +96,7 @@ fun GetDetailProjectDto.Data.toModel(): Project =
 
         photosUrl = this.projectPhoto.map { it.file },
 
-        type = this.listingPackageType.toString(),
+        type = PropertyType.fromId(this.propertyTypeId)?.value ?: "",
         certificate = this.certificate,
 
         ).apply {
@@ -177,7 +178,7 @@ fun GetAllProjectDto.Data.toModel(): Project =
 
         photosUrl = this.projectPhoto.map { it.file },
 
-        type = if (this.propertyType != null)   this.propertyType.name else "",
+        type = PropertyType.fromId(this.propertyTypeId)?.value ?: "",
         certificate = this.certificate,
     )
 
