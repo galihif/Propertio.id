@@ -19,7 +19,30 @@ class MockRepositoryImpl @Inject constructor() : MainRepository {
         )
     }
 
+    override fun getAllProperty(
+        keyword: String,
+        propertyType: String,
+        listingType: String
+    ): Flow<Resource<List<Property>>> {
+        return flowOf(
+            Resource.Success(
+                DummyData.listProperty()
+            )
+        )
+    }
+
     override fun getAllProject(): Flow<Resource<List<Project>>> {
+        return flowOf(
+            Resource.Success(
+                DummyData.listProject()
+            )
+        )
+    }
+
+    override fun getAllProject(
+        keyword: String,
+        propertyType: String
+    ): Flow<Resource<List<Project>>> {
         return flowOf(
             Resource.Success(
                 DummyData.listProject()
