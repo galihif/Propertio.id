@@ -19,6 +19,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Property
@@ -68,6 +70,7 @@ fun PropertiScreen(
     } else {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.testTag("properti_screen")
         ) {
             item {
                 Card(
