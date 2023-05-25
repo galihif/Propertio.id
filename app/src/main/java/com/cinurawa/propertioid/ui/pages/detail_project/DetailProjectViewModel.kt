@@ -12,6 +12,8 @@ import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.getEmptyProject
 import com.cinurawa.propertioid.ui.utils.IntentHelper
 import com.cinurawa.propertioid.ui.utils.formatGmapsUri
+import com.cinurawa.propertioid.ui.utils.formatHarga
+import com.cinurawa.propertioid.ui.utils.formatShareMessage
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -106,6 +108,14 @@ class DetailProjectViewModel
     override fun onCleared() {
         super.onCleared()
         player.release()
+    }
+
+    fun shareProject(context: Context) {
+        val projectName = project.value.name
+        val startPrice = formatHarga(project.value.startPrice.toLong())
+        val endPrice = formatHarga(project.value.finalPrice.toLong())
+        val message = formatShareMessage(projectName,startPrice,endPrice,_slug)
+        IntentHelper.shareToApps(context,message)
     }
 
 }
