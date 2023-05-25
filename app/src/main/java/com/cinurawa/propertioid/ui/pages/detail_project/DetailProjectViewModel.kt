@@ -14,6 +14,7 @@ import com.cinurawa.propertioid.ui.utils.IntentHelper
 import com.cinurawa.propertioid.ui.utils.formatGmapsUri
 import com.cinurawa.propertioid.ui.utils.formatHarga
 import com.cinurawa.propertioid.ui.utils.formatShareMessage
+import com.cinurawa.propertioid.ui.utils.formatShareMessageUnit
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -118,5 +119,13 @@ class DetailProjectViewModel
         val message = formatShareMessage(projectName,startPrice,endPrice,_slug)
         IntentHelper.shareToApps(context,message)
     }
+
+    fun shareUnit(context: Context, name:String, price:Int,code:String) {
+        val startPrice = formatHarga(price.toLong())
+        val message = formatShareMessageUnit(name, startPrice, _slug,code)
+        IntentHelper.shareToApps(context,message)
+    }
+
+
 
 }
