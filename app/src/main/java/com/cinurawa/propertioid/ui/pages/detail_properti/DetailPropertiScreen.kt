@@ -162,7 +162,11 @@ fun DetailPropertiScreen(
                 )
             } // Lokasi
             item {
-                HargaShare(harga = property.price, modifier = Modifier.padding(horizontal = 24.dp))
+                HargaShare(
+                    harga = property.price,
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    onShareClick = {}
+                )
             } // Harga Share
             item {
                 Text(
