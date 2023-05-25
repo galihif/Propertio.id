@@ -11,9 +11,9 @@ import androidx.media3.common.Player
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.getEmptyProject
 import com.cinurawa.propertioid.ui.utils.IntentHelper
+import com.cinurawa.propertioid.ui.utils.formatGmapsUri
 import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
-import com.cinurawa.propertioid.utils.formatGmapsUri
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
