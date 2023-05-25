@@ -32,9 +32,9 @@ import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
 import com.cinurawa.propertioid.ui.pages.properti.PropertiScreen
 import com.cinurawa.propertioid.ui.pages.webview.WebViewScreen
 import com.cinurawa.propertioid.ui.theme.PropertioidTheme
+import com.cinurawa.propertioid.ui.utils.decodeUrl
+import com.cinurawa.propertioid.ui.utils.encodeUrl
 import com.cinurawa.propertioid.ui.utils.rememberNavDrawerState
-import com.cinurawa.propertioid.utils.decodeUrl
-import com.cinurawa.propertioid.utils.encodeUrl
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
 
