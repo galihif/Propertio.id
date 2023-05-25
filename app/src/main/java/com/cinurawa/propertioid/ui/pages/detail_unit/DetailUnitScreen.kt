@@ -90,7 +90,8 @@ fun DetailUnitScreen(
                 HargaShare(
                     hargaTitle = "Harga mulai dari",
                     harga = data.price,
-                    modifier = Modifier.padding(horizontal = 24.dp)
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    onShareClick = {}
                 )
             } // Harga Share
             item {
