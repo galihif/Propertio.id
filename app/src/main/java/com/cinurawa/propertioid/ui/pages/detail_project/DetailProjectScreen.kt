@@ -127,7 +127,9 @@ fun DetailProjectScreen(
                     hargaTerendah = project.startPrice,
                     hargaTertinggi = project.finalPrice,
                     modifier = Modifier.padding(horizontal = 24.dp),
-                    onShareClick = {}
+                    onShareClick = {
+                        viewModel.shareProject(context)
+                    }
                 )
             } // Harga Share
             item {
