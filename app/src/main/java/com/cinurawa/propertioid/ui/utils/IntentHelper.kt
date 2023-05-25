@@ -20,4 +20,13 @@ object IntentHelper {
         intent.data = Uri.parse("tel:$number")
         context.startActivity(intent)
     }
+
+    fun shareToApps(context: Context, message: String){
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, message)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        val chooser = Intent.createChooser(intent, "Share message with:")
+        context.startActivity(chooser)
+    }
 }
