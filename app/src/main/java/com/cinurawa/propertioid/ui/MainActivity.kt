@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,8 +25,9 @@ import com.cinurawa.propertioid.ui.pages.agent.AgentScreen
 import com.cinurawa.propertioid.ui.pages.detail_agent.DetailAgentScreen
 import com.cinurawa.propertioid.ui.pages.detail_developer.DetailDeveloperScreen
 import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectScreen
+import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectViewModel
 import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
-import com.cinurawa.propertioid.ui.pages.detail_unit.DetailUnitScreen
+import com.cinurawa.propertioid.ui.pages.detail_project.detail_unit.DetailUnitScreen
 import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
@@ -61,6 +63,7 @@ fun PropertioidApp(
 ) {
     val appState = rememberNavDrawerState()
     val navController = rememberNavController()
+    val detailProjectViewModel: DetailProjectViewModel = hiltViewModel()
 
     Scaffold(
         scaffoldState = appState.scaffoldState,
@@ -196,6 +199,7 @@ fun PropertioidApp(
                     onVirtualOrSiteplanClicked = { url ->
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
                     },
+                    viewModel = detailProjectViewModel,
                 )
             }
             composable(
@@ -210,6 +214,7 @@ fun PropertioidApp(
                     onVirtualTourClicked = { url ->
                         navController.navigate(Screen.Webview.createRoute(encodeUrl(url)))
                     },
+                    viewModel = detailProjectViewModel,
                 )
             }
             composable(
