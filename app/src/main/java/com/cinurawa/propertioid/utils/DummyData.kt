@@ -1,5 +1,7 @@
 package com.cinurawa.propertioid.utils
 
+import com.cinurawa.propertioid.data.model.Agent
+import com.cinurawa.propertioid.data.model.Developer
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 
@@ -118,6 +120,66 @@ object DummyData {
 
 
         return projectList
+    }
+
+    fun listAgents(): List<Agent> {
+        val agentList = mutableListOf<Agent>()
+
+        // Dummy agent 1
+        val agent1 = Agent(
+            id = 1,
+            name = "John Doe",
+            desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae lectus eget eros ultrices sodales.",
+            address = "123 Main St, Anytown, USA",
+            photoUrl = "https://i.pravatar.cc/150?img=1",
+            propertyCount = 10,
+            propertySold = 5,
+            propertyRented = 2,
+            phone = "+1 555-555-5555"
+        )
+        agentList.add(agent1)
+
+        // Dummy agent 2
+        val agent2 = Agent(
+            id = 2,
+            name = "Jane Smith",
+            desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae lectus eget eros ultrices sodales.",
+            address = "456 Oak St, Anytown, USA",
+            photoUrl = "https://i.pravatar.cc/150?img=2",
+            propertyCount = 15,
+            propertySold = 8,
+            propertyRented = 3,
+            phone = "+1 555-555-5555"
+        )
+        agentList.add(agent2)
+
+        return agentList
+    }
+
+    fun listDevelopers(): List<Developer> {
+        val developerList = mutableListOf<Developer>()
+
+        // Dummy developer 1
+        val developer1 = Developer(
+            id = 1,
+            name = "Acme Developers",
+            address = "789 Elm St, Anytown, USA",
+            imageUrl = "https://example.com/developer1/logo.png",
+            projectCount = 5
+        )
+        developerList.add(developer1)
+
+        // Dummy developer 2
+        val developer2 = Developer(
+            id = 2,
+            name = "Global Real Estate",
+            address = "1010 Maple St, Anytown, USA",
+            imageUrl = "https://example.com/developer2/logo.png",
+            projectCount = 8
+        )
+        developerList.add(developer2)
+
+        return developerList
     }
 
 }
