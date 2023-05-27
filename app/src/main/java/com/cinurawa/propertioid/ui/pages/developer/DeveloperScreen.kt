@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.ui.atoms.TitleSectionText
@@ -42,6 +43,7 @@ fun DeveloperScreen(
     } else {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.testTag("developer_screen")
         ) {
             item {
                 TitleSectionText(
