@@ -41,11 +41,9 @@ class HomeScreenTest {
     @Test
     fun test_list_property() = runTest {
         composeTestRule.onNodeWithContentDescription("home_screen").apply {
-            onChildren().printToLog("GALIH")
             performTouchInput {
                 swipeUp(durationMillis = 5000)
             }
-            onChildren().printToLog("GALIH AFTER SCROLL")
             performTouchInput {
                 swipeUp(durationMillis = 5000)
             }
@@ -60,19 +58,15 @@ class HomeScreenTest {
     @Test
     fun test_list_project() = runTest {
         composeTestRule.onNodeWithContentDescription("home_screen").apply {
-            onChildren().printToLog("GALIH")
             performTouchInput {
                 swipeUp(durationMillis = 5000)
             }
-            onChildren().printToLog("GALIH AFTER SCROLL")
             performTouchInput {
                 swipeUp(durationMillis = 5000)
             }
-            onChildren().printToLog("GALIH AFTER SCROLL2")
             performTouchInput {
                 swipeUp(durationMillis = 5000)
             }
-            onChildren().printToLog("GALIH AFTER SCROLL3")
         }
         mainRepository.getAllProject().collect {
             it.data?.forEach { project ->
