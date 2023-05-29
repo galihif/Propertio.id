@@ -46,7 +46,7 @@ fun NavTopBar(
                     IconButton(onClick = onMenuClick) {
                         Icon(
                             imageVector = Icons.Default.Menu,
-                            contentDescription = ""
+                            contentDescription = "menu"
                         )
                     }
                 }
