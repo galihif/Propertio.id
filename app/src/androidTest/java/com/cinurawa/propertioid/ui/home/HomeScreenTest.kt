@@ -6,6 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.ui.MainActivity
+import com.cinurawa.propertioid.ui.navigation.Screen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -85,5 +86,43 @@ class HomeScreenTest {
         composeTestRule.onNodeWithText("Cari properti disini...").performTextInput("Melati")
         composeTestRule.onNodeWithText("Cari").performClick()
         composeTestRule.onNodeWithTag("properti_screen").assertExists()
+    }
+
+    @Test
+    fun test_menu_click() = runTest {
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Home.route).assertExists()
+        composeTestRule.onNodeWithText(Screen.Properti.title?:"").assertExists()
+        composeTestRule.onNodeWithText(Screen.Project.title?:"").assertExists()
+        composeTestRule.onNodeWithText(Screen.Agent.route).assertExists()
+        composeTestRule.onNodeWithText(Screen.Developer.route).assertExists()
+    }
+
+    @Test
+    fun test_go_to_properti_menu() = runTest {
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Properti.title?:"").performClick()
+        composeTestRule.onNodeWithTag("properti_screen").assertExists()
+    }
+
+    @Test
+    fun test_go_to_project_menu() = runTest {
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Project.title?:"").performClick()
+        composeTestRule.onNodeWithTag("project_screen").assertExists()
+    }
+
+    @Test
+    fun test_go_to_agent_menu() = runTest {
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Agent.route).performClick()
+        composeTestRule.onNodeWithTag("agent_screen").assertExists()
+    }
+
+    @Test
+    fun test_go_to_developer_menu() = runTest {
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Developer.route).performClick()
+        composeTestRule.onNodeWithTag("developer_screen").assertExists()
     }
 }
