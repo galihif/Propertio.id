@@ -51,11 +51,19 @@ class MockRepositoryImpl @Inject constructor() : MainRepository {
     }
 
     override fun getAllAgent(): Flow<Resource<List<Agent>>> {
-        TODO("Not yet implemented")
+        return flowOf(
+            Resource.Success(
+                DummyData.listAgents()
+            )
+        )
     }
 
     override fun getAllDeveloper(): Flow<Resource<List<Developer>>> {
-        TODO("Not yet implemented")
+        return flowOf(
+            Resource.Success(
+                DummyData.listDevelopers()
+            )
+        )
     }
 
     override fun getDetailProperty(slug: String): Flow<Resource<Property>> {
