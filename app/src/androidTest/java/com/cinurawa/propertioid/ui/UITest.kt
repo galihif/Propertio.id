@@ -41,7 +41,7 @@ class UITest {
     }
 
     @Test
-    fun test_list_property() = runTest {
+    fun melihat_rekomendasi_properti() = runTest {
         composeTestRule.onNodeWithContentDescription("home_screen").apply {
             performTouchInput {
                 swipeUp(durationMillis = 5000)
@@ -50,6 +50,7 @@ class UITest {
                 swipeUp(durationMillis = 5000)
             }
         }
+        composeTestRule.onNodeWithText("Rekomendasi Properti").assertExists()
         mainRepository.getAllProperty().collect {
             it.data?.forEach { property ->
                 composeTestRule.onNodeWithText(property.name).assertExists()
@@ -58,7 +59,7 @@ class UITest {
     }
 
     @Test
-    fun test_list_project() = runTest {
+    fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithContentDescription("home_screen").apply {
             performTouchInput {
                 swipeUp(durationMillis = 5000)
@@ -70,6 +71,7 @@ class UITest {
                 swipeUp(durationMillis = 5000)
             }
         }
+        composeTestRule.onNodeWithText("Project Pilihan").assertExists()
         mainRepository.getAllProject().collect {
             it.data?.forEach { project ->
                 composeTestRule.onNodeWithText(project.name).assertExists()
