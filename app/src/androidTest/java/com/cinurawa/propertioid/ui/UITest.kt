@@ -1,11 +1,11 @@
-package com.cinurawa.propertioid.ui.home
+package com.cinurawa.propertioid.ui
 
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import com.cinurawa.propertioid.data.MainRepository
-import com.cinurawa.propertioid.ui.MainActivity
 import com.cinurawa.propertioid.ui.navigation.Screen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -23,7 +23,8 @@ import javax.inject.Inject
 @ExperimentalPagerApi
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
-class HomeScreenTest {
+@LargeTest
+class UITest {
     @get:Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
 
