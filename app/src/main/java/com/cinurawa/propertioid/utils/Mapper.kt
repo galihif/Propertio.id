@@ -144,7 +144,7 @@ fun GetDetailAgentDto.Data.AgentProperty.toModel(): Property =
         id = this.id,
         slug = this.slug,
         name = this.title,
-        desc = this.description,
+        desc = this.description?:"",
         address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
         price = this.price,
 
