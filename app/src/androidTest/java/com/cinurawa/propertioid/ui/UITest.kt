@@ -80,7 +80,7 @@ class UITest {
     }
 
     @Test
-    fun test_search_property() = runTest{
+    fun mencari_properti() = runTest{
         composeTestRule.onNodeWithContentDescription("home_search").assertExists()
         composeTestRule.onNodeWithText("Tipe Properti").performClick()
         composeTestRule.onNodeWithText("Rumah").performClick()
@@ -92,7 +92,7 @@ class UITest {
     }
 
     @Test
-    fun test_menu_click() = runTest {
+    fun membuka_menu() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Home.route).assertExists()
         composeTestRule.onNodeWithText(Screen.Properti.title?:"").assertExists()
@@ -102,28 +102,28 @@ class UITest {
     }
 
     @Test
-    fun test_go_to_properti_menu() = runTest {
+    fun membuka_halaman_properti() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Properti.title?:"").performClick()
         composeTestRule.onNodeWithTag("properti_screen").assertExists()
     }
 
     @Test
-    fun test_go_to_project_menu() = runTest {
+    fun membuka_halaman_proyek() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Project.title?:"").performClick()
         composeTestRule.onNodeWithTag("project_screen").assertExists()
     }
 
     @Test
-    fun test_go_to_agent_menu() = runTest {
+    fun membuka_halaman_agen() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Agent.route).performClick()
         composeTestRule.onNodeWithTag("agent_screen").assertExists()
     }
 
     @Test
-    fun test_go_to_developer_menu() = runTest {
+    fun membuka_halaman_pengembang() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Developer.route).performClick()
         composeTestRule.onNodeWithTag("developer_screen").assertExists()
