@@ -23,7 +23,7 @@ data class GetDetailAgentDto(
         @SerializedName("deleted_at")
         val deletedAt: Any?,
         @SerializedName("description")
-        val description: Any?,
+        val description: String?,
         @SerializedName("expired_at")
         val expiredAt: Any?,
         @SerializedName("id")
@@ -61,7 +61,7 @@ data class GetDetailAgentDto(
             @SerializedName("created_at")
             val createdAt: String,
             @SerializedName("description")
-            val description: String,
+            val description: String?,
             @SerializedName("district")
             val district: String,
             @SerializedName("facing")
