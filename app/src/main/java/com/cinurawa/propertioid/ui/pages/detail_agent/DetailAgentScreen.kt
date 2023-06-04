@@ -26,37 +26,37 @@ import com.cinurawa.propertioid.ui.theme.Red500
 
 @Composable
 fun DetailAgentScreen(
-    id:Int,
+    id: Int,
     onPropertyClicked: (Property) -> Unit = {},
     viewModel: DetailAgentViewModel = hiltViewModel()
 ) {
     viewModel.setId(id)
     val context = LocalContext.current
-    val agent by remember{
+    val agent by remember {
         viewModel.agent
     }.collectAsState()
-    val isLoading by remember{
+    val isLoading by remember {
         viewModel.loading
     }.collectAsState()
-    val error by remember{
+    val error by remember {
         viewModel.error
     }.collectAsState()
 
-    LaunchedEffect(error){
-        if (error.isNotEmpty()){
+    LaunchedEffect(error) {
+        if (error.isNotEmpty()) {
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         }
     }
 
-    if (error.isNotEmpty()){
+    if (error.isNotEmpty()) {
         ErrorColumn(error = error)
-    }else{
+    } else {
         LazyColumn(
             contentPadding = PaddingValues(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-        ){
-            item{
-                if (isLoading){
+        ) {
+            item {
+                if (isLoading) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
@@ -65,14 +65,14 @@ fun DetailAgentScreen(
                     }
                 }
             }
-            item{
+            item {
                 ThumbnailImage(
                     modifier = Modifier.fillMaxWidth(),
                     imageUrl = agent.photoUrl,
                     isAgent = true,
                 )
             } // ThumbnailImage
-            item{
+            item {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(14.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -94,7 +94,7 @@ fun DetailAgentScreen(
                     )
                 }
             } // Label
-            item{
+            item {
                 TitleDetailColumn(
                     title = agent.name,
                     detail = "",
@@ -112,7 +112,7 @@ fun DetailAgentScreen(
                     onClick = {}
                 )
             }// Phone
-            item{
+            item {
                 ContactCard(
                     text = "Chat via Whatsapp",
                     leadingIcon = R.drawable.ic_wa,
@@ -120,14 +120,14 @@ fun DetailAgentScreen(
                     onClick = {}
                 )
             } // Whatsapp
-            item{
+            item {
                 TitleSectionText(
                     title = "Daftar Properti",
                     modifier = Modifier
                         .fillMaxWidth(),
                 )
             }
-            items(agent.propertyList){
+            items(agent.propertyList) {
                 PropertyItem(
                     modifier = Modifier.fillMaxWidth(),
                     onDetailClicked = {
