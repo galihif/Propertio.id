@@ -61,7 +61,7 @@ fun DetailUnitScreen(
 
     val context = LocalContext.current
     if (data?.video != null) {
-        viewModel.addVideoUri(data.video,context)
+        viewModel.addVideoUri(data.video, context)
     }
 
     var lifecycle by remember {
@@ -116,7 +116,7 @@ fun DetailUnitScreen(
                     harga = data.price,
                     modifier = Modifier.padding(horizontal = 24.dp),
                     onShareClick = {
-                        viewModel.shareUnit(context,data.name,data.price,data.code)
+                        viewModel.shareUnit(context, data.name, data.price, data.code)
                     }
                 )
             } // Harga Share
@@ -183,7 +183,7 @@ fun DetailUnitScreen(
                         modifier = Modifier
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ){
+                    ) {
                         IconTextCardColumn(
                             modifier = Modifier.weight(1f),
                             text = data.powerSupply,
@@ -191,7 +191,7 @@ fun DetailUnitScreen(
                         )
                         IconTextCardColumn(
                             modifier = Modifier.weight(1f),
-                            text = data.waterType ,
+                            text = data.waterType,
                             leadingIcon = Icons.Default.WaterDrop
                         )
                     }
@@ -246,8 +246,6 @@ fun DetailUnitScreen(
                     )
                 }
             } // Video
-
-
         }
     }
 }
