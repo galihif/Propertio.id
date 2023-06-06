@@ -5,6 +5,7 @@ import com.cinurawa.propertioid.data.model.Developer
 import com.cinurawa.propertioid.data.model.Dokumen
 import com.cinurawa.propertioid.data.model.Infrastructure
 import com.cinurawa.propertioid.data.model.Project
+import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.data.model.Property
 
 object DummyData {
@@ -66,52 +67,67 @@ object DummyData {
     fun listProject(): List<Project> {
         val projectList = mutableListOf<Project>()
 
-        // Contoh proyek 1
-        val project1 = Project(
-            id = 1,
-            slug = "contoh-proyek-1",
-            name = "Contoh Proyek 1",
-            desc = "Ini adalah contoh deskripsi proyek 1",
-            concept = "Rumah minimalis modern",
-            address = "Jalan Contoh No. 1",
-            startPrice = 500000000,
-            finalPrice = 450000000,
-            code = "CP001",
+        for (i in 1..3) {
+            val project = Project(
+                id = i,
+                slug = "dummy-project-$i",
+                name = "Dummy Project $i",
+                desc = "This is a dummy project description.",
+                concept = "Dummy concept $i",
+                address = "123 Dummy Street, Dummy City",
+                startPrice = 1000000 + i * 100000,
+                finalPrice = 2000000 + i * 100000,
+                code = "ABC$i",
+                photosUrl = listOf(
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=692&q=80"
+                ),
+                type = "Apartment",
+                certificate = "SHM"
+            )
 
-            photosUrl = listOf(
-                "https://example.com/project1/photo1.jpg",
-                "https://example.com/project1/photo2.jpg",
-                "https://example.com/project1/photo3.jpg",
-            ),
+            // Set properties that are not in the constructor
+            project.virtualTour = "https://dummyproject.com/virtual-tour$i.html"
+            project.site3DPlan = "https://dummyproject.com/site-3d-plan$i.html"
+            project.arApps = "https://dummyproject.com/ar-apps$i.html"
+            project.video = "https://dummyproject.com/video$i.mp4"
+            project.latitude = -6.1754 + i * 0.01
+            project.longitude = 106.8272 + i * 0.01
+            project.listUnit = listOf(
+                ProjectUnit(
+                    id = 1,
+                    name = "Unit $i-1",
+                    desc = "This is a dummy unit description.",
+                    spec = "This is a dummy unit specification.",
+                    price = 1000000 + i * 100000,
+                    code = "ABC$i-1",
+                    photosUrl = listOf(
+                        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=692&q=80"
+                    ),
+                    type = "Apartment",
+                    floor = 2,
+                    surfaceArea = 60,
+                    buildingArea = 80,
+                    bedroom = 2,
+                    bathroom = 1,
+                    garage = 0,
+                    powerSupply = "2200 Watt",
+                    waterType = "PAM",
+                    virtualTour = "https://dummyunit.com/virtual-tour$i-1.html",
+                    model3D = "https://dummyunit.com/model-3d$i-1.html",
+                    video = "https://dummyunit.com/video$i-1.mp4"
+                ),
+            )
+            project.dokumen = listOf(Dokumen("Document1", "https://dummyproject.com/document1.pdf"), Dokumen("Document2", "https://dummyproject.com/document2.pdf"))
+            project.fasilitas = listOf("Swimming pool", "Gym", "Playground")
+            project.infrastruktur = listOf(Infrastructure("School", 500), Infrastructure("Hospital", 1000))
+            project.agentImage = "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+            project.agentName = "Dummy Agent"
+            project.agentPhone = "123-456-7890"
 
-            type = "Rumah",
-            certificate = "SHM",
-        )
-        projectList.add(project1)
-
-        // Contoh proyek 2
-        val project2 = Project(
-            id = 2,
-            slug = "contoh-proyek-2",
-            name = "Contoh Proyek 2",
-            desc = "Ini adalah contoh deskripsi proyek 2",
-            concept = "Apartemen mewah dengan fasilitas lengkap",
-            address = "Jalan Contoh No. 2",
-            startPrice = 1000000000,
-            finalPrice = 800000000,
-            code = "CP002",
-
-            photosUrl = listOf(
-                "https://example.com/project2/photo1.jpg",
-                "https://example.com/project2/photo2.jpg",
-                "https://example.com/project2/photo3.jpg",
-            ),
-
-            type = "Apartemen",
-            certificate = "HGB",
-        )
-        projectList.add(project2)
-
+            projectList.add(project)
+        }
 
         return projectList
     }
