@@ -143,7 +143,7 @@ class UITest {
         }
 
         //Go to detail properti screen
-        val dummyProperty = DummyData.getDummyProperties()[0]
+        val dummyProperty = DummyData.listProperty()[0]
         composeTestRule.onNodeWithTag("lihat_detail_1").performClick()
         composeTestRule.waitUntil {
             composeTestRule.onAllNodesWithTag("detail_properti_screen").fetchSemanticsNodes()
