@@ -26,8 +26,8 @@ import com.cinurawa.propertioid.ui.pages.detail_agent.DetailAgentScreen
 import com.cinurawa.propertioid.ui.pages.detail_developer.DetailDeveloperScreen
 import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectScreen
 import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectViewModel
-import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
 import com.cinurawa.propertioid.ui.pages.detail_project.detail_unit.DetailUnitScreen
+import com.cinurawa.propertioid.ui.pages.detail_properti.DetailPropertiScreen
 import com.cinurawa.propertioid.ui.pages.developer.DeveloperScreen
 import com.cinurawa.propertioid.ui.pages.home.HomeScreen
 import com.cinurawa.propertioid.ui.pages.project.ProjectScreen
