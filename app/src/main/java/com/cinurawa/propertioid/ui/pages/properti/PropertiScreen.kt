@@ -1,6 +1,5 @@
 package com.cinurawa.propertioid.ui.pages.properti
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Property
@@ -42,10 +40,6 @@ fun PropertiScreen(
 ) {
     viewModel.setQuery(keyword, selectedProType, listingType)
     val context = LocalContext.current
-
-    LaunchedEffect(Unit) {
-        Log.d("GALIH", "PropertiScreen: $keyword $selectedProType $listingType")
-    }
 
     val listProperty by remember {
         viewModel.listProperty
@@ -115,7 +109,9 @@ fun PropertiScreen(
                         .padding(horizontal = 24.dp)
                 ) {
                     PropertyItem(
-                        onDetailClicked = { onPropertiClicked(it) },
+                        onDetailClicked = {
+                            onPropertiClicked(it)
+                        },
                         data = it
                     )
                 }
