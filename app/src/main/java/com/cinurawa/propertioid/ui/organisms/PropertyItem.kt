@@ -72,7 +72,7 @@ fun PropertyItem(
             IconTextBadge(text = "${data?.bathroom} K. Mandi", leadingIcon = Icons.Default.Bathroom)
             IconTextBadge(text = "${data?.garage} Garasi", leadingIcon = Icons.Default.Garage)
         }
-        HargaDetailRow(harga = data?.price ?: 0, onDetailClick = onDetailClicked)
+        HargaDetailRow(harga = data?.price ?: 0, onDetailClick = onDetailClicked, testTag = "lihat_detail_${data?.id}")
     }
 }
 
