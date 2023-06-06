@@ -22,24 +22,36 @@ import com.cinurawa.propertioid.ui.theme.Purple700
 fun ProjectItem(
     modifier: Modifier = Modifier,
     onDetailClicked: () -> Unit = {},
-    data:Project? = null,
+    data: Project? = null,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        ThumbnailImage(modifier = Modifier.fillMaxWidth(), imageUrl = if (data?.photosUrl?.isNotEmpty() == true) data.photosUrl[0] else "https://www.cinurawa.com/wp-content/uploads/2021/05/IMG_20210518_105000.jpg")
+        ThumbnailImage(
+            modifier = Modifier.fillMaxWidth(),
+            imageUrl = if (data?.photosUrl?.isNotEmpty() == true) data.photosUrl[0] else "https://www.cinurawa.com/wp-content/uploads/2021/05/IMG_20210518_105000.jpg"
+        )
         Row(
             horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             IconTextBadge(text = data?.type ?: "Rumah", icon = R.drawable.ic_house, color = Blue500)
-            IconTextBadge(text = data?.certificate ?: "SHGB", icon = R.drawable.ic_shm, color = Purple700)
+            IconTextBadge(
+                text = data?.certificate ?: "SHGB",
+                icon = R.drawable.ic_shm,
+                color = Purple700
+            )
         }
         TitleDetailColumn(
-            title = data?.name ?:"Name",
+            title = data?.name ?: "Name",
             detail = data?.address ?: "Address",
         )
-        HargaDetailRow(hargaTitle = "Harga mulai dari",harga = data?.startPrice ?: 0, onDetailClick = onDetailClicked)
+        HargaDetailRow(
+            hargaTitle = "Harga mulai dari",
+            harga = data?.startPrice ?: 0,
+            onDetailClick = onDetailClicked,
+            testTag = "lihat_detail_${data?.id}"
+        )
     }
 }
