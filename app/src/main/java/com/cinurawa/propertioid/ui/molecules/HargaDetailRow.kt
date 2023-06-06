@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,7 +22,8 @@ fun HargaDetailRow(
     modifier: Modifier = Modifier,
     harga: Int,
     hargaTitle:String = "Harga",
-    onDetailClick: () -> Unit
+    onDetailClick: () -> Unit,
+    testTag:String = ""
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -35,6 +37,7 @@ fun HargaDetailRow(
             },
             colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
             shape = RoundedCornerShape(6.dp),
+            modifier = Modifier.testTag(testTag)
         ) {
             Text(
                 text = "Lihat Detail",
