@@ -39,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -101,11 +102,13 @@ fun DetailPropertiScreen(
     } else {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.testTag("detail_properti_screen")
         ) {
             item {
                 ImageCarousel(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .testTag("image_carousel"),
                     imagesUrl = property.photosUrl
                 )
             } // Image Carousel
@@ -116,6 +119,7 @@ fun DetailPropertiScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
+                        .testTag("label")
                 ) {
                     IconTextBadge(
                         text = property.type,
@@ -139,7 +143,8 @@ fun DetailPropertiScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                        .padding(horizontal = 24.dp)
+                        .testTag("title"),
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
@@ -155,7 +160,7 @@ fun DetailPropertiScreen(
             } // Judul
             item {
                 IconText(
-                    modifier = Modifier.padding(horizontal = 24.dp),
+                    modifier = Modifier.padding(horizontal = 24.dp).testTag("lokasi"),
                     leadingIcon = Icons.Default.LocationOn,
                     text = property.address,
                     iconTint = Red500
@@ -164,7 +169,7 @@ fun DetailPropertiScreen(
             item {
                 HargaShare(
                     harga = property.price,
-                    modifier = Modifier.padding(horizontal = 24.dp),
+                    modifier = Modifier.padding(horizontal = 24.dp).testTag("harga"),
                     onShareClick = {
                         viewModel.shareProperty(context)
                     }
@@ -174,7 +179,7 @@ fun DetailPropertiScreen(
                 Text(
                     text = "Deskripsi",
                     style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp)
+                    modifier = Modifier.padding(horizontal = 24.dp).testTag("deskripsi")
                 )
                 Text(
                     text = property.desc,
@@ -185,7 +190,8 @@ fun DetailPropertiScreen(
             item {
                 Card(
                     modifier = Modifier
-                        .padding(24.dp),
+                        .padding(24.dp)
+                        .testTag("property_attribute"),
                     shape = RoundedCornerShape(10.dp),
                     elevation = 0.dp,
                     backgroundColor = Color.Gray.copy(alpha = 0.1f),
@@ -213,7 +219,8 @@ fun DetailPropertiScreen(
                 FlowRow(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                        .padding(horizontal = 24.dp)
+                        .testTag("spesifikasi"),
                     mainAxisSpacing = 14.dp,
                     crossAxisSpacing = 14.dp,
                     mainAxisAlignment = MainAxisAlignment.SpaceBetween,
@@ -263,7 +270,7 @@ fun DetailPropertiScreen(
                     text = if (property.isFurniture) "Dengan Furnitur" else "Tanpa Furnitur",
                     leadingIcon = Icons.Default.Chair
                 )
-            } // Fasilitas
+            } // Spesifikasi
             item {
                 if (property.virtualTour.isNotEmpty()) {
                     Text(
@@ -275,7 +282,7 @@ fun DetailPropertiScreen(
                     PrimaryButton(
                         title = "Lihat Virtual Tour",
                         leadingIcon = Icons.Default.ViewInAr,
-                        modifier = Modifier.padding(horizontal = 24.dp),
+                        modifier = Modifier.padding(horizontal = 24.dp).testTag("btn_virtual_tour"),
                         onClick = {
                             onVirtualTourClick(property.virtualTour)
                         }
@@ -296,6 +303,7 @@ fun DetailPropertiScreen(
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
                             .fillMaxWidth()
+                            .testTag("video_player")
                     )
                 }
             } // Video
@@ -310,7 +318,7 @@ fun DetailPropertiScreen(
                     PrimaryButton(
                         title = "Lihat Peta Lokasi",
                         leadingIcon = Icons.Default.Map,
-                        modifier = Modifier.padding(horizontal = 24.dp),
+                        modifier = Modifier.padding(horizontal = 24.dp).testTag("btn_peta_lokasi"),
                         onClick = {
                             viewModel.openMap(context)
                         }
@@ -338,7 +346,6 @@ fun DetailPropertiScreen(
             } // Dokumen
             item {
                 if ((property.fasilitas?.size ?: 0) > 0) {
-
                     Text(
                         text = "Fasilitas",
                         modifier = Modifier.padding(horizontal = 24.dp),
@@ -348,7 +355,8 @@ fun DetailPropertiScreen(
                     FlowRow(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
+                            .padding(horizontal = 24.dp)
+                            .testTag("fasilitas"),
                         mainAxisSpacing = 14.dp,
                         crossAxisSpacing = 14.dp,
                         mainAxisAlignment = if ((property.fasilitas?.size
@@ -373,7 +381,8 @@ fun DetailPropertiScreen(
                     FlowRow(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
+                            .padding(horizontal = 24.dp)
+                            .testTag("infrastruktur"),
                         mainAxisSpacing = 14.dp,
                         crossAxisSpacing = 14.dp,
                         mainAxisAlignment = if ((property.infrastruktur?.size
@@ -393,6 +402,7 @@ fun DetailPropertiScreen(
             } // Infrastruktur
             item {
                 ContactRow(
+                    modifier = Modifier.testTag("contact_row"),
                     image = property.agentImage,
                     desc = "Agen",
                     name = property.agentName,
