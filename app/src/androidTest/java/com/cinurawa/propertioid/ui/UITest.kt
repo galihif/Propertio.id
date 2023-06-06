@@ -73,12 +73,11 @@ class UITest {
                 swipeUp(durationMillis = 5000)
             }
         }
-        composeTestRule.onNodeWithText("Project Pilihan").assertExists()
-        mainRepository.getAllProject().collect {
-            it.data?.forEach { project ->
-                composeTestRule.onNodeWithText(project.name).assertExists()
-            }
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodes(hasText("Project Pilihan")).fetchSemanticsNodes()
+                .isNotEmpty()
         }
+        composeTestRule.onNodeWithText("Project Pilihan").assertIsDisplayed()
     }
 
     @Test
@@ -114,7 +113,12 @@ class UITest {
     fun membuka_halaman_proyek() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
-        composeTestRule.onNodeWithTag("project_screen").assertExists()
+        composeTestRule.onNodeWithTag("project_screen").apply {
+            assertExists()
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
     }
 
     @Test
@@ -165,7 +169,8 @@ class UITest {
         composeTestRule.onNodeWithText(dummyProperty.address).assertIsDisplayed()
 
         composeTestRule.onNodeWithTag("harga").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Rp ${formatHarga(dummyProperty.price.toLong())}").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Rp ${formatHarga(dummyProperty.price.toLong())}")
+            .assertIsDisplayed()
 
         composeTestRule.onNodeWithTag("deskripsi").assertIsDisplayed()
         composeTestRule.onNodeWithText(dummyProperty.desc).assertIsDisplayed()
@@ -199,5 +204,71 @@ class UITest {
             composeTestRule.onAllNodesWithTag("contact_row").fetchSemanticsNodes().isNotEmpty()
         }
         composeTestRule.onNodeWithTag("contact_row").assertIsDisplayed()
+    }
+
+    @Test
+    fun melihat_detail_proyek() = runTest {
+        //Go to project screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("project_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+
+        //Go to detail project screen
+        val dummyProject = DummyData.listProject()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_1").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_project_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailProjectScreen = composeTestRule.onNodeWithTag("detail_project_screen")
+        detailProjectScreen.assertIsDisplayed()
+
+        //Check content
+        composeTestRule.apply{
+            onNodeWithTag("image_carousel").assertIsDisplayed()
+            onNodeWithText(dummyProject.type).assertIsDisplayed()
+            onNodeWithText(dummyProject.certificate).assertIsDisplayed()
+            onNodeWithText(dummyProject.name).assertIsDisplayed()
+            onNodeWithText("Kode Proyek : ${dummyProject.code}").assertIsDisplayed()
+            onNodeWithText(dummyProject.address).assertIsDisplayed()
+            onNodeWithTag("harga").assertIsDisplayed()
+            onNodeWithText(dummyProject.desc).assertIsDisplayed()
+            onNodeWithText(dummyProject.concept).assertIsDisplayed()
+
+            onNodeWithTag("detail_project_screen").performTouchInput {
+                swipeUp(durationMillis = 3000)
+            }
+            onNodeWithText("Daftar Unit").assertIsDisplayed()
+            dummyProject.listUnit.forEach {
+                onNodeWithText(it.name).assertIsDisplayed()
+            }
+
+            onNodeWithText("Lihat Virtual Tour").assertIsDisplayed()
+            onNodeWithTag("detail_project_screen").performTouchInput {
+                swipeUp(durationMillis = 3000)
+            }
+            onNodeWithText("Lihat 3D Site Plan").assertIsDisplayed()
+            onNodeWithText("Download App").assertIsDisplayed()
+            onNodeWithTag("video_player").assertIsDisplayed()
+            onNodeWithText("Lihat Peta Lokasi").assertIsDisplayed()
+            dummyProject.dokumen.forEach {
+                onNodeWithText(it.nama).assertIsDisplayed()
+            }
+            onNodeWithTag("detail_project_screen").performTouchInput {
+                swipeUp(durationMillis = 3000)
+            }
+            dummyProject.fasilitas.forEach{
+                onNodeWithText(it).assertIsDisplayed()
+            }
+            dummyProject.infrastruktur.forEach{
+                onNodeWithText(it.name).assertIsDisplayed()
+            }
+            onNodeWithText(dummyProject.agentName).assertIsDisplayed()
+        }
+
     }
 }
