@@ -2,6 +2,8 @@ package com.cinurawa.propertioid.utils
 
 import com.cinurawa.propertioid.data.model.Agent
 import com.cinurawa.propertioid.data.model.Developer
+import com.cinurawa.propertioid.data.model.Dokumen
+import com.cinurawa.propertioid.data.model.Infrastructure
 import com.cinurawa.propertioid.data.model.Project
 import com.cinurawa.propertioid.data.model.Property
 
@@ -9,62 +11,54 @@ object DummyData {
     fun listProperty(): List<Property> {
         val propertyList = mutableListOf<Property>()
 
-        // Contoh property 1
-        val property1 = Property(
-            id = 1,
-            slug = "contoh-property-1",
-            name = "Contoh Property 1",
-            desc = "Ini adalah contoh deskripsi property 1",
-            address = "Jalan Contoh No. 1",
-            price = 200000000,
+        for (i in 1..3) {
+            val property = Property(
+                id = i,
+                slug = "dummy-property-$i",
+                name = "Dummy Property $i",
+                desc = "This is a dummy property description.",
+                address = "123 Dummy Street, Dummy City",
+                price = 1000000 + i * 100000,
+                photosUrl = listOf(
+                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=692&q=80"
+                ),
+                type = "House",
+                listingType = "Sale",
+                certificate = "SHM",
+                floor = 2,
+                surfaceArea = 200,
+                buildingArea = 300,
+                bedroom = 3,
+                bathroom = 2,
+                garage = 1,
+                carport = 0
+            )
 
-            photosUrl = listOf(
-                "https://example.com/property1/photo1.jpg",
-                "https://example.com/property1/photo2.jpg",
-                "https://example.com/property1/photo3.jpg",
-            ),
+            // Set properties that are not in the constructor
+            property.propertyCode = "ABC$i"
+            property.condition = "Good"
+            property.facing = "North"
+            property.yearBuilt = 2010
+            property.maidBedroom = 1
+            property.maidBathroom = 1
+            property.powerSupply = "2200 Watt"
+            property.waterType = "PAM"
+            property.phoneLine = 1
+            property.isFurniture = true
+            property.virtualTour = "https://dummyproperty.com/virtual-tour$i.html"
+            property.video = "https://dummyproperty.com/video$i.mp4"
+            property.latitude = -6.1754 + i * 0.01
+            property.longitude = 106.8272 + i * 0.01
+            property.dokumen = listOf(Dokumen("Document1", "https://dummyproperty.com/document1.pdf"), Dokumen("Document2", "https://dummyproperty.com/document2.pdf"))
+            property.fasilitas = listOf("Swimming pool", "Gym", "Playground")
+            property.infrastruktur = listOf(Infrastructure("School", 500), Infrastructure("Hospital", 1000))
+            property.agentImage = "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+            property.agentName = "Dummy Agent"
+            property.agentPhone = "123-456-7890"
 
-            type = "Rumah",
-            listingType = "Jual",
-            certificate = "SHM",
-
-            floor = 2,
-            surfaceArea = 150,
-            buildingArea = 200,
-            bedroom = 4,
-            bathroom = 3,
-            garage = 1,
-            carport = 1,
-        )
-        propertyList.add(property1)
-
-        // Contoh property 2
-        val property2 = Property(
-            id = 2,
-            slug = "contoh-property-2",
-            name = "Contoh Property 2",
-            desc = "Ini adalah contoh deskripsi property 2",
-            address = "Jalan Contoh No. 2",
-            price = 150000000,
-
-            photosUrl = listOf(
-                "https://example.com/property2/photo1.jpg",
-                "https://example.com/property2/photo2.jpg",
-            ),
-
-            type = "Apartemen",
-            listingType = "Sewa",
-            certificate = "HGB",
-
-            floor = 5,
-            surfaceArea = 70,
-            buildingArea = 100,
-            bedroom = 2,
-            bathroom = 1,
-            garage = 0,
-            carport = 0,
-        )
-        propertyList.add(property2)
+            propertyList.add(property)
+        }
 
         return propertyList
     }
@@ -181,5 +175,4 @@ object DummyData {
 
         return developerList
     }
-
 }
