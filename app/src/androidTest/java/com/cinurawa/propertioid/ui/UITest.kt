@@ -307,4 +307,37 @@ class UITest {
             }
         }
     }
+
+    @Test
+    fun melihat_detail_pengembang() = runTest {
+        //Go to developer screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Developer.route).performClick()
+        composeTestRule.onNodeWithTag("developer_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+        val dummyDeveloper = DummyData.listDevelopers()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyDeveloper.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_developer_screen").fetchSemanticsNodes().isNotEmpty()
+        }
+        val detailDeveloperScreen = composeTestRule.onNodeWithTag("detail_developer_screen")
+        detailDeveloperScreen.assertIsDisplayed()
+
+        composeTestRule.apply{
+            onNodeWithTag("thumbnail_image").assertIsDisplayed()
+            onNodeWithText(dummyDeveloper.name).assertIsDisplayed()
+            onNodeWithText(dummyDeveloper.address).assertIsDisplayed()
+            onNodeWithText("${dummyDeveloper.projectCount} Project").assertIsDisplayed()
+            onNodeWithText(dummyDeveloper.phone).assertIsDisplayed()
+            detailDeveloperScreen.performTouchInput {
+                swipeUp(durationMillis = 3000)
+            }
+            dummyDeveloper.projectList.forEach {
+                onNodeWithText(it.name).assertExists()
+            }
+        }
+    }
 }
