@@ -179,6 +179,7 @@ object DummyData {
             imageUrl = "https://example.com/developer1/logo.png",
             projectCount = 5
         )
+        developer1.projectList = listProject()
         developerList.add(developer1)
 
         // Dummy developer 2
@@ -189,6 +190,7 @@ object DummyData {
             imageUrl = "https://example.com/developer2/logo.png",
             projectCount = 8
         )
+        developer2.projectList = listProject()
         developerList.add(developer2)
 
         return developerList
