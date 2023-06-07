@@ -340,4 +340,46 @@ class UITest {
             }
         }
     }
+
+    @Test
+    fun melihat_detail_unit() = runTest {
+        //Go to project screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("project_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+        val dummyProject = DummyData.listProject()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProject.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_project_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailProjectScreen = composeTestRule.onNodeWithTag("detail_project_screen")
+        detailProjectScreen.assertIsDisplayed()
+        detailProjectScreen.performTouchInput {
+            swipeUp(durationMillis = 3000)
+        }
+        val dummyUnit = dummyProject.listUnit[0]
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("lihat_detail_${dummyUnit.id}").fetchSemanticsNodes().isNotEmpty()
+        }
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyUnit.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_unit_screen").fetchSemanticsNodes().isNotEmpty()
+        }
+        val detailUnitScreen = composeTestRule.onNodeWithTag("detail_unit_screen")
+        detailUnitScreen.assertIsDisplayed()
+        composeTestRule.apply {
+            onNodeWithTag("image_carousel").assertIsDisplayed()
+            onNodeWithText(dummyUnit.name).assertIsDisplayed()
+            onNodeWithText(dummyUnit.type).assertIsDisplayed()
+            onNodeWithText("Kode Unit : ${dummyUnit.code}").assertIsDisplayed()
+            onNodeWithText("Rp ${formatHarga(dummyUnit.price.toLong())}").assertIsDisplayed()
+            onNodeWithText(dummyUnit.desc).assertIsDisplayed()
+            onNodeWithText(dummyUnit.spec).assertIsDisplayed()
+        }
+    }
 }
