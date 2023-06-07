@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -79,11 +80,13 @@ fun DetailUnitScreen(
     if (data != null) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.testTag("detail_unit_screen")
         ) {
             item {
                 ImageCarousel(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .testTag("image_carousel"),
                     imagesUrl = data.photosUrl
                 )
             } // Image Carousel
@@ -185,7 +188,7 @@ fun DetailUnitScreen(
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         IconTextCardColumn(
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier.weight(1f).testTag("fasilitas"),
                             text = data.powerSupply,
                             leadingIcon = Icons.Default.Bolt
                         )
@@ -208,7 +211,7 @@ fun DetailUnitScreen(
                     PrimaryButton(
                         title = "Lihat Virtual Tour",
                         leadingIcon = Icons.Default.ViewInAr,
-                        modifier = Modifier.padding(horizontal = 24.dp),
+                        modifier = Modifier.padding(horizontal = 24.dp).testTag("virtual_tour"),
                         onClick = { onVirtualTourClicked(data.virtualTour) }
                     )
                 }
@@ -224,7 +227,7 @@ fun DetailUnitScreen(
                     PrimaryButton(
                         title = "Lihat 3D Site Plan",
                         leadingIcon = Icons.Filled.Roofing,
-                        modifier = Modifier.padding(horizontal = 24.dp),
+                        modifier = Modifier.padding(horizontal = 24.dp).testTag("3d_site_plan"),
                         onClick = {}
                     )
                 }
@@ -243,6 +246,7 @@ fun DetailUnitScreen(
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
                             .fillMaxWidth()
+                            .testTag("video")
                     )
                 }
             } // Video
