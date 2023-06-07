@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.R
@@ -67,6 +68,7 @@ fun DetailDeveloperScreen(
         LazyColumn(
             contentPadding = PaddingValues(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.testTag("detail_developer_screen")
         ) {
             item {
                 if (isLoading) {
@@ -80,7 +82,7 @@ fun DetailDeveloperScreen(
             }
             item {
                 ThumbnailImage(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("thumbnail_image"),
                     imageUrl = developer.imageUrl,
                     isAgent = true,
                 )
