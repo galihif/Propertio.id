@@ -147,6 +147,7 @@ object DummyData {
             propertyRented = 2,
             phone = "+1 555-555-5555"
         )
+        agent1.propertyList = listProperty()
         agentList.add(agent1)
 
         // Dummy agent 2
@@ -161,6 +162,7 @@ object DummyData {
             propertyRented = 3,
             phone = "+1 555-555-5555"
         )
+        agent2.propertyList = listProperty()
         agentList.add(agent2)
 
         return agentList
