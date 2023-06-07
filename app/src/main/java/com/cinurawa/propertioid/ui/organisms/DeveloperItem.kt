@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.data.model.Developer
@@ -56,7 +57,8 @@ fun DeveloperItem(
             PrimaryButton(
                 title = "Lihat Detail",
                 onClick = onDetailClicked,
-                contentPadding = PaddingValues(vertical = 12.dp)
+                contentPadding = PaddingValues(vertical = 12.dp),
+                modifier = Modifier.testTag("lihat_detail_${data.id}")
             )
         }
     }
