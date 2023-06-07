@@ -91,6 +91,10 @@ class MockRepositoryImpl @Inject constructor() : MainRepository {
     }
 
     override fun getDetailDeveloper(developerId: Int): Flow<Resource<Developer>> {
-        TODO("Not yet implemented")
+        return flowOf(
+            Resource.Success(
+                DummyData.listDevelopers().find { it.id == developerId }?: DummyData.listDevelopers()[0]
+            )
+        )
     }
 }
