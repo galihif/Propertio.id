@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.data.model.Agent
@@ -67,6 +68,7 @@ fun AgentItem(
                 iconTint = Red500
             )
             PrimaryButton(
+                modifier = Modifier.testTag("lihat_detail_${data.id}"),
                 title = "Lihat Detail",
                 onClick = onDetailClicked,
                 contentPadding = PaddingValues(vertical = 12.dp)
