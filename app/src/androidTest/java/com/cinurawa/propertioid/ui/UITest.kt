@@ -230,8 +230,7 @@ class UITest {
         //Check content
         composeTestRule.apply{
             onNodeWithTag("image_carousel").assertIsDisplayed()
-            onNodeWithText(dummyProject.type).assertIsDisplayed()
-            onNodeWithText(dummyProject.certificate).assertIsDisplayed()
+            onNodeWithTag("label").assertIsDisplayed()
             onNodeWithText(dummyProject.name).assertIsDisplayed()
             onNodeWithText("Kode Proyek : ${dummyProject.code}").assertIsDisplayed()
             onNodeWithText(dummyProject.address).assertIsDisplayed()
@@ -270,5 +269,42 @@ class UITest {
             onNodeWithText(dummyProject.agentName).assertIsDisplayed()
         }
 
+    }
+
+    @Test
+    fun melihat_detail_agen() = runTest {
+        //Go to agent screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Agent.route).performClick()
+        composeTestRule.onNodeWithTag("agent_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+        val dummyAgent = DummyData.listAgents()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyAgent.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_agent_screen").fetchSemanticsNodes().isNotEmpty()
+        }
+        val detailAgentScreen = composeTestRule.onNodeWithTag("detail_agent_screen")
+        detailAgentScreen.assertIsDisplayed()
+        composeTestRule.apply {
+            onNodeWithTag("thumbnail_image").assertIsDisplayed()
+            onNodeWithText(dummyAgent.name).assertIsDisplayed()
+            onNodeWithText(dummyAgent.address).assertIsDisplayed()
+            onNodeWithText("${dummyAgent.propertyCount} Properti").assertIsDisplayed()
+            onNodeWithText("${dummyAgent.propertySold} Terjual").assertIsDisplayed()
+            onNodeWithText("${dummyAgent.propertyRented} Tersewa").assertIsDisplayed()
+            onNodeWithText(dummyAgent.phone).assertIsDisplayed()
+
+            onNodeWithTag("detail_agent_screen").performTouchInput {
+                swipeUp(durationMillis = 3000)
+                swipeUp(durationMillis = 3000)
+                swipeUp(durationMillis = 3000)
+            }
+            dummyAgent.propertyList.forEach {
+                onNodeWithText(it.name).assertExists()
+            }
+        }
     }
 }
