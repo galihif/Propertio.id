@@ -2,8 +2,6 @@ package com.cinurawa.propertioid.ui.pages.detail_properti
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -78,10 +76,7 @@ class DetailPropertiViewModel
     }
 
     fun openMap(context: Context) {
-        val mapUri: Uri = formatGmapsUri(_locationName, _latitude, _longitude)
-        val mapIntent = Intent(Intent.ACTION_VIEW, mapUri)
-        mapIntent.setPackage("com.google.android.apps.maps")
-        context.startActivity(mapIntent)
+        IntentHelper.openMaps(context, formatGmapsUri(_locationName, _latitude, _longitude))
     }
 
     init {
