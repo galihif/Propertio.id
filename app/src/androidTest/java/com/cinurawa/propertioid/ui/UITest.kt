@@ -535,4 +535,44 @@ class UITest {
             onNodeWithTag("webview_loaded").assertIsDisplayed()
         }
     }
+
+    @Test
+    fun mengunduh_ar_apps() = runTest {
+        //Go to project screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("project_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+
+        //Go to detail project screen
+        val dummyProject = DummyData.listProject()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProject.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_project_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailProjectScreen = composeTestRule.onNodeWithTag("detail_project_screen")
+        detailProjectScreen.assertIsDisplayed()
+
+        //Check content
+        composeTestRule.apply {
+            detailProjectScreen.performTouchInput {
+                swipeUp(durationMillis = 3000)
+                swipeUp(durationMillis = 3000)
+            }
+            onNodeWithText("Download App").assertIsDisplayed()
+            onNodeWithText("Download App").performClick()
+
+            val expectedIntent = Matchers.allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse(dummyProject.arApps)),
+            )
+            intended(expectedIntent)
+        }
+    }
+
+
 }
