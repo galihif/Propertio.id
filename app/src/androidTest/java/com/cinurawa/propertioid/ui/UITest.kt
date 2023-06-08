@@ -499,4 +499,40 @@ class UITest {
             intended(expectedIntent)
         }
     }
+
+    @Test
+    fun melihat_3d_siteplan() = runTest {
+        //Go to project screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("project_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+
+        //Go to detail project screen
+        val dummyProject = DummyData.listProject()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProject.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_project_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailProjectScreen = composeTestRule.onNodeWithTag("detail_project_screen")
+        detailProjectScreen.assertIsDisplayed()
+
+        //Check content
+        composeTestRule.apply {
+            detailProjectScreen.performTouchInput {
+                swipeUp(durationMillis = 3000)
+                swipeUp(durationMillis = 3000)
+            }
+            onNodeWithTag("btn_3d_siteplan").assertIsDisplayed()
+            onNodeWithTag("btn_3d_siteplan").performClick()
+            waitUntil {
+                onAllNodesWithTag("webview_loaded").fetchSemanticsNodes().isNotEmpty()
+            }
+            onNodeWithTag("webview_loaded").assertIsDisplayed()
+        }
+    }
 }
