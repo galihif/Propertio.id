@@ -235,7 +235,7 @@ fun DetailProjectScreen(
                     PrimaryButton(
                         title = "Lihat 3D Site Plan",
                         leadingIcon = Icons.Filled.Roofing,
-                        modifier = Modifier.padding(horizontal = 24.dp),
+                        modifier = Modifier.padding(horizontal = 24.dp).testTag("btn_3d_siteplan"),
                         onClick = { onVirtualOrSiteplanClicked(project.site3DPlan) }
                     )
                 }
