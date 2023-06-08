@@ -1,12 +1,14 @@
 package com.cinurawa.propertioid.ui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasPackage
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -459,6 +461,40 @@ class UITest {
             val expectedIntent = Matchers.allOf(
                 hasAction(Intent.ACTION_VIEW),
                 hasPackage("com.google.android.apps.maps"),
+            )
+            intended(expectedIntent)
+        }
+    }
+
+    @Test
+    fun mengunduh_dokumen() = runTest {
+        //Go to properti screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("properti_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+        val dummyProperti = DummyData.listProperty()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProperti.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_properti_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
+        detailPropertiScreen.assertIsDisplayed()
+        detailPropertiScreen.performTouchInput {
+            swipeUp(durationMillis = 3000)
+            swipeUp(durationMillis = 3000)
+        }
+        val dummyDokumen = dummyProperti.dokumen!![0]
+        composeTestRule.apply {
+            onNodeWithText(dummyDokumen.nama).assertExists()
+            onNodeWithText(dummyDokumen.nama).performClick()
+            val expectedIntent = Matchers.allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasData(Uri.parse(dummyDokumen.link)),
             )
             intended(expectedIntent)
         }
