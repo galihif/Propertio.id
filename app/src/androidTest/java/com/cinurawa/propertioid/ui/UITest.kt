@@ -1,8 +1,13 @@
 package com.cinurawa.propertioid.ui
 
+import android.content.Intent
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasPackage
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.cinurawa.propertioid.data.MainRepository
@@ -14,6 +19,8 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import org.hamcrest.Matchers
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -40,6 +47,12 @@ class UITest {
     @Before
     fun setup() {
         hiltRule.inject()
+        Intents.init()
+    }
+
+    @After
+    fun tearDown() {
+        Intents.release()
     }
 
     @Test
@@ -415,6 +428,39 @@ class UITest {
                 onAllNodesWithTag("webview_loaded").fetchSemanticsNodes().isNotEmpty()
             }
             onNodeWithTag("webview_loaded").assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun melihat_lokasi() = runTest {
+        //Go to properti screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("properti_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+        val dummyProperti = DummyData.listProperty()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProperti.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_properti_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
+        detailPropertiScreen.assertIsDisplayed()
+        detailPropertiScreen.performTouchInput {
+            swipeUp(durationMillis = 3000)
+            swipeUp(durationMillis = 3000)
+        }
+        composeTestRule.apply {
+            onNodeWithTag("btn_peta_lokasi").assertExists()
+            onNodeWithTag("btn_peta_lokasi").performClick()
+            val expectedIntent = Matchers.allOf(
+                hasAction(Intent.ACTION_VIEW),
+                hasPackage("com.google.android.apps.maps"),
+            )
+            intended(expectedIntent)
         }
     }
 }
