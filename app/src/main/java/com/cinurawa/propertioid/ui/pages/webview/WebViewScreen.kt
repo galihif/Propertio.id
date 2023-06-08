@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import com.google.accompanist.web.AccompanistWebViewClient
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
@@ -48,7 +49,8 @@ fun WebViewScreen(
         WebView(
             state = state,
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .testTag(if (!state.isLoading) "webview_loaded" else "webview_loading"),
             onCreated = { webView ->
                 webView.settings.javaScriptEnabled = true
                 webView.settings.useWideViewPort = true
