@@ -47,7 +47,7 @@ object DummyData {
             property.waterType = "PAM"
             property.phoneLine = 1
             property.isFurniture = true
-            property.virtualTour = "https://dummyproperty.com/virtual-tour$i.html"
+            property.virtualTour = "https://virtualtour0001.propertio.id/"
             property.video = "https://dummyproperty.com/video$i.mp4"
             property.latitude = -6.1754 + i * 0.01
             property.longitude = 106.8272 + i * 0.01
