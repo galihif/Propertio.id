@@ -98,6 +98,10 @@ class DetailProjectViewModel
         }
     }
 
+    fun downloadApps(context: Context, link: String) {
+        IntentHelper.openBrowser(context, link)
+    }
+
     fun openDokumen(context: Context, link: String) {
         IntentHelper.openDokumen(context, link)
     }
