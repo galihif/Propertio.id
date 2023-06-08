@@ -252,7 +252,9 @@ fun DetailProjectScreen(
                         title = "Download App",
                         leadingIcon = Icons.Filled.Download,
                         modifier = Modifier.padding(horizontal = 24.dp),
-                        onClick = {}
+                        onClick = {
+                            viewModel.downloadApps(context, project.arApps)
+                        }
                     )
                 }
             } // AR App
