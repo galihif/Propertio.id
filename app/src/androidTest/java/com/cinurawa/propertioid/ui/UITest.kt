@@ -228,7 +228,7 @@ class UITest {
         detailProjectScreen.assertIsDisplayed()
 
         //Check content
-        composeTestRule.apply{
+        composeTestRule.apply {
             onNodeWithTag("image_carousel").assertIsDisplayed()
             onNodeWithTag("label").assertIsDisplayed()
             onNodeWithText(dummyProject.name).assertIsDisplayed()
@@ -260,10 +260,10 @@ class UITest {
             onNodeWithTag("detail_project_screen").performTouchInput {
                 swipeUp(durationMillis = 3000)
             }
-            dummyProject.fasilitas.forEach{
+            dummyProject.fasilitas.forEach {
                 onNodeWithText(it).assertIsDisplayed()
             }
-            dummyProject.infrastruktur.forEach{
+            dummyProject.infrastruktur.forEach {
                 onNodeWithText(it.name).assertIsDisplayed()
             }
             onNodeWithText(dummyProject.agentName).assertIsDisplayed()
@@ -284,7 +284,8 @@ class UITest {
         val dummyAgent = DummyData.listAgents()[0]
         composeTestRule.onNodeWithTag("lihat_detail_${dummyAgent.id}").performClick()
         composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("detail_agent_screen").fetchSemanticsNodes().isNotEmpty()
+            composeTestRule.onAllNodesWithTag("detail_agent_screen").fetchSemanticsNodes()
+                .isNotEmpty()
         }
         val detailAgentScreen = composeTestRule.onNodeWithTag("detail_agent_screen")
         detailAgentScreen.assertIsDisplayed()
@@ -321,12 +322,13 @@ class UITest {
         val dummyDeveloper = DummyData.listDevelopers()[0]
         composeTestRule.onNodeWithTag("lihat_detail_${dummyDeveloper.id}").performClick()
         composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("detail_developer_screen").fetchSemanticsNodes().isNotEmpty()
+            composeTestRule.onAllNodesWithTag("detail_developer_screen").fetchSemanticsNodes()
+                .isNotEmpty()
         }
         val detailDeveloperScreen = composeTestRule.onNodeWithTag("detail_developer_screen")
         detailDeveloperScreen.assertIsDisplayed()
 
-        composeTestRule.apply{
+        composeTestRule.apply {
             onNodeWithTag("thumbnail_image").assertIsDisplayed()
             onNodeWithText(dummyDeveloper.name).assertIsDisplayed()
             onNodeWithText(dummyDeveloper.address).assertIsDisplayed()
@@ -364,11 +366,13 @@ class UITest {
         }
         val dummyUnit = dummyProject.listUnit[0]
         composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("lihat_detail_${dummyUnit.id}").fetchSemanticsNodes().isNotEmpty()
+            composeTestRule.onAllNodesWithTag("lihat_detail_${dummyUnit.id}").fetchSemanticsNodes()
+                .isNotEmpty()
         }
         composeTestRule.onNodeWithTag("lihat_detail_${dummyUnit.id}").performClick()
         composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("detail_unit_screen").fetchSemanticsNodes().isNotEmpty()
+            composeTestRule.onAllNodesWithTag("detail_unit_screen").fetchSemanticsNodes()
+                .isNotEmpty()
         }
         val detailUnitScreen = composeTestRule.onNodeWithTag("detail_unit_screen")
         detailUnitScreen.assertIsDisplayed()
@@ -380,6 +384,37 @@ class UITest {
             onNodeWithText("Rp ${formatHarga(dummyUnit.price.toLong())}").assertIsDisplayed()
             onNodeWithText(dummyUnit.desc).assertIsDisplayed()
             onNodeWithText(dummyUnit.spec).assertIsDisplayed()
+        }
+    }
+
+    @Test
+    fun melihat_virtual_tour() = runTest {
+        //Go to properti screen
+        composeTestRule.onNodeWithContentDescription("menu").performClick()
+        composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
+        composeTestRule.onNodeWithTag("properti_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+        }
+        val dummyProperti = DummyData.listProperty()[0]
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProperti.id}").performClick()
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodesWithTag("detail_properti_screen").fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
+        detailPropertiScreen.assertIsDisplayed()
+        detailPropertiScreen.performTouchInput {
+            swipeUp(durationMillis = 3000)
+        }
+        composeTestRule.apply {
+            onNodeWithTag("btn_virtual_tour").assertIsDisplayed()
+            onNodeWithTag("btn_virtual_tour").performClick()
+            waitUntil {
+                onAllNodesWithTag("webview_loaded").fetchSemanticsNodes().isNotEmpty()
+            }
+            onNodeWithTag("webview_loaded").assertIsDisplayed()
         }
     }
 }
