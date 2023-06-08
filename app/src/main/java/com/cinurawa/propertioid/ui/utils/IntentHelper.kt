@@ -16,6 +16,11 @@ object IntentHelper {
         intent.data = Uri.parse(url)
         context.startActivity(intent)
     }
+    fun openBrowser(context: Context, url: String){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        context.startActivity(intent)
+    }
     fun openWhatsapp(context: Context, number: String){
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse("https://wa.me/$number")
