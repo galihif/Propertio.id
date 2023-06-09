@@ -59,12 +59,10 @@ class UITest {
 
     @Test
     fun melihat_rekomendasi_properti() = runTest {
-        composeTestRule.onNodeWithContentDescription("home_screen").apply {
+        composeTestRule.onNodeWithTag("home_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
-            }
-            performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 400)
+                swipeUp(durationMillis = 400)
             }
         }
         composeTestRule.onNodeWithText("Rekomendasi Properti").assertExists()
@@ -75,36 +73,44 @@ class UITest {
         }
     }
 
-    @Test
-    fun melihat_proyek_pilihan() = runTest {
-        composeTestRule.onNodeWithContentDescription("home_screen").apply {
-            performTouchInput {
-                swipeUp(durationMillis = 5000)
-            }
-            performTouchInput {
-                swipeUp(durationMillis = 5000)
-            }
-            performTouchInput {
-                swipeUp(durationMillis = 5000)
-            }
+@Test
+fun melihat_proyek_pilihan() = runTest {
+    composeTestRule.onNodeWithTag("home_screen").apply {
+        performTouchInput {
+            swipeUp(durationMillis = 400)
+            swipeUp(durationMillis = 400)
+            swipeUp(durationMillis = 400)
         }
-        composeTestRule.waitUntil {
-            composeTestRule.onAllNodes(hasText("Project Pilihan")).fetchSemanticsNodes()
-                .isNotEmpty()
-        }
-        composeTestRule.onNodeWithText("Project Pilihan").assertIsDisplayed()
     }
+    composeTestRule.waitUntil {
+        composeTestRule.onAllNodes(hasText("Project Pilihan")).fetchSemanticsNodes()
+            .isNotEmpty()
+    }
+    composeTestRule.onNodeWithText("Project Pilihan").assertIsDisplayed()
+    mainRepository.getAllProject().collect {
+        it.data?.forEach { project ->
+            composeTestRule.onNodeWithText(project.name).assertExists()
+        }
+    }
+}
 
     @Test
     fun mencari_properti() = runTest {
-        composeTestRule.onNodeWithContentDescription("home_search").assertExists()
-        composeTestRule.onNodeWithText("Tipe Properti").performClick()
-        composeTestRule.onNodeWithText("Rumah").performClick()
-        composeTestRule.onNodeWithText("Tipe Listing").performClick()
-        composeTestRule.onNodeWithText("Beli").performClick()
-        composeTestRule.onNodeWithText("Cari properti disini...").performTextInput("Melati")
-        composeTestRule.onNodeWithText("Cari").performClick()
-        composeTestRule.onNodeWithTag("properti_screen").assertExists()
+        val dummyProperti = DummyData.listProperty()[1]
+        composeTestRule.apply {
+            onNodeWithTag("home_search").assertExists()
+            onNodeWithText("Tipe Properti").performClick()
+            onNodeWithText("Rumah").performClick()
+            onNodeWithText("Tipe Listing").performClick()
+            onNodeWithText("Beli").performClick()
+            onNodeWithText("Cari properti disini...").performTextInput(dummyProperti.name)
+            onNodeWithText("Cari").performClick()
+            onNodeWithTag("properti_screen").assertExists()
+            onNodeWithTag("properti_screen").performTouchInput {
+                swipeUp(durationMillis = 5000)
+            }
+            onNodeWithTag("properti_screen").printToLog("GALIH")
+        }
     }
 
     @Test
