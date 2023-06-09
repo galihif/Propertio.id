@@ -85,9 +85,7 @@ fun HomeScreen(
             item {
                 Spacer(modifier = Modifier.height(24.dp))
                 PropertySearchBox(
-                    Modifier.semantics {
-                        contentDescription = "home_search"
-                    },
+                    Modifier.testTag("home_search"),
                     proTypeOptions = viewModel.listPropertyType,
                     onProTypeSelected = { viewModel.selectedPropertyType.value = it },
                     selectedProType = viewModel.selectedPropertyType.value,
