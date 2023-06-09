@@ -8,6 +8,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -70,9 +71,7 @@ fun HomeScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .semantics {
-                    contentDescription = "home_screen"
-                },
+                .testTag("home_screen"),
             contentPadding = PaddingValues(24.dp),
             verticalArrangement = Arrangement.Top
         ) {
