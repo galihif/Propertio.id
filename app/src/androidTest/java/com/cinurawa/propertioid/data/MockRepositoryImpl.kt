@@ -26,7 +26,7 @@ class MockRepositoryImpl @Inject constructor() : MainRepository {
     ): Flow<Resource<List<Property>>> {
         return flowOf(
             Resource.Success(
-                DummyData.listProperty()
+                DummyData.listProperty().filter { it.type == propertyType && it.name.contains(keyword) }
             )
         )
     }
