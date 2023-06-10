@@ -75,7 +75,7 @@ fun GetDetailPropertyDto.Data.toModel(): Property =
         this.dokumen = this@toModel.propertyDocument.map { Dokumen(it.name, it.file) }
         this.fasilitas = this@toModel.propertyFacility.map { it.facilityType.name }
         this.infrastruktur =
-            this@toModel.propertyInfrastructure.map { Infrastructure(it.name, it.distance) }
+            this@toModel.propertyInfrastructure.map { Infrastructure(it.name, it.distance, it.infrastructureType.name) }
 
         this.agentImage = formatAgentPhotoUrl(this@toModel.agent.user.userDatas.pictureProfile)
         this.agentName = this@toModel.agent.user.userDatas.fullname
@@ -131,7 +131,7 @@ fun GetDetailProjectDto.Data.toModel(): Project =
 
         this.dokumen = this@toModel.projectDocument.map { Dokumen(it.name, it.file) }
         this.fasilitas = this@toModel.projectFacility.map { it.facilityType.name }
-        this.infrastruktur = this@toModel.projectInfrastructure.map { Infrastructure(it.name, it.distance) }
+        this.infrastruktur = this@toModel.projectInfrastructure.map { Infrastructure(it.name, it.distance, it.infrastructureType.name) }
 
         this.agentName = this@toModel.developer.user.userDatas.fullname
         this.agentPhone = this@toModel.developer.user.userDatas.phone
