@@ -7,4 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class Infrastructure(
     val name:String,
     val distance:Int,
+    var type:String = ""
 ): Parcelable
