@@ -19,7 +19,6 @@ import androidx.compose.material.icons.filled.Bed
 import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.material.icons.filled.Chair
 import androidx.compose.material.icons.filled.Garage
-import androidx.compose.material.icons.filled.House
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.OtherHouses
@@ -61,6 +60,8 @@ import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple500
 import com.cinurawa.propertioid.ui.theme.Red500
+import com.cinurawa.propertioid.ui.utils.getFacilityIcon
+import com.cinurawa.propertioid.ui.utils.getInfraIcon
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
@@ -365,7 +366,7 @@ fun DetailPropertiScreen(
                         crossAxisAlignment = FlowCrossAxisAlignment.Start,
                     ) {
                         property.fasilitas?.forEach { fac ->
-                            IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
+                            IconTextCardColumn(text = fac, leadingIcon = fac.getFacilityIcon())
                         }
                     }
                 }
@@ -393,7 +394,7 @@ fun DetailPropertiScreen(
                         property.infrastruktur?.forEach { inf ->
                             IconTextCardColumn(
                                 text = inf.name,
-                                leadingIcon = Icons.Default.House,
+                                leadingIcon = inf.type.getInfraIcon(),
                                 subText = "${inf.distance} KM"
                             )
                         }
