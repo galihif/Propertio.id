@@ -18,13 +18,14 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ContactCard(
+    modifier: Modifier = Modifier,
     text: String,
     @DrawableRes leadingIcon:Int,
     bgColor:Color = Color(0xFFF0F3FF),
     onClick: () -> Unit
 ) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .clickable {
                 onClick()
             },
