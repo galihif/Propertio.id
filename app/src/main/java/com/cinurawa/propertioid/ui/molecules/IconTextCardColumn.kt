@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -48,7 +49,8 @@ fun IconTextCardColumn(
                 text = text,
                 style = MaterialTheme.typography.body1,
                 color = color,
-                fontSize = 12.sp
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center
             )
             if (subText != null) {
                 Text(
@@ -56,7 +58,8 @@ fun IconTextCardColumn(
                     style = MaterialTheme.typography.body2,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.primary,
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
                 )
             }
             if (trailingIcon != null) {
