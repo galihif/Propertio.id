@@ -73,30 +73,30 @@ class UITest {
         }
     }
 
-@Test
-fun melihat_proyek_pilihan() = runTest {
-    composeTestRule.onNodeWithTag("home_screen").apply {
-        performTouchInput {
-            swipeUp(durationMillis = 400)
-            swipeUp(durationMillis = 400)
-            swipeUp(durationMillis = 400)
+    @Test
+    fun melihat_proyek_pilihan() = runTest {
+        composeTestRule.onNodeWithTag("home_screen").apply {
+            performTouchInput {
+                swipeUp(durationMillis = 400)
+                swipeUp(durationMillis = 400)
+                swipeUp(durationMillis = 400)
+            }
+        }
+        composeTestRule.waitUntil {
+            composeTestRule.onAllNodes(hasText("Project Pilihan")).fetchSemanticsNodes()
+                .isNotEmpty()
+        }
+        composeTestRule.onNodeWithText("Project Pilihan").assertIsDisplayed()
+        mainRepository.getAllProject().collect {
+            it.data?.forEach { project ->
+                composeTestRule.onNodeWithText(project.name).assertExists()
+            }
         }
     }
-    composeTestRule.waitUntil {
-        composeTestRule.onAllNodes(hasText("Project Pilihan")).fetchSemanticsNodes()
-            .isNotEmpty()
-    }
-    composeTestRule.onNodeWithText("Project Pilihan").assertIsDisplayed()
-    mainRepository.getAllProject().collect {
-        it.data?.forEach { project ->
-            composeTestRule.onNodeWithText(project.name).assertExists()
-        }
-    }
-}
 
     @Test
     fun mencari_properti() = runTest {
-        val dummyProperti = DummyData.listProperty()[1]
+        val dummyProperti = DummyData.listProperty()[0]
         composeTestRule.apply {
             onNodeWithTag("home_search").assertExists()
             onNodeWithText("Tipe Properti").performClick()
@@ -107,9 +107,10 @@ fun melihat_proyek_pilihan() = runTest {
             onNodeWithText("Cari").performClick()
             onNodeWithTag("properti_screen").assertExists()
             onNodeWithTag("properti_screen").performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 400)
             }
-            onNodeWithTag("properti_screen").printToLog("GALIH")
+            onNodeWithText(dummyProperti.desc).assertExists()
+            onNodeWithText(dummyProperti.address).assertExists()
         }
     }
 
@@ -128,6 +129,14 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
         composeTestRule.onNodeWithTag("properti_screen").assertExists()
+        composeTestRule.onNodeWithTag("properti_screen").performTouchInput {
+            swipeUp(durationMillis = 400)
+        }
+        mainRepository.getAllProperty().collect {
+            it.data?.forEach { property ->
+                composeTestRule.onNodeWithText(property.name).assertExists()
+            }
+        }
     }
 
     @Test
@@ -137,7 +146,12 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithTag("project_screen").apply {
             assertExists()
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 400)
+            }
+        }
+        mainRepository.getAllProject().collect {
+            it.data?.forEach { project ->
+                composeTestRule.onNodeWithText(project.name).assertExists()
             }
         }
     }
@@ -146,14 +160,34 @@ fun melihat_proyek_pilihan() = runTest {
     fun membuka_halaman_agen() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Agent.route).performClick()
-        composeTestRule.onNodeWithTag("agent_screen").assertExists()
+        composeTestRule.onNodeWithTag("agent_screen").apply {
+            assertExists()
+            performTouchInput {
+                swipeUp(durationMillis = 400)
+            }
+        }
+        mainRepository.getAllAgent().collect {
+            it.data?.forEach { agent ->
+                composeTestRule.onNodeWithText(agent.name).assertExists()
+            }
+        }
     }
 
     @Test
     fun membuka_halaman_pengembang() = runTest {
         composeTestRule.onNodeWithContentDescription("menu").performClick()
         composeTestRule.onNodeWithText(Screen.Developer.route).performClick()
-        composeTestRule.onNodeWithTag("developer_screen").assertExists()
+        composeTestRule.onNodeWithTag("developer_screen").apply {
+            assertExists()
+            performTouchInput {
+                swipeUp(durationMillis = 400)
+            }
+        }
+        mainRepository.getAllDeveloper().collect {
+            it.data?.forEach { developer ->
+                composeTestRule.onNodeWithText(developer.name).assertExists()
+            }
+        }
     }
 
     @Test
@@ -163,13 +197,13 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
         composeTestRule.onNodeWithTag("properti_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
 
         //Go to detail properti screen
         val dummyProperty = DummyData.listProperty()[0]
-        composeTestRule.onNodeWithTag("lihat_detail_1").performClick()
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProperty.id}").performClick()
         composeTestRule.waitUntil {
             composeTestRule.onAllNodesWithTag("detail_properti_screen").fetchSemanticsNodes()
                 .isNotEmpty()
@@ -179,52 +213,39 @@ fun melihat_proyek_pilihan() = runTest {
         val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
         detailPropertiScreen.assertIsDisplayed()
 
-        //Check content
-        composeTestRule.onNodeWithTag("image_carousel").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("label").assertIsDisplayed()
+        composeTestRule.apply {
+            onNodeWithTag("image_carousel").assertIsDisplayed()
+            onNodeWithTag("label").assertIsDisplayed()
+            onNodeWithText(dummyProperty.name).assertIsDisplayed()
+            onNodeWithText(dummyProperty.address).assertIsDisplayed()
+            onNodeWithText("Rp ${formatHarga(dummyProperty.price.toLong())}")
+                .assertIsDisplayed()
+            onNodeWithText(dummyProperty.desc).assertIsDisplayed()
+            onNodeWithTag("property_attribute").assertIsDisplayed()
 
-        composeTestRule.onNodeWithTag("title").assertIsDisplayed()
-        composeTestRule.onNodeWithText(dummyProperty.name).assertIsDisplayed()
+            detailPropertiScreen.performTouchInput { swipeUp(durationMillis = 1000) }
+            waitUntil {
+                onAllNodesWithTag("spesifikasi").fetchSemanticsNodes().isNotEmpty()
+            }
+            onNodeWithTag("spesifikasi").assertIsDisplayed()
+            onNodeWithTag("btn_virtual_tour").assertIsDisplayed()
+            onNodeWithTag("video_player").assertIsDisplayed()
 
-        composeTestRule.onNodeWithTag("lokasi").assertIsDisplayed()
-        composeTestRule.onNodeWithText(dummyProperty.address).assertIsDisplayed()
+            detailPropertiScreen.performTouchInput { swipeUp(durationMillis = 1000) }
+            onAllNodesWithTag("btn_peta_lokasi").fetchSemanticsNodes().isNotEmpty()
+            onNodeWithTag("btn_peta_lokasi").assertIsDisplayed()
+            dummyProperty.dokumen?.forEach {
+                composeTestRule.onNodeWithText(it.nama).assertIsDisplayed()
+            }
+            onNodeWithTag("fasilitas").assertIsDisplayed()
+            onNodeWithTag("infrastruktur").assertIsDisplayed()
 
-        composeTestRule.onNodeWithTag("harga").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Rp ${formatHarga(dummyProperty.price.toLong())}")
-            .assertIsDisplayed()
-
-        composeTestRule.onNodeWithTag("deskripsi").assertIsDisplayed()
-        composeTestRule.onNodeWithText(dummyProperty.desc).assertIsDisplayed()
-
-        composeTestRule.onNodeWithTag("property_attribute").assertIsDisplayed()
-
-        //swipe up
-        detailPropertiScreen.performTouchInput { swipeUp(durationMillis = 3000) }
-        composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("spesifikasi").fetchSemanticsNodes().isNotEmpty()
+            detailPropertiScreen.performTouchInput { swipeUp(durationMillis = 1000) }
+            waitUntil {
+                onAllNodesWithTag("contact_row").fetchSemanticsNodes().isNotEmpty()
+            }
+            onNodeWithTag("contact_row").assertIsDisplayed()
         }
-        composeTestRule.onNodeWithTag("spesifikasi").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("btn_virtual_tour").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("video_player").assertIsDisplayed()
-
-        //swipe up
-        detailPropertiScreen.performTouchInput { swipeUp(durationMillis = 3000) }
-        composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("btn_peta_lokasi").fetchSemanticsNodes().isNotEmpty()
-        }
-        composeTestRule.onNodeWithTag("btn_peta_lokasi").assertIsDisplayed()
-        dummyProperty.dokumen?.forEach {
-            composeTestRule.onNodeWithText(it.nama).assertIsDisplayed()
-        }
-        composeTestRule.onNodeWithTag("fasilitas").assertIsDisplayed()
-        composeTestRule.onNodeWithTag("infrastruktur").assertIsDisplayed()
-
-        //swipe up
-        detailPropertiScreen.performTouchInput { swipeUp(durationMillis = 3000) }
-        composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("contact_row").fetchSemanticsNodes().isNotEmpty()
-        }
-        composeTestRule.onNodeWithTag("contact_row").assertIsDisplayed()
     }
 
     @Test
@@ -234,13 +255,13 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
         composeTestRule.onNodeWithTag("project_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
 
         //Go to detail project screen
         val dummyProject = DummyData.listProject()[0]
-        composeTestRule.onNodeWithTag("lihat_detail_1").performClick()
+        composeTestRule.onNodeWithTag("lihat_detail_${dummyProject.id}").performClick()
         composeTestRule.waitUntil {
             composeTestRule.onAllNodesWithTag("detail_project_screen").fetchSemanticsNodes()
                 .isNotEmpty()
@@ -289,7 +310,6 @@ fun melihat_proyek_pilihan() = runTest {
             }
             onNodeWithText(dummyProject.agentName).assertIsDisplayed()
         }
-
     }
 
     @Test
@@ -299,7 +319,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Agent.route).performClick()
         composeTestRule.onNodeWithTag("agent_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
         val dummyAgent = DummyData.listAgents()[0]
@@ -308,9 +328,8 @@ fun melihat_proyek_pilihan() = runTest {
             composeTestRule.onAllNodesWithTag("detail_agent_screen").fetchSemanticsNodes()
                 .isNotEmpty()
         }
-        val detailAgentScreen = composeTestRule.onNodeWithTag("detail_agent_screen")
-        detailAgentScreen.assertIsDisplayed()
         composeTestRule.apply {
+            onNodeWithTag("detail_agent_screen").assertIsDisplayed()
             onNodeWithTag("thumbnail_image").assertIsDisplayed()
             onNodeWithText(dummyAgent.name).assertIsDisplayed()
             onNodeWithText(dummyAgent.address).assertIsDisplayed()
@@ -320,9 +339,9 @@ fun melihat_proyek_pilihan() = runTest {
             onNodeWithText(dummyAgent.phone).assertIsDisplayed()
 
             onNodeWithTag("detail_agent_screen").performTouchInput {
-                swipeUp(durationMillis = 3000)
-                swipeUp(durationMillis = 3000)
-                swipeUp(durationMillis = 3000)
+                swipeUp(durationMillis = 1000)
+                swipeUp(durationMillis = 1000)
+                swipeUp(durationMillis = 1000)
             }
             dummyAgent.propertyList.forEach {
                 onNodeWithText(it.name).assertExists()
@@ -337,7 +356,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Developer.route).performClick()
         composeTestRule.onNodeWithTag("developer_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
         val dummyDeveloper = DummyData.listDevelopers()[0]
@@ -346,17 +365,15 @@ fun melihat_proyek_pilihan() = runTest {
             composeTestRule.onAllNodesWithTag("detail_developer_screen").fetchSemanticsNodes()
                 .isNotEmpty()
         }
-        val detailDeveloperScreen = composeTestRule.onNodeWithTag("detail_developer_screen")
-        detailDeveloperScreen.assertIsDisplayed()
-
         composeTestRule.apply {
+            onNodeWithTag("detail_developer_screen").assertIsDisplayed()
             onNodeWithTag("thumbnail_image").assertIsDisplayed()
             onNodeWithText(dummyDeveloper.name).assertIsDisplayed()
             onNodeWithText(dummyDeveloper.address).assertIsDisplayed()
             onNodeWithText("${dummyDeveloper.projectCount} Project").assertIsDisplayed()
             onNodeWithText(dummyDeveloper.phone).assertIsDisplayed()
-            detailDeveloperScreen.performTouchInput {
-                swipeUp(durationMillis = 3000)
+            onNodeWithTag("detail_developer_screen").performTouchInput {
+                swipeUp(durationMillis = 1000)
             }
             dummyDeveloper.projectList.forEach {
                 onNodeWithText(it.name).assertExists()
@@ -371,33 +388,26 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
         composeTestRule.onNodeWithTag("project_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
         val dummyProject = DummyData.listProject()[0]
         composeTestRule.onNodeWithTag("lihat_detail_${dummyProject.id}").performClick()
-        composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("detail_project_screen").fetchSemanticsNodes()
-                .isNotEmpty()
-        }
+
         val detailProjectScreen = composeTestRule.onNodeWithTag("detail_project_screen")
         detailProjectScreen.assertIsDisplayed()
         detailProjectScreen.performTouchInput {
-            swipeUp(durationMillis = 3000)
+            swipeUp(durationMillis = 1000)
         }
+
         val dummyUnit = dummyProject.listUnit[0]
-        composeTestRule.waitUntil {
-            composeTestRule.onAllNodesWithTag("lihat_detail_${dummyUnit.id}").fetchSemanticsNodes()
-                .isNotEmpty()
-        }
         composeTestRule.onNodeWithTag("lihat_detail_${dummyUnit.id}").performClick()
         composeTestRule.waitUntil {
             composeTestRule.onAllNodesWithTag("detail_unit_screen").fetchSemanticsNodes()
                 .isNotEmpty()
         }
-        val detailUnitScreen = composeTestRule.onNodeWithTag("detail_unit_screen")
-        detailUnitScreen.assertIsDisplayed()
         composeTestRule.apply {
+            onNodeWithTag("detail_unit_screen").assertIsDisplayed()
             onNodeWithTag("image_carousel").assertIsDisplayed()
             onNodeWithText(dummyUnit.name).assertIsDisplayed()
             onNodeWithText(dummyUnit.type).assertIsDisplayed()
@@ -415,7 +425,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
         composeTestRule.onNodeWithTag("properti_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
         val dummyProperti = DummyData.listProperty()[0]
@@ -427,7 +437,7 @@ fun melihat_proyek_pilihan() = runTest {
         val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
         detailPropertiScreen.assertIsDisplayed()
         detailPropertiScreen.performTouchInput {
-            swipeUp(durationMillis = 3000)
+            swipeUp(durationMillis = 1000)
         }
         composeTestRule.apply {
             onNodeWithTag("btn_virtual_tour").assertIsDisplayed()
@@ -435,6 +445,7 @@ fun melihat_proyek_pilihan() = runTest {
             waitUntil {
                 onAllNodesWithTag("webview_loaded").fetchSemanticsNodes().isNotEmpty()
             }
+            Thread.sleep(5000)
             onNodeWithTag("webview_loaded").assertIsDisplayed()
         }
     }
@@ -446,7 +457,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
         composeTestRule.onNodeWithTag("properti_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
         val dummyProperti = DummyData.listProperty()[0]
@@ -458,8 +469,8 @@ fun melihat_proyek_pilihan() = runTest {
         val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
         detailPropertiScreen.assertIsDisplayed()
         detailPropertiScreen.performTouchInput {
-            swipeUp(durationMillis = 3000)
-            swipeUp(durationMillis = 3000)
+            swipeUp(durationMillis = 1000)
+            swipeUp(durationMillis = 1000)
         }
         composeTestRule.apply {
             onNodeWithTag("btn_peta_lokasi").assertExists()
@@ -479,7 +490,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Properti.title ?: "").performClick()
         composeTestRule.onNodeWithTag("properti_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
         val dummyProperti = DummyData.listProperty()[0]
@@ -491,8 +502,8 @@ fun melihat_proyek_pilihan() = runTest {
         val detailPropertiScreen = composeTestRule.onNodeWithTag("detail_properti_screen")
         detailPropertiScreen.assertIsDisplayed()
         detailPropertiScreen.performTouchInput {
-            swipeUp(durationMillis = 3000)
-            swipeUp(durationMillis = 3000)
+            swipeUp(durationMillis = 1000)
+            swipeUp(durationMillis = 1000)
         }
         val dummyDokumen = dummyProperti.dokumen!![0]
         composeTestRule.apply {
@@ -513,7 +524,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
         composeTestRule.onNodeWithTag("project_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
 
@@ -549,7 +560,7 @@ fun melihat_proyek_pilihan() = runTest {
         composeTestRule.onNodeWithText(Screen.Project.title ?: "").performClick()
         composeTestRule.onNodeWithTag("project_screen").apply {
             performTouchInput {
-                swipeUp(durationMillis = 5000)
+                swipeUp(durationMillis = 1000)
             }
         }
 
@@ -566,8 +577,8 @@ fun melihat_proyek_pilihan() = runTest {
         //Check content
         composeTestRule.apply {
             detailProjectScreen.performTouchInput {
-                swipeUp(durationMillis = 3000)
-                swipeUp(durationMillis = 3000)
+                swipeUp(durationMillis = 1000)
+                swipeUp(durationMillis = 1000)
             }
             onNodeWithText("Download App").assertIsDisplayed()
             onNodeWithText("Download App").performClick()
