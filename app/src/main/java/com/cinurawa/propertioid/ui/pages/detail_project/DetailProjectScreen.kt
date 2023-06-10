@@ -14,7 +14,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.House
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Roofing
@@ -54,6 +53,8 @@ import com.cinurawa.propertioid.ui.organisms.VideoPlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple700
 import com.cinurawa.propertioid.ui.theme.Red500
+import com.cinurawa.propertioid.ui.utils.getFacilityIcon
+import com.cinurawa.propertioid.ui.utils.getInfraIcon
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
@@ -333,7 +334,7 @@ fun DetailProjectScreen(
                         crossAxisAlignment = FlowCrossAxisAlignment.Start,
                     ) {
                         project.fasilitas.forEach { fac ->
-                            IconTextCardColumn(text = fac, leadingIcon = Icons.Default.House)
+                            IconTextCardColumn(text = fac, leadingIcon = fac.getFacilityIcon())
                         }
                     }
                 }
@@ -360,7 +361,7 @@ fun DetailProjectScreen(
                         project.infrastruktur.forEach { inf ->
                             IconTextCardColumn(
                                 text = inf.name,
-                                leadingIcon = Icons.Default.House,
+                                leadingIcon = inf.type.getInfraIcon(),
                                 subText = "${inf.distance} KM"
                             )
                         }
