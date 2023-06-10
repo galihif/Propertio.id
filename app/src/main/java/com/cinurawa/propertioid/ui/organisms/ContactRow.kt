@@ -30,14 +30,14 @@ fun ContactRow(
         MyImage(
             image = image,
             modifier = Modifier
-                .height(140.dp)
+                .fillMaxHeight()
                 .weight(1f),
             cornerRadius = 14
         )
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .weight(1.5f)
+                .weight(1.2f)
                 .padding(start = 14.dp),
             verticalArrangement = Arrangement.SpaceBetween,
 
@@ -51,11 +51,13 @@ fun ContactRow(
                 style = MaterialTheme.typography.body1,
             )
             ContactCard(
+                modifier = Modifier.fillMaxWidth(),
                 text = phone,
                 leadingIcon = R.drawable.ic_phone,
                 onClick = onPhoneClick
             )
             ContactCard(
+                modifier = Modifier.fillMaxWidth(),
                 text = "Chat via Whatsapp",
                 leadingIcon = R.drawable.ic_wa,
                 bgColor = Color(0xFFF6F6F6),
