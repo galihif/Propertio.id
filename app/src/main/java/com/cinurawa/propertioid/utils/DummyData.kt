@@ -53,7 +53,7 @@ object DummyData {
             property.longitude = 106.8272 + i * 0.01
             property.dokumen = listOf(Dokumen("Document1", "https://dummyproperty.com/document1.pdf"), Dokumen("Document2", "https://dummyproperty.com/document2.pdf"))
             property.fasilitas = listOf("Swimming pool", "Gym", "Playground")
-            property.infrastruktur = listOf(Infrastructure("School", 500), Infrastructure("Hospital", 1000))
+            property.infrastruktur = listOf(Infrastructure("School", 50, ""), Infrastructure("Hospital", 1000, ""))
             property.agentImage = "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
             property.agentName = "Dummy Agent"
             property.agentPhone = "123-456-7890"
