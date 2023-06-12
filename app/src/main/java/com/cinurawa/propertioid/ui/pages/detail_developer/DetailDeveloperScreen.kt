@@ -112,6 +112,7 @@ fun DetailDeveloperScreen(
             } // Title & Location
             item {
                 ContactCard(
+                    modifier = Modifier.fillMaxWidth(),
                     text = developer.phone,
                     leadingIcon = R.drawable.ic_phone,
                     onClick = {}
@@ -119,6 +120,7 @@ fun DetailDeveloperScreen(
             }// Phone
             item {
                 ContactCard(
+                    modifier = Modifier.fillMaxWidth(),
                     text = "Chat via Whatsapp",
                     leadingIcon = R.drawable.ic_wa,
                     bgColor = Color(0xFFF6F6F6),
