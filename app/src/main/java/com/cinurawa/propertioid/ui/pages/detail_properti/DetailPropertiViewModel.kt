@@ -1,19 +1,14 @@
 package com.cinurawa.propertioid.ui.pages.detail_properti
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.emptyProperty
 import com.cinurawa.propertioid.ui.utils.IntentHelper
 import com.cinurawa.propertioid.ui.utils.formatGmapsUri
 import com.cinurawa.propertioid.ui.utils.formatHarga
 import com.cinurawa.propertioid.ui.utils.formatShareMessage
-import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,10 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailPropertiViewModel
 @Inject constructor(
-    val player: Player,
     private val repo: MainRepository
 ) : ViewModel() {
-    private var _videoUri = ""
 
     private var _locationName = ""
     private var _latitude = 0.0
@@ -79,25 +72,6 @@ class DetailPropertiViewModel
         IntentHelper.openMaps(context, formatGmapsUri(_locationName, _latitude, _longitude))
     }
 
-    init {
-        player.prepare()
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    fun addVideoUri(uri: String, context: Context) {
-        try {
-            getPlayableYoutubeUrl(context, uri) {
-                _videoUri = it
-                Log.d("GALIH", "addVideoUri: $_videoUri")
-                player.addMediaItem(MediaItem.fromUri(_videoUri))
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            _videoUri = "https://www.youtube.com/watch?v=QH2-TGUlwu4"
-            player.addMediaItem(MediaItem.fromUri(_videoUri))
-        }
-    }
-
     fun openDokumen(context: Context, link: String) {
         IntentHelper.openDokumen(context, link)
     }
@@ -108,11 +82,6 @@ class DetailPropertiViewModel
 
     fun callNumber(context: Context, number: String) {
         IntentHelper.callNumber(context, number)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        player.release()
     }
 
     fun shareProperty(context: Context) {
