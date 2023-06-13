@@ -19,23 +19,16 @@ import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Roofing
 import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
@@ -49,7 +42,7 @@ import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
 import com.cinurawa.propertioid.ui.organisms.ContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
 import com.cinurawa.propertioid.ui.organisms.ProjectUnitItem
-import com.cinurawa.propertioid.ui.organisms.VideoPlayer
+import com.cinurawa.propertioid.ui.organisms.YoutubePlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple700
 import com.cinurawa.propertioid.ui.theme.Red500
@@ -70,18 +63,6 @@ fun DetailProjectScreen(
 ) {
     viewModel.setSlug(slug)
     val context = LocalContext.current
-    var lifecycle by remember {
-        mutableStateOf(Lifecycle.Event.ON_CREATE)
-    }
-    val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event -> lifecycle = event }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
-    }
-
     val project by remember {
         viewModel.project
     }.collectAsState()
@@ -89,11 +70,6 @@ fun DetailProjectScreen(
     val error by remember {
         viewModel.error
     }.collectAsState()
-
-    viewModel.addVideoUri(project.video, context)
-    LaunchedEffect(true) {
-        viewModel.addVideoUri(project.video, context)
-    }
     viewModel.addLocation(
         project.name,
         project.latitude,
@@ -156,7 +132,9 @@ fun DetailProjectScreen(
                     hargaTitle = "Harga mulai dari",
                     hargaTerendah = project.startPrice,
                     hargaTertinggi = project.finalPrice,
-                    modifier = Modifier.padding(horizontal = 24.dp).testTag("harga"),
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .testTag("harga"),
                     onShareClick = {
                         viewModel.shareProject(context)
                     }
@@ -236,7 +214,9 @@ fun DetailProjectScreen(
                     PrimaryButton(
                         title = "Lihat 3D Site Plan",
                         leadingIcon = Icons.Filled.Roofing,
-                        modifier = Modifier.padding(horizontal = 24.dp).testTag("btn_3d_siteplan"),
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .testTag("btn_3d_siteplan"),
                         onClick = { onVirtualOrSiteplanClicked(project.site3DPlan) }
                     )
                 }
@@ -267,9 +247,9 @@ fun DetailProjectScreen(
                         modifier = Modifier.padding(horizontal = 24.dp)
                     )
                     Spacer(modifier = Modifier.height(5.dp))
-                    VideoPlayer(
-                        player = viewModel.player,
-                        lifecycle = lifecycle,
+                    YoutubePlayer(
+                        videoId = project.video,
+                        context = context,
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
                             .testTag("video_player")
