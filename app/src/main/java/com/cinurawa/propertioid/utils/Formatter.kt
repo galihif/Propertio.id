@@ -4,25 +4,22 @@ package com.cinurawa.propertioid.utils
 fun formatAgentPhotoUrl(id: String): String =
     "https://dev.propertio.id/data/image/users/$id"
 
-fun getYoutubeWatchUrl(url: String): String {
+fun getYoutubeId(url: String): String {
     return when {
         url.contains("youtu.be/") -> {
-            val videoId = url.substringAfterLast("/")
-            "https://www.youtube.com/watch?v=$videoId"
+            url.substringAfterLast("/")
         }
 
         url.contains("watch?v=") -> {
-            val videoId = url.substringAfterLast("v=")
-            "https://www.youtube.com/watch?v=$videoId"
+            url.substringAfterLast("v=")
         }
 
         url.contains("/embed/") -> {
-            val videoId = url.substringAfterLast("/embed/")
-            "https://www.youtube.com/watch?v=$videoId"
+            url.substringAfterLast("/embed/")
         }
 
         url.length == 11 -> {
-            "https://www.youtube.com/watch?v=$url"
+            url
         }
 
         else -> {
