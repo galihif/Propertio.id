@@ -27,24 +27,18 @@ import androidx.compose.material.icons.filled.Stairs
 import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.ui.atoms.DokumenButton
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
@@ -56,7 +50,7 @@ import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
 import com.cinurawa.propertioid.ui.organisms.ContactRow
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
-import com.cinurawa.propertioid.ui.organisms.VideoPlayer
+import com.cinurawa.propertioid.ui.organisms.YoutubePlayer
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.cinurawa.propertioid.ui.theme.Purple500
 import com.cinurawa.propertioid.ui.theme.Red500
@@ -75,27 +69,13 @@ fun DetailPropertiScreen(
     viewModel: DetailPropertiViewModel = hiltViewModel()
 ) {
     viewModel.setSlug(slug)
-
     val context = LocalContext.current
-    var lifecycle by remember {
-        mutableStateOf(Lifecycle.Event.ON_CREATE)
-    }
-    val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event -> lifecycle = event }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
-    }
-
     val property by remember {
         viewModel.property
     }.collectAsState()
     val error by remember {
         viewModel.error
     }.collectAsState()
-    viewModel.addVideoUri(property.video, context)
     viewModel.addLocation(property.name, property.latitude, property.longitude)
 
     if (error.isNotEmpty()) {
@@ -161,7 +141,9 @@ fun DetailPropertiScreen(
             } // Judul
             item {
                 IconText(
-                    modifier = Modifier.padding(horizontal = 24.dp).testTag("lokasi"),
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .testTag("lokasi"),
                     leadingIcon = Icons.Default.LocationOn,
                     text = property.address,
                     iconTint = Red500
@@ -170,7 +152,9 @@ fun DetailPropertiScreen(
             item {
                 HargaShare(
                     harga = property.price,
-                    modifier = Modifier.padding(horizontal = 24.dp).testTag("harga"),
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .testTag("harga"),
                     onShareClick = {
                         viewModel.shareProperty(context)
                     }
@@ -180,7 +164,9 @@ fun DetailPropertiScreen(
                 Text(
                     text = "Deskripsi",
                     style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(horizontal = 24.dp).testTag("deskripsi")
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                        .testTag("deskripsi")
                 )
                 Text(
                     text = property.desc,
@@ -283,7 +269,9 @@ fun DetailPropertiScreen(
                     PrimaryButton(
                         title = "Lihat Virtual Tour",
                         leadingIcon = Icons.Default.ViewInAr,
-                        modifier = Modifier.padding(horizontal = 24.dp).testTag("btn_virtual_tour"),
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .testTag("btn_virtual_tour"),
                         onClick = {
                             onVirtualTourClick(property.virtualTour)
                         }
@@ -298,13 +286,13 @@ fun DetailPropertiScreen(
                         style = MaterialTheme.typography.h6
                     )
                     Spacer(modifier = Modifier.height(5.dp))
-                    VideoPlayer(
-                        player = viewModel.player,
-                        lifecycle = lifecycle,
+                    YoutubePlayer(
+                        videoId = property.video,
+                        context = context,
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
-                            .fillMaxWidth()
                             .testTag("video_player")
+                            .fillMaxWidth()
                     )
                 }
             } // Video
@@ -319,7 +307,9 @@ fun DetailPropertiScreen(
                     PrimaryButton(
                         title = "Lihat Peta Lokasi",
                         leadingIcon = Icons.Default.Map,
-                        modifier = Modifier.padding(horizontal = 24.dp).testTag("btn_peta_lokasi"),
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .testTag("btn_peta_lokasi"),
                         onClick = {
                             viewModel.openMap(context)
                         }
