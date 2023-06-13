@@ -22,21 +22,13 @@ import androidx.compose.material.icons.filled.Stairs
 import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import com.cinurawa.propertioid.R
 import com.cinurawa.propertioid.data.model.ProjectUnit
 import com.cinurawa.propertioid.ui.atoms.PrimaryButton
@@ -44,7 +36,7 @@ import com.cinurawa.propertioid.ui.molecules.HargaShare
 import com.cinurawa.propertioid.ui.molecules.IconTextBadge
 import com.cinurawa.propertioid.ui.molecules.IconTextCardColumn
 import com.cinurawa.propertioid.ui.organisms.ImageCarousel
-import com.cinurawa.propertioid.ui.organisms.VideoPlayer
+import com.cinurawa.propertioid.ui.organisms.YoutubePlayer
 import com.cinurawa.propertioid.ui.pages.detail_project.DetailProjectViewModel
 import com.cinurawa.propertioid.ui.theme.Blue500
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
@@ -61,22 +53,6 @@ fun DetailUnitScreen(
 ) {
 
     val context = LocalContext.current
-    if (data?.video != null) {
-        viewModel.addVideoUri(data.video, context)
-    }
-
-    var lifecycle by remember {
-        mutableStateOf(Lifecycle.Event.ON_CREATE)
-    }
-    val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event -> lifecycle = event }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
-    }
-
     if (data != null) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -240,13 +216,13 @@ fun DetailUnitScreen(
                         modifier = Modifier.padding(horizontal = 24.dp)
                     )
                     Spacer(modifier = Modifier.height(5.dp))
-                    VideoPlayer(
-                        player = viewModel.player,
-                        lifecycle = lifecycle,
+                    YoutubePlayer(
+                        videoId = data.video,
+                        context = context,
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
+                            .testTag("video_player")
                             .fillMaxWidth()
-                            .testTag("video")
                     )
                 }
             } // Video
