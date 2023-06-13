@@ -1,13 +1,10 @@
 package com.cinurawa.propertioid.ui.pages.detail_project
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
 import com.cinurawa.propertioid.data.MainRepository
 import com.cinurawa.propertioid.data.model.getEmptyProject
 import com.cinurawa.propertioid.ui.utils.IntentHelper
@@ -15,7 +12,6 @@ import com.cinurawa.propertioid.ui.utils.formatGmapsUri
 import com.cinurawa.propertioid.ui.utils.formatHarga
 import com.cinurawa.propertioid.ui.utils.formatShareMessage
 import com.cinurawa.propertioid.ui.utils.formatShareMessageUnit
-import com.cinurawa.propertioid.ui.utils.getPlayableYoutubeUrl
 import com.cinurawa.propertioid.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,11 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailProjectViewModel
 @Inject constructor(
-    val player: Player,
     private val repo: MainRepository
 ) : ViewModel() {
-
-    private var _videoUri = ""
 
     private var _locationName = ""
     private var _latitude = 0.0
@@ -85,19 +78,6 @@ class DetailProjectViewModel
         context.startActivity(mapIntent)
     }
 
-    init {
-        player.prepare()
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    fun addVideoUri(uri: String, context: Context) {
-        getPlayableYoutubeUrl(context, uri) {
-            _videoUri = it
-            player.clearMediaItems()
-            player.addMediaItem(MediaItem.fromUri(_videoUri))
-        }
-    }
-
     fun downloadApps(context: Context, link: String) {
         IntentHelper.openBrowser(context, link)
     }
@@ -112,11 +92,6 @@ class DetailProjectViewModel
 
     fun callNumber(context: Context, number: String) {
         IntentHelper.callNumber(context, number)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        player.release()
     }
 
     fun shareProject(context: Context) {
