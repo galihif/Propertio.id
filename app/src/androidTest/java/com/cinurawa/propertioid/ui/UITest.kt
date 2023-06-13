@@ -445,7 +445,6 @@ class UITest {
             waitUntil {
                 onAllNodesWithTag("webview_loaded").fetchSemanticsNodes().isNotEmpty()
             }
-            Thread.sleep(5000)
             onNodeWithTag("webview_loaded").assertIsDisplayed()
         }
     }
