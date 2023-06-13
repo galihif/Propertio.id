@@ -67,7 +67,7 @@ fun GetDetailPropertyDto.Data.toModel(): Property =
         this.virtualTour =
             if (this@toModel.propertyVirtualTour.isNotEmpty()) this@toModel.propertyVirtualTour[0].file else ""
         this.video =
-            if (this@toModel.propertyVideo.isNotEmpty()) getYoutubeWatchUrl(this@toModel.propertyVideo[0].link) else ""
+            if (this@toModel.propertyVideo.isNotEmpty()) getYoutubeId(this@toModel.propertyVideo[0].link) else ""
 
         this.latitude = this@toModel.latitude
         this.longitude = this@toModel.longitude
@@ -103,7 +103,7 @@ fun GetDetailProjectDto.Data.toModel(): Project =
         this.virtualTour = if(this@toModel.projectVirtualTour.isNotEmpty()) this@toModel.projectVirtualTour[0].file else ""
         this.site3DPlan = this@toModel.siteplanLink
         this.arApps = this@toModel.appsLink.toString()
-        this.video = if(this@toModel.projectVideo.isNotEmpty()) getYoutubeWatchUrl(this@toModel.projectVideo[0].link) else ""
+        this.video = if(this@toModel.projectVideo.isNotEmpty()) getYoutubeId(this@toModel.projectVideo[0].link) else ""
 
         this.latitude = this@toModel.latitude
         this.longitude = this@toModel.longitude
