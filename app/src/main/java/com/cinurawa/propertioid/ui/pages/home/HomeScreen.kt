@@ -77,9 +77,7 @@ fun HomeScreen(
         ) {
             item {
                 HomeBanner(
-                    modifier = Modifier.semantics {
-                        contentDescription = "home_banner"
-                    }
+                    modifier = Modifier.testTag("home_banner")
                 )
             } // banner
             item {
