@@ -164,7 +164,9 @@ fun DetailUnitScreen(
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         IconTextCardColumn(
-                            modifier = Modifier.weight(1f).testTag("fasilitas"),
+                            modifier = Modifier
+                                .weight(1f)
+                                .testTag("fasilitas"),
                             text = data.powerSupply,
                             leadingIcon = Icons.Default.Bolt
                         )
@@ -187,7 +189,9 @@ fun DetailUnitScreen(
                     PrimaryButton(
                         title = "Lihat Virtual Tour",
                         leadingIcon = Icons.Default.ViewInAr,
-                        modifier = Modifier.padding(horizontal = 24.dp).testTag("virtual_tour"),
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .testTag("virtual_tour"),
                         onClick = { onVirtualTourClicked(data.virtualTour) }
                     )
                 }
@@ -203,7 +207,9 @@ fun DetailUnitScreen(
                     PrimaryButton(
                         title = "Lihat 3D Site Plan",
                         leadingIcon = Icons.Filled.Roofing,
-                        modifier = Modifier.padding(horizontal = 24.dp).testTag("3d_site_plan"),
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .testTag("3d_site_plan"),
                         onClick = {}
                     )
                 }
