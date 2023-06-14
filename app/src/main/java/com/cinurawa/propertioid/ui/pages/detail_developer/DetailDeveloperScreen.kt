@@ -82,7 +82,9 @@ fun DetailDeveloperScreen(
             }
             item {
                 ThumbnailImage(
-                    modifier = Modifier.fillMaxWidth().testTag("thumbnail_image"),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("thumbnail_image"),
                     imageUrl = developer.imageUrl,
                     isAgent = true,
                 )
