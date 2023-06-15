@@ -26,10 +26,10 @@ class DetailDeveloperViewModel
     private var _id = 0
     fun setId(id: Int) {
         _id = id
-        getDetailAgent()
+        getDetailDeveloper()
     }
 
-    private fun getDetailAgent() {
+    private fun getDetailDeveloper() {
         viewModelScope.launch {
             repo.getDetailDeveloper(_id)
                 .collect {
