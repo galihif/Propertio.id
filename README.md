@@ -37,6 +37,9 @@ Propertio is available for download on the Google Play Store. Simply search for 
 
 To use Propertio, simply open the app and browse through the available properties using the search and filter options. Click on a property to view its details and photos, and use the virtual tour 360 feature to explore the property in an immersive way. You can also save your favorite properties for future reference, and contact property owners or agents directly from the app.
 
+## Screenshots
+![Screenshots](/screenshots.png)
+
 ## Credits
 
 - Hilt library: https://dagger.dev/hilt
