@@ -7,9 +7,9 @@ Propertio is an innovative property marketing Android app that provides a virtua
 ## Features
 
 - Virtual tour 360 feature for immersive property exploration
-- Easy property search and filtering by location, price, and other criteria
+- Easy property search and filtering by keyword, property type, and listing type
 - Detailed property listings with photos, descriptions, and specifications
-- Save favorite properties for future reference
+- Share properties to other apps
 - Contact property owners or agents directly from the app
 
 ## Technologies Used
