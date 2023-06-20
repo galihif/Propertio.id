@@ -12,18 +12,26 @@ Propertio is an innovative property marketing Android app that provides a virtua
 - Share properties to other apps
 - Contact property owners or agents directly from the app
 
-## Technologies Used
+  
+## Architecture & Tech Stack
 
-- Kotlin programming language
-- Android SDK and Android Studio IDE
-- Dagger Hilt for dependency injection
-- Retrofit and OkHttp for API communication
-- Android Architecture Components, including ViewModel and LiveData
-- Jetpack Compose for building UIs
-- Accompanist library for UI components and utilities
-- Coil for image loading and caching
-- YouTubePlayer library for playing YouTube videos
-- JUnit and Mockito for testing
+- [Kotlin](https://kotlinlang.org/) : Programming Language
+- [MVVM Architecture](https://developer.android.com/jetpack/guide?gclid=CjwKCAjwztL2BRATEiwAvnALcqJLqgqW6G8BvPQWpJzNQkY7u8xN6N2a9V1LwT0B_4Bh4Yz4A8lWBoC3f0QAvD_BwE&gclsrc=aw.ds) : Model-View-ViewModel architecture pattern for building Android apps
+- [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) : A methodology for creating design systems
+- Jetpack Libraries
+  - [Coroutines Flow](https://developer.android.com/kotlin/flow) : A reactive stream library for asynchronous programming
+  - [Dagger Hilt](https://dagger.dev/hilt/) : Dependency injection library for Android
+  - [Jetpack Compose](https://developer.android.com/jetpack/compose) : A modern UI toolkit for building native Android apps
+  - [Material Design 2](https://material.io/design) : A design language developed by Google
+  - [Material Icons](https://fonts.google.com/icons) : A library of free, open-source icons
+- Testing
+  - [Mockito](https://site.mockito.org/) : A testing framework for mocking objects in unit tests
+  - [Espresso](https://developer.android.com/training/testing/espresso) : A testing framework for UI testing on Android
+- [Retrofit](https://square.github.io/retrofit/) : A type-safe HTTP client for Android and Java
+- [OKHttp](https://square.github.io/okhttp/) : An HTTP client for Android and Java
+- [Accompanist](https://github.com/google/accompanist) : A library of UI components and utilities for Jetpack Compose
+- [Coil](https://coil-kt.github.io/coil/) : An image loading and caching library for Android
+- [YouTubePlayer](https://developers.google.com/youtube/android/player) : A library for embedding and controlling YouTube videos in Android apps
 
 ## Minimum Android Version
 
@@ -31,38 +39,12 @@ Propertio requires a minimum Android API level of 21 (Android 5.0 Lollipop).
 
 ## Installation
 
-Propertio is available for download on the Google Play Store. Simply search for "Propertio" and install the app on your Android device.
-
-## How to Use
-
-To use Propertio, simply open the app and browse through the available properties using the search and filter options. Click on a property to view its details and photos, and use the virtual tour 360 feature to explore the property in an immersive way. You can also save your favorite properties for future reference, and contact property owners or agents directly from the app.
+Propertio is not yet available for download on the Google Play Store. We'll update this page as soon as the app is published. Thank you for your patience!
 
 ## Screenshots
 ![Screenshots](/screenshots.png)
 
-## Credits
-
-- Hilt library: https://dagger.dev/hilt
-- Retrofit library: https://square.github.io/retrofit/
-- OkHttp library: https://square.github.io/okhttp/
-- Coil library: https://coil-kt.github.io/coil/
-- YouTubePlayer library: https://github.com/PierfrancescoSoffritti/android-youtube-player
-
-## License
-
-Propertio is open source software and is licensed under the MIT License.
-
 ## Contact
 
-If you have any questions, feedback, or issues with Propertio, please contact us at support@propertio.id or visit our website at https://www.propertio.id.
+If you have any questions, feedback, or issues with Propertio, please contact us at [Email](mailto:propertio.id@gmail.com) or visit our [Website](https://dev.propertio.id).
 
-## Testing
-
-The project includes both unit tests and instrumented tests. Here are the libraries used for testing:
-
-- JUnit
-- Mockito
-- Espresso
-- Compose UI Testing
-- Navigation Testing
-- Hilt Android Testing
