@@ -84,15 +84,15 @@ fun GetDetailPropertyDto.Data.toModel(): Property =
 
 fun GetDetailProjectDto.Data.toModel(): Project =
     Project(
-        id = this.id,
+        id = this.id?:0,
         slug = this.slug,
         name = this.title,
-        desc = this.description,
-        concept = this.design,
+        desc = this.description?:"",
+        concept = this.design?:"",
         address = "${this.address}, ${this.district}, ${this.city} ${this.province} ${this.postalCode}",
-        startPrice = this.priceStart,
-        finalPrice = this.priceFinal,
-        code = this.projectCode,
+        startPrice = this.priceStart?:0,
+        finalPrice = this.priceFinal?:0,
+        code = this.projectCode?:"",
 
         photosUrl = this.projectPhoto.map { it.file },
 
@@ -101,18 +101,18 @@ fun GetDetailProjectDto.Data.toModel(): Project =
 
         ).apply {
         this.virtualTour = if(this@toModel.projectVirtualTour.isNotEmpty()) this@toModel.projectVirtualTour[0].file else ""
-        this.site3DPlan = this@toModel.siteplanLink
-        this.arApps = this@toModel.appsLink.toString()
+        this.site3DPlan = this@toModel.siteplanLink?:""
+        this.arApps = this@toModel.appsLink?:""
         this.video = if(this@toModel.projectVideo.isNotEmpty()) getYoutubeId(this@toModel.projectVideo[0].link) else ""
 
-        this.latitude = this@toModel.latitude
-        this.longitude = this@toModel.longitude
+        this.latitude = this@toModel.latitude?:0.0
+        this.longitude = this@toModel.longitude?:0.0
 
         this.listUnit = this@toModel.unit.map {
             ProjectUnit(
                 id = it.id,
                 name = it.title,
-                desc = it.description,
+                desc = it.description ?: "",
                 code = it.unitCode,
                 price = it.price,
                 photosUrl = it.unitPhoto.map { photo -> photo.file },
