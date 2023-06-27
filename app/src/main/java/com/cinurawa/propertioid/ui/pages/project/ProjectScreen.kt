@@ -97,15 +97,15 @@ fun ProjectScreen(
                     )
                 }
             }
-            items(listProject) {
+            items(listProject) {project ->
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
                 ) {
                     ProjectItem(
-                        onDetailClicked = { onProjectClicked(it) },
-                        data = it
+                        onDetailClicked = { onProjectClicked(project) },
+                        data = project
                     )
                 }
                 Spacer(modifier = Modifier.height(24.dp))
