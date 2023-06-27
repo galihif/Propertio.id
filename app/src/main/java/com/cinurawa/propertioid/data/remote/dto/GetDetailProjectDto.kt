@@ -17,7 +17,7 @@ data class GetDetailProjectDto(
         @SerializedName("address")
         val address: String,
         @SerializedName("apps_link")
-        val appsLink: Any?,
+        val appsLink: String?,
         @SerializedName("certificate")
         val certificate: String,
         @SerializedName("city")
@@ -31,33 +31,33 @@ data class GetDetailProjectDto(
         @SerializedName("deleted_at")
         val deletedAt: Any?,
         @SerializedName("description")
-        val description: String,
+        val description: String?,
         @SerializedName("design")
-        val design: String,
+        val design: String?,
         @SerializedName("developer")
         val developer: Developer,
         @SerializedName("developer_id")
-        val developerId: Int,
+        val developerId: Int?,
         @SerializedName("district")
-        val district: String,
+        val district: String?,
         @SerializedName("id")
-        val id: Int,
+        val id: Int?,
         @SerializedName("latitude")
-        val latitude: Double,
+        val latitude: Double?,
         @SerializedName("listing_package_type")
         val listingPackageType: Any?,
         @SerializedName("longitude")
-        val longitude: Double,
+        val longitude: Double?,
         @SerializedName("postal_code")
-        val postalCode: String,
+        val postalCode: String?,
         @SerializedName("price_final")
-        val priceFinal: Int,
+        val priceFinal: Int?,
         @SerializedName("price_start")
-        val priceStart: Int,
+        val priceStart: Int?,
         @SerializedName("project_advantage")
         val projectAdvantage: List<Any>,
         @SerializedName("project_code")
-        val projectCode: String,
+        val projectCode: String?,
         @SerializedName("project_document")
         val projectDocument: List<ProjectDocument>,
         @SerializedName("project_facility")
@@ -75,13 +75,13 @@ data class GetDetailProjectDto(
         @SerializedName("province")
         val province: String,
         @SerializedName("siteplan_link")
-        val siteplanLink: String,
+        val siteplanLink: String?,
         @SerializedName("slug")
         val slug: String,
         @SerializedName("status")
         val status: String,
         @SerializedName("subtitle")
-        val subtitle: String,
+        val subtitle: String?,
         @SerializedName("title")
         val title: String,
         @SerializedName("unit")
@@ -331,7 +331,7 @@ data class GetDetailProjectDto(
             @SerializedName("deleted_at")
             val deletedAt: Any?,
             @SerializedName("description")
-            val description: String,
+            val description: String?,
             @SerializedName("floor")
             val floor: Int,
             @SerializedName("garage")
