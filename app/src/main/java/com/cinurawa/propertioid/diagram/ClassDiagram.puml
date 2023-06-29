@@ -18,7 +18,10 @@ package data {
 
     class MainRepositoryImpl {
         - apiService: ApiService
-        + MainRepositoryImpl(apiService: ApiService)
+        + override getAllProperty(): List<Property>
+        + override getAllProject(): List<Project>
+        + override getAllAgent(): List<Agent>
+        + override getAllDeveloper(): List<Developer>
     }
 }
 
@@ -101,32 +104,21 @@ package di {
     }
 }
 
-class SingletonComponent {
-    <<InstallIn>>
-}
 
-interface MainRepository {
-}
-
-class MainRepositoryImpl {
-}
-
-SingletonComponent --> di.RepositoryModule
-SingletonComponent --> di.RemoteModule
 di.RemoteModule ..> data.ApiService : creates
-di.RepositoryModule --> data.MainRepository : binds
-di.RepositoryModule --> data.MainRepositoryImpl : creates
-data.MainRepository <|-- data.MainRepositoryImpl : implements
+di.RepositoryModule ..> data.MainRepository : creates
+di.RepositoryModule -- data.MainRepositoryImpl
+data.MainRepository <|.. data.MainRepositoryImpl : implements
 
 model.Agent --> model.Property : 0..*
 model.Developer --> model.Project : 0..*
-data.MainRepository --> model.Property
-data.MainRepository --> model.Project
-data.MainRepository --> model.Agent
-data.MainRepository --> model.Developer
-data.MainRepositoryImpl --> data.ApiService : 1
-ViewModel --> data.MainRepository
-Screen --> ViewModel
+data.MainRepository -- model.Property
+data.MainRepository -- model.Project
+data.MainRepository -- model.Agent
+data.MainRepository -- model.Developer
+data.MainRepositoryImpl ..> data.ApiService
+ViewModel ..> data.MainRepository : use
+Screen ..> ViewModel : use
 
 
 @enduml
