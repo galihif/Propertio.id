@@ -39,7 +39,7 @@ Propertio requires a minimum Android API level of 21 (Android 5.0 Lollipop).
 
 ## Installation
 
-Propertio is not yet available for download on the Google Play Store. We'll update this page as soon as the app is published. Thank you for your patience!
+Install our app on [Play Store](https://play.google.com/store/apps/details?id=com.cinurawa.propertioid)
 
 ## Screenshots
 ![Screenshots](/screenshots.png)
