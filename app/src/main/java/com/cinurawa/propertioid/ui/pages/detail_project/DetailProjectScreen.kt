@@ -249,7 +249,6 @@ fun DetailProjectScreen(
                     Spacer(modifier = Modifier.height(5.dp))
                     YoutubePlayer(
                         videoId = project.video,
-                        context = context,
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
                             .testTag("video_player")

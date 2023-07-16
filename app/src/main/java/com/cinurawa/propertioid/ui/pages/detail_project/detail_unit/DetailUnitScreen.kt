@@ -224,7 +224,6 @@ fun DetailUnitScreen(
                     Spacer(modifier = Modifier.height(5.dp))
                     YoutubePlayer(
                         videoId = data.video,
-                        context = context,
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
                             .testTag("video_player")

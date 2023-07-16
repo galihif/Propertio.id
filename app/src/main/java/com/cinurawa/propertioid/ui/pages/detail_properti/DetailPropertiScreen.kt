@@ -288,7 +288,6 @@ fun DetailPropertiScreen(
                     Spacer(modifier = Modifier.height(5.dp))
                     YoutubePlayer(
                         videoId = property.video,
-                        context = context,
                         modifier = Modifier
                             .padding(horizontal = 24.dp)
                             .testTag("video_player")
