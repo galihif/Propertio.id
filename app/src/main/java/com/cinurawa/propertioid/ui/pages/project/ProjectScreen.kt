@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -20,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Project
@@ -86,7 +88,6 @@ fun ProjectScreen(
                     modifier = Modifier.fillMaxWidth()
                 )
             }
-
             item {
                 if (isLoading) {
                     LoadingItem(
@@ -109,6 +110,15 @@ fun ProjectScreen(
                     )
                 }
                 Spacer(modifier = Modifier.height(24.dp))
+            }
+            item{
+                if (listProject.isEmpty()){
+                    Text(
+                        text = "Tidak ada proyek yang ditemukan",
+                        modifier = Modifier.padding(24.dp).fillMaxWidth().testTag("empty_state"),
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
     }

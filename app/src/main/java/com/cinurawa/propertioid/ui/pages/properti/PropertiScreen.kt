@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cinurawa.propertioid.data.model.Property
@@ -116,6 +118,15 @@ fun PropertiScreen(
                     )
                 }
                 Spacer(modifier = Modifier.height(24.dp))
+            }
+            item{
+                if (listProperty.isEmpty()){
+                    Text(
+                        text = "Tidak ada properti yang ditemukan",
+                        modifier = Modifier.padding(24.dp).fillMaxWidth().testTag("empty_state"),
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
     }
