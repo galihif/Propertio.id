@@ -17,10 +17,10 @@ import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
     private val apiService: ApiService
-):MainRepository {
+) : MainRepository {
 
     override fun getAllProperty(): Flow<Resource<List<Property>>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getAllProperty()
@@ -28,24 +28,25 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
+            } catch (e: IOException) {
                 if (e.message?.contains("Unable to resolve host") == true) {
                     emit(Resource.Error("Please check your internet connection."))
                 } else {
                     emit(Resource.Error(e.message ?: "Error"))
                 }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
+
     override fun getAllProperty(
-        keyword:String,
-        propertyType:String,
-        listingType:String,
+        keyword: String,
+        propertyType: String,
+        listingType: String,
     ): Flow<Resource<List<Property>>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getAllProperty(
@@ -57,21 +58,21 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
+            } catch (e: IOException) {
                 if (e.message?.contains("Unable to resolve host") == true) {
                     emit(Resource.Error("Please check your internet connection."))
                 } else {
                     emit(Resource.Error(e.message ?: "Error"))
                 }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
     override fun getAllProject(): Flow<Resource<List<Project>>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getAllProject()
@@ -79,10 +80,14 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
@@ -92,7 +97,7 @@ class MainRepositoryImpl @Inject constructor(
         keyword: String,
         propertyType: String
     ): Flow<Resource<List<Project>>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getAllProject(
@@ -103,17 +108,21 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
     override fun getAllAgent(): Flow<Resource<List<Agent>>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getAllAgent()
@@ -121,16 +130,20 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
-    override fun getAllDeveloper():Flow<Resource<List<Developer>>> =
+    override fun getAllDeveloper(): Flow<Resource<List<Developer>>> =
         flow {
             emit(Resource.Loading())
             try {
@@ -139,17 +152,21 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
     override fun getDetailProperty(slug: String): Flow<Resource<Property>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getDetailProperty(slug)
@@ -157,16 +174,20 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
-    override fun getDetailProject(slug: String):Flow<Resource<Project>> =
+    override fun getDetailProject(slug: String): Flow<Resource<Project>> =
         flow {
             emit(Resource.Loading())
             try {
@@ -175,17 +196,21 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
     override fun getDetailAgent(agentId: Int): Flow<Resource<Agent>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getDetailAgent(agentId)
@@ -193,17 +218,21 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
                 Log.d("GALIH", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH", "Exception: ${e.message}")
             }
         }
 
     override fun getDetailDeveloper(developerId: Int): Flow<Resource<Developer>> =
-        flow{
+        flow {
             emit(Resource.Loading())
             try {
                 val response = apiService.getDetailDeveloper(developerId)
@@ -211,13 +240,16 @@ class MainRepositoryImpl @Inject constructor(
             } catch (e: HttpException) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH HttpException", "HttpException: ${e.message}")
-            }catch (e: IOException) {
-                emit(Resource.Error(e.message ?: "Error"))
-                Log.d("GALIH IOException", "IOException: ${e.message}")
-            }catch (e: Exception) {
+            } catch (e: IOException) {
+                if (e.message?.contains("Unable to resolve host") == true) {
+                    emit(Resource.Error("Please check your internet connection."))
+                } else {
+                    emit(Resource.Error(e.message ?: "Error"))
+                }
+                Log.d("GALIH", "IOException: ${e.message}")
+            } catch (e: Exception) {
                 emit(Resource.Error(e.message ?: "Error"))
                 Log.d("GALIH Exception", "Exception: ${e.message}")
             }
         }
-
 }
