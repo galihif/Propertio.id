@@ -113,6 +113,16 @@ class UITest {
             onNodeWithText(dummyProperti.address).assertExists()
         }
     }
+    @Test
+    fun mencari_properti_kosong() = runTest {
+        composeTestRule.apply {
+            onNodeWithTag("home_search").assertExists()
+            onNodeWithText("Cari properti disini...").performTextInput("asdasd")
+            onNodeWithText("Cari").performClick()
+            onNodeWithTag("empty_state").assertExists()
+        }
+    }
+
 
     @Test
     fun membuka_menu() = runTest {
