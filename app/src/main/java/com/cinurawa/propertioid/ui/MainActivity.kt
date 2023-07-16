@@ -9,7 +9,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -103,7 +102,13 @@ fun PropertioidApp(
                         navController.navigate(Screen.DetailProject.createRoute(it.slug))
                     },
                     onLihatSemuaPropertyClicked = {
-                        navController.navigate(Screen.Properti.createRoute("default", "default", "default"))
+                        navController.navigate(
+                            Screen.Properti.createRoute(
+                                "default",
+                                "default",
+                                "default"
+                            )
+                        )
                     },
                     onLihatSemuaProjectClicked = {
                         navController.navigate(Screen.Project.createRoute("default", "default"))
@@ -134,7 +139,7 @@ fun PropertioidApp(
                     keyword = keyword ?: "",
                     selectedProType = selectedProType ?: "",
                     listingType = listingType ?: "",
-                    onPropertiClicked = {prop->
+                    onPropertiClicked = { prop ->
                         navController.navigate(Screen.DetailProperti.createRoute(prop.slug))
                     }
                 )
@@ -151,7 +156,7 @@ fun PropertioidApp(
                 ProjectScreen(
                     keyword = keyword ?: "",
                     selectedProType = selectedProType ?: "",
-                    onProjectClicked = {proj ->
+                    onProjectClicked = { proj ->
                         navController.navigate(Screen.DetailProject.createRoute(proj.slug))
                     }
                 )
@@ -250,17 +255,7 @@ fun PropertioidApp(
                 WebViewScreen(
                     url = decodeUrl(url)
                 )
-
             }
-
         }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    PropertioidTheme {
     }
 }
